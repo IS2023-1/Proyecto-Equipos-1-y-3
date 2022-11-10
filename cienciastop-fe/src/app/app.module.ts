@@ -8,7 +8,7 @@ import { FooterComponent } from './footer/footer.component';
 import { ProductosComponent } from './productos/productos.component';
 import { RouterModule, Routes } from '@angular/router';
 import {HttpClientModule} from '@angular/common/http';
-
+import {productos} from "./productos.json"
 const routes: Routes = [
   {path: "", redirectTo: "/productos", pathMatch: "full"},
   {path: "/productos", component: ProductosComponent}]
@@ -23,7 +23,7 @@ const routes: Routes = [
     BrowserModule,
     AppRoutingModule,
     RouterModule.forRoot(routes),
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
