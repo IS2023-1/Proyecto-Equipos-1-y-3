@@ -3,6 +3,7 @@ import { Producto } from '../productos/producto';
 import Swal from 'sweetalert2';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PRODUCTOS } from '../productos/productos.json';
+import { SelectorMatcher } from '@angular/compiler';
 
 @Component({
   selector: 'app-header',
@@ -17,18 +18,26 @@ export class HeaderComponent implements OnInit {
   }
 
   searchInput: string;
-  public onSubmit():void {
+
+  public onSubmit(): void {
     var ss = require("string-similarity");
     var productos = PRODUCTOS;
     var searchInputLower = this.searchInput.toLowerCase();
-    var matches = productos.filter(e => {
+    var matches = [];
+    productos.forEach(e => {
       var nombreLower = e.nombre.toLowerCase();
       var codigoLower = e.codigo.toLowerCase();
-      return ss.compareTwoStrings(codigoLower.toLowerCase(), searchInputLower) > 0.6 || 
-      ss.compareTwoStrings(nombreLower.toLowerCase(), searchInputLower) > 0.6 ||
-      nombreLower.includes(searchInputLower) ||
-      codigoLower.includes(searchInputLower)
+      if(ss.compareTwoStrings(codigoLower, searchInputLower) > 0.6) {
+        matches.push([e, ss.compareTwoStrings(codigoLower, searchInputLower)])
+      } else if(ss.compareTwoStrings(nombreLower, searchInputLower) > 0.6) {
+        matches.push([e, ss.compareTwoStrings(nombreLower, searchInputLower)])
+      } else if(nombreLower.includes(searchInputLower) || codigoLower.includes(searchInputLower)) {
+        matches.push([e, 0.6])
+      }
     });
+
+    matches = matches.sort((e1, e2) => (e1 > e2 ? -1 : 1)).map(e => e[0])
+
     console.log(matches)
     if(matches.length == 0) {
       Swal.fire({
