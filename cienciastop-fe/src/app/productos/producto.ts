@@ -1,9 +1,19 @@
+
+
 export class Producto {
+
     id: number;
-    nombre: string;
+
+	nombre: string;
+
+    codigo: string;
+
+	stock: number;
+
+	precio: number;
+
+	descripcion: string;
 
 
-    //Agregar lo que falte
 }
-export const productos: Producto[] = [{id: 0, nombre: "Juan Perez"},]
 
