@@ -12,6 +12,6 @@ export class FooterComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  public autor = "Angel Rojas";
+  public autor = "Prometheus - Facultad de Ciencias";
 
 }
