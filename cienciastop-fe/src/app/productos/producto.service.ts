@@ -38,4 +38,8 @@ export class ProductoService {
   delete(id: number): Observable<Producto>{
     return this.http.delete<Producto>(`${this.urlEndPoint}/${id}`, {headers: this.httpHeaders})
   }
+
+  lookup(lookupFactor: string): Observable<Producto[]>{
+    return null;
+  }
 }

@@ -44,7 +44,7 @@ export class FormComponent implements OnInit {
     this.productoService.update(this.producto).subscribe(producto => 
       {
       this.router.navigate(['/productos'])
-      swal.fire('Producto Actualizado', `${producto.nombre} actualizado con éxito`, 'success')
+      swal.fire('Producto Actualizado', `${producto.nombre} actualizado exitosamente`, 'success')
       }
     )
   }
