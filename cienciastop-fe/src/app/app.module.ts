@@ -12,11 +12,14 @@ import { FormsModule } from '@angular/forms';
 import { FormComponent } from './productos/form.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import { RbpComponent } from './productos/rbp.component';
+import { PerfilComponent } from './usuarios/perfil.component';
 
 const routes: Routes = [
   {path: "", redirectTo: "/productos", pathMatch: "full"},
   {path: '', redirectTo: '/productos', pathMatch: 'full'},
   {path: 'usuarios', component: UsuariosComponent },
+  {path: 'usuarios/perfil', component: PerfilComponent },
+  {path: 'usuarios/perfil/:id', component: PerfilComponent },
   {path: 'productos', component: ProductosComponent},
   {path: 'productos/form', component: FormComponent},
   {path: 'productos/form/:id', component: FormComponent},
@@ -31,6 +34,7 @@ const routes: Routes = [
     UsuariosComponent,
     FormComponent,
     RbpComponent,
+    PerfilComponent,
   ],
   imports: [
     BrowserModule,
