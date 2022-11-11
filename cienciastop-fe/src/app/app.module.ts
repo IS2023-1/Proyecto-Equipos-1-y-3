@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { FormComponent } from './productos/form.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
+import { RbpComponent } from './productos/rbp.component';
 
 const routes: Routes = [
   {path: "", redirectTo: "/productos", pathMatch: "full"},
@@ -18,7 +19,8 @@ const routes: Routes = [
   {path: 'usuarios', component: UsuariosComponent },
   {path: 'productos', component: ProductosComponent},
   {path: 'productos/form', component: FormComponent},
-  {path: 'productos/form/:id', component: FormComponent},]
+  {path: 'productos/form/:id', component: FormComponent},
+  {path: 'productos/rbp', component: RbpComponent}]
 
 @NgModule({
   declarations: [
@@ -28,6 +30,7 @@ const routes: Routes = [
     ProductosComponent,
     UsuariosComponent,
     FormComponent,
+    RbpComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,7 +39,7 @@ const routes: Routes = [
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [HeaderComponent, RbpComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
