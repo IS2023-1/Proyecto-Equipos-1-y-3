@@ -7,3 +7,6 @@ Para correr el entorno de desarrollo, se usa:
 docker-compose up
 ```
 
+```bash
+cd <UbicacionDelProyecto>/Proyecto-Equipos-1-y-3/ciencias-top-be
+```
