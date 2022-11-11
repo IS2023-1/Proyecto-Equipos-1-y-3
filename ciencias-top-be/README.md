@@ -1,6 +1,6 @@
 # Backend para Ciencias Top
 
-## Uso:
+## Uso
  > Requiere [Docker](https://www.docker.com/), no es necesario hacer configuración adicional al instalar.
 
 Para correr el entorno de desarrollo, se ejecuta Docker compose desde el inicio de nuestro directorio de trabajo.
@@ -45,3 +45,19 @@ Adicionalmente durante el primer push a Github es necesario crear una rama upstr
 ```bash
 git push --set-upstream origin <rama nueva (repetir nombre local)> # p. e. git push --set-upstream origin Backend-Usuario
 ```
+
+## API
+
+Para poder acceder localmente a la API es necesario tener corriendo la aplicación en Docker Compose, [*remitir a Uso*](#uso).
+
+Se puede accesar a la API a traves del puerto **8080** (sujeto a cambio). 
+
+```bash
+localhost:8080/<endpoint>
+```
+
+### Endpoints:
+/producto
++ /buscar/todo
+  + Devuelve todos los productos disponibles. 
+  

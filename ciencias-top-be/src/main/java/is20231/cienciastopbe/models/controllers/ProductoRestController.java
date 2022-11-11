@@ -19,7 +19,7 @@ public class ProductoRestController {
     @Autowired
     private IProductoService productoService;
     
-    @GetMapping("/all")
+    @GetMapping("/buscar/todo")
     public List<Producto> index(){
         return productoService.findAll();
     }
