@@ -10,14 +10,20 @@ import { UsuarioService } from './usuario.service';
 })
 export class UsuariosComponent implements OnInit {
 
-  usuarios: Usuario[];
+  usuarios: Usuario[] = [];
 
   constructor(private usuarioService: UsuarioService) { }
 
   ngOnInit(): void {
-    this.usuarioService.getUsuarios().subscribe(
+    /*this.usuarioService.getUsuarios().subscribe(
       usuarios => this.usuarios = usuarios
-    );
+    );*/
+    //this.getUsuarios();
+    this.usuarios=USUARIOS;
+  }
+
+  getUsuarios() : void {
+    this.usuarioService.getUsuarios().subscribe(usuarios => this.usuarios = usuarios)
   }
 
 }

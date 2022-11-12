@@ -9,31 +9,34 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './perfil.component.html',
   styleUrls: ['./perfil.component.css']
 })
-export class PerfilComponent implements OnInit {
-  @Input() user : Usuario; 
+export class PerfilComponent implements OnInit { 
+  u : Usuario | undefined;
+  //currentUser : Usuario = u;
 
-  usuario: Usuario = new Usuario();
+  /*usuario: Usuario = new Usuario();
   nombre: string = this.usuario.nombre;
   apellidoPaterno: string = this.usuario.apellidoPaterno;
-  apellidoMaterno: string = this.usuario.apellidoMaterno;
-  id: number;
-  carrera: string = this.usuario.carrera;
+  apellidoMaterno: string = this.usuario.apellidoMaterno;*/
+  //id: number;
+  /*carrera: string = this.usuario.carrera;
   pumapuntos: number = this.usuario.pumapuntos;
-  correo: string = this.usuario.correo;
+  correo: string = this.usuario.correo;*/
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
   constructor(private usuarioService : UsuarioService, private router:Router, private activatedRoute:ActivatedRoute) { 
-    //this.id = this.activatedRoute.snapshot.params.[id];
+    //const id = this.activatedRoute.data.subscribe( v=> console.log(v));
+    let params: any = this.activatedRoute.snapshot.params;
+    console
   }
 
-  ngOnInit(): void { }
-
-  public verPerfil(usuario) {
-    console.log(usuario);
-  }
+  ngOnInit(): void {
+    this.getUsuario();
+   }
 
   public getUsuario(): void {//Observable <Usuario>{
-    this.usuarioService.getUsuario(this.id).subscribe(
+    /*this.usuarioService.getUsuario(this.id).subscribe(
       Response => this.router.navigate(['/usuarios/perfil'])
-    );
+    );*/
+    const id = Number( this.activatedRoute.snapshot.paramMap.get('id'));
+          this.usuarioService.getUsuario(id).subscribe(u => this.u = u);
   }
 }

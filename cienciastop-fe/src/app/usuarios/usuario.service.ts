@@ -17,20 +17,16 @@ export class UsuarioService {
   constructor(private http: HttpClient) { }
 
   getUsuarios(): Observable <Usuario[]>{
-    return of(USUARIOS);
+    const usuarios= of(USUARIOS);
+    return usuarios;
+    //return this.http.get<Usuario[]>(this.urlEndPoint);
+    //return of(USUARIOS);
   }
 
-  /*getUsuario(id:number) : Usuario{
-    for (let u in USUARIOS) {
-      if (u.id.compare(id)) {
-        return u;
-      }
-    }
-    return null;
-  }*/
-
-  getUsuario(id): Observable<Usuario>{
-    return this.http.get<Usuario>(`${this.urlEndPoint}/${id}`);
+  getUsuario(id:number): Observable<Usuario>{
+    const usuario =USUARIOS.find(u=> u.id ===id)!;
+    return of(usuario);
+    //return this.http.get<Usuario>(`${this.urlEndPoint}/${id}`);
   }
 
 }

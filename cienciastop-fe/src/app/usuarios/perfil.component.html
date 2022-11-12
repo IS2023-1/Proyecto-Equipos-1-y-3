@@ -1,3 +1,4 @@
+<div *ngIf="u">
 <div class="container mt-5">
 
     <div class="row d-flex justify-content-center">
@@ -6,12 +7,14 @@
 
             <div class="card p-3 py-4">
 
-                <div class="text-center mt-3">
-                    <p class="mt-2 mb-0">{{nombre}} {{apellidoPaterno}} {{apellidoMaterno}} Nombre</p>
+                <div class="text-center mt-5">
+                    <h1>{{u.nombre}} {{u.apellidoPaterno}} {{u.apellidoMaterno}}</h1>
                 </div>
 
                 <div class="text-center mt-2">
-                    <h5 class="lead mb-0">{{id}} Numero de cuenta</h5>
+                    <div class="px-4 mt-1">
+                        <p class="mb-0 biggy-text">Numero de cuenta: <span class="text-dark mb-0">{{u.id}} </span></p>
+                    </div>
                     <span>Carrera: {{carrera}}</span>
 
                     <div class="px-4 mt-1">

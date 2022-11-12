@@ -31,6 +31,7 @@ const routes: Routes = [
     HeaderComponent,
     FooterComponent,
     ProductosComponent,
+    PerfilComponent,
     UsuariosComponent,
     FormComponent,
     RbpComponent,
