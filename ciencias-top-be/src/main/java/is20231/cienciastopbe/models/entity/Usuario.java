@@ -13,7 +13,9 @@ import javax.persistence.Table;
 @Table(name="usuarios")
 public class Usuario implements Serializable{
 
-    @Id
+    private static final long serialVersionUID = 1L;
+    
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name = "nombre", length = 50, nullable = false, unique = true)
@@ -31,7 +33,7 @@ public class Usuario implements Serializable{
     @Column(name = "password", length = 20, nullable = false)
     private String password;
     @Column(name = "esActivo", length = 20, nullable = false)
-    private Bool esActivo;
+    private Boolean esActivo;
     @Column(name = "pumapuntos", length = 50, nullable = false)
     private Integer pumapuntos;
 
@@ -99,11 +101,11 @@ public class Usuario implements Serializable{
         this.password = password;
     }
 
-    public Bool getEsActivo() {
+    public Boolean getEsActivo() {
         return esActivo;
     }
 
-    public void setEsActivo(Bool esActivo) {
+    public void setEsActivo(Boolean esActivo) {
         this.esActivo = esActivo;
     }
     
