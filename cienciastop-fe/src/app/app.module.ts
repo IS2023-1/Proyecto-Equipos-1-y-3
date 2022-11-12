@@ -7,23 +7,36 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { ProductosComponent } from './productos/productos.component';
 import { RouterModule, Routes } from '@angular/router';
-import {HttpClientModule} from '@angular/common/http';
-import {productos} from "./productos.json"
+import { UsuariosComponent } from './usuarios/usuarios.component';
+import { HttpClientModule} from '@angular/common/http';
+import { FormComponent } from './productos/form.component';
+import { FormsModule } from '@angular/forms';
+
+
 const routes: Routes = [
-  {path: "", redirectTo: "/productos", pathMatch: "full"},
-  {path: "/productos", component: ProductosComponent}]
+  {path: '', redirectTo: '/productos', pathMatch: 'full'},
+  {path: 'usuarios', component: UsuariosComponent },
+  {path: 'productos', component: ProductosComponent},
+  {path: 'productos/form', component: FormComponent},
+  {path: 'productos/form/:id', component: FormComponent}
+];
+
+
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    ProductosComponent
+    ProductosComponent,
+    UsuariosComponent,
+    FormComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    RouterModule.forRoot(routes),
     HttpClientModule,
+    FormsModule,
+    RouterModule.forRoot(routes)
   ],
   providers: [],
   bootstrap: [AppComponent]
