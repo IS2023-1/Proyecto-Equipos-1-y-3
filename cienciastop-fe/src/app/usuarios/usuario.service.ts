@@ -10,7 +10,7 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 })
 export class UsuarioService {
 
-  private urlEndPoint:string = 'http://localhost:8080/api/productos';
+  private urlEndPoint:string = 'http://localhost:4200/api/usuarios';
 
   private httpHeaders = new HttpHeaders({'Content-Type': 'application/json'})
 
@@ -29,8 +29,8 @@ export class UsuarioService {
     return null;
   }*/
 
-  getUsuario(id:number): Observable<Usuario>{
-    return this.http.get<Usuario>(`${this.urlEndPoint}/${id}`)
+  getUsuario(id): Observable<Usuario>{
+    return this.http.get<Usuario>(`${this.urlEndPoint}/${id}`);
   }
 
 }

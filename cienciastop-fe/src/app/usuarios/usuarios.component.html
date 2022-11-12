@@ -54,12 +54,11 @@
                   style="width: 80px; height: 35px; border-radius: 5px;">
                   <p class="text-white mb-0 small">Editar</p>
               </div>
-
              
               <div class="bg-danger d-flex align-items-center justify-content-center shadow-1-strong">
                 <button class="bg-danger d-flex align-items-center justify-content-center shadow-1-strong" type="button"
-                style="width: 80px; height: 35px; border-radius: 5px;" ngClick="['getUsuario(u.id)']"
-                [routerLink]="['/usuarios/perfil']">
+                style="width: 80px; height: 35px; border-radius: 5px;"
+                [routerLink]="['/usuarios/perfil', u.id]">
                 <p class="text-white mb-0 small">Ver perfil</p> </button> 
               </div>
 
