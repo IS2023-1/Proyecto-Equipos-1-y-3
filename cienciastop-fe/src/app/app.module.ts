@@ -13,6 +13,7 @@ import { FormComponent } from './productos/form.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import { RbpComponent } from './productos/rbp.component';
 import { PerfilComponent } from './usuarios/perfil.component';
+import { FormUsuarioComponent } from './usuarios/form-usuario.component';
 
 const routes: Routes = [
   {path: "", redirectTo: "/productos", pathMatch: "full"},
@@ -20,6 +21,7 @@ const routes: Routes = [
   {path: 'usuarios', component: UsuariosComponent },
   {path: 'usuarios/perfil', component: PerfilComponent },
   {path: 'usuarios/perfil/:id', component: PerfilComponent },
+  {path: 'usuarios/perfil/edit/:id', component: FormUsuarioComponent },
   {path: 'productos', component: ProductosComponent},
   {path: 'productos/form', component: FormComponent},
   {path: 'productos/form/:id', component: FormComponent},
@@ -36,6 +38,7 @@ const routes: Routes = [
     FormComponent,
     RbpComponent,
     PerfilComponent,
+    FormUsuarioComponent
   ],
   imports: [
     BrowserModule,

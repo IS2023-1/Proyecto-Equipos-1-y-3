@@ -1,0 +1,35 @@
+<form (ngSubmit)="update()" *ngIf="user">
+    <h1>{{titulo}}</h1>
+    <form class="form-inline" (ngSubmit)="update()">
+        <div class="form-group mx-sm-3">
+            <label for="inputPass" class="sr-only">Nombre</label>
+            <input type="text" class="form-control"  name="Nombre" placeholder="Nombre" [(ngModel)]="user.nombre">
+        </div>
+        <div class="form-group mx-sm-3">
+            <label for="inputPass" class="sr-only">Apellido Paterno</label>
+            <input type="text" class="form-control" [(ngModel)]="user.apellidoPaterno" name="Apellido Paterno"
+                placeholder="Apellido Paterno">
+        </div>
+        <div class="form-group mx-sm-3">
+            <label for="inputPass" class="sr-only">Apellido Materno</label>
+            <input type="text" class="form-control" [(ngModel)]="user.apellidoMaterno" name="Apellido Materno"
+                placeholder="Apellido Materno">
+        </div>
+    </form>
+
+    <div class="form-group">
+        <label for="validation01">Correo</label>
+        <input type="text" class="form-control is-valid" id="validation01" placeholder="Correo" required
+            [(ngModel)]="user.correo">
+    </div>
+    <div class="form-group">
+        <label for="validation02">Numero de celular</label>
+        <input type="number" class="form-control is-invalid" id="validation02" placeholder="Celular" required
+            [(ngModel)]="user.correo">
+    </div>
+
+    <button class="bg-success d-flex align-items-center justify-content-center shadow-1-strong" type="button"
+        style="width: 80px; height: 35px; border-radius: 5px;">
+        <p class="text-white mb-0 small"> Guardar</p>
+    </button>
+</form>
