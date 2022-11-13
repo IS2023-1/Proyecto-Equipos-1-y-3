@@ -24,9 +24,9 @@ public class ProductoRestController {
         return productoService.findAll();
     }
 
-    @GetMapping("/buscar/id/{id}")
-    public Optional<Producto> buscaId(@PathVariable Long id) {
-        return productoService.findById(id);
+    @GetMapping("/buscar/idproducto/{idproducto}")
+    public Optional<Producto> buscaIdProducto(@PathVariable Long idproducto) {
+        return productoService.findByIdProducto(idproducto);
     }
 
 /*     @GetMapping("buscar/nombre/{nombre}")

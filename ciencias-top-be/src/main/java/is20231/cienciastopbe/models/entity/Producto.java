@@ -15,7 +15,7 @@ public class Producto implements Serializable{
 
     private static final long serialVersionUID = 1L;
     
-	@Id
+	@IdProducto
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long idProducto;
     @Column(name = "nombre", length = 50, nullable = false, unique = true)
@@ -32,14 +32,14 @@ public class Producto implements Serializable{
     private Integer cantidad;
 
     public Long getIdProducto() {
-		return idProducto;
-	}
+        return this.idProducto;
+    }
 
-	public void setIdProducto(Long idProducto) {
-		this.idProducto = idProducto;
-	}
+    public void setIdProducto(Long id) {
+        this.id = idProducto;
+    }
 
-	public String getNombre() {
+    public String getNombre() {
         return this.nombre;
     }
 
