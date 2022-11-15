@@ -59,7 +59,7 @@ localhost:10000/<endpoint>
 ### Endpoints:
 **/producto**
 + /buscar/todo
-  + Devuelve todos los productos disponibles. Uso: ```localhost:10000/producto/buscar/todo```
+  + Devuelve todos los productos disponibles. 
 + /buscar/{id}
 + /buscar/{nombre}
 + /buscar/{codigo}
