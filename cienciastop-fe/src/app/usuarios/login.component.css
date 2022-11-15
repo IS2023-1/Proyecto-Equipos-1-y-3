@@ -1,0 +1,69 @@
+.desktop---1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 30px 366px;
+    gap: 16px;
+    background-color: #d9d9d9;
+  }
+  .text-1 {
+    text-align: center;
+    vertical-align: top;
+    font-size: 100px;
+    font-family: K2D;
+    line-height: auto;
+    color: #000000;
+  }
+  .rectangle-1 {
+    border-radius: 20px;
+    height: 67px;
+    width: 524px;
+    background-color: #ffffff;
+    border: 1px solid #aaaaaa;
+  }
+  .text-2 {
+    text-align: left;
+    vertical-align: top;
+    font-size: 25px;
+    font-family: Inter;
+    line-height: auto;
+    color: #7e7e7e;
+  }
+  .rectangle-4 {
+    border-radius: 20px;
+    height: 67px;
+    width: 524px;
+    background-color: #ffffff;
+    border: 1px solid #aaaaaa;
+  }
+  .text-3 {
+    text-align: left;
+    vertical-align: top;
+    font-size: 25px;
+    font-family: Inter;
+    line-height: auto;
+    color: #7e7e7e;
+  }
+  .rectangle-3 {
+    border-radius: 20px;
+    height: 67px;
+    width: 524px;
+    background-color: #002b7a;
+  }
+  .text-4 {
+    text-align: left;
+    vertical-align: top;
+    font-size: 12px;
+    font-family: Inter;
+    line-height: auto;
+    color: #d59f0f;
+  }
+  .text-5 {
+    text-align: left;
+    vertical-align: top;
+    font-size: 25px;
+    font-family: Inter;
+    line-height: auto;
+    color: #aaaaaa;
+  }

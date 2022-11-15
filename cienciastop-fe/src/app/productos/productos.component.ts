@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Producto } from './producto';
 import { ProductoService } from './producto.service';
 import Swal from 'sweetalert2';
+import { AuthService } from '../usuarios/auth.service';
 import { PRODUCTOS } from './productos.json';
+
 @Component({
   selector: 'app-productos',
   templateUrl: './productos.component.html',
@@ -12,7 +14,7 @@ export class ProductosComponent implements OnInit {
 
   productos: Producto[] = PRODUCTOS;
 
-  constructor(private productoService: ProductoService ) { }
+  constructor(private productoService: ProductoService,  public authService: AuthService) { }
 
   ngOnInit(): void {
     this.productoService.getProductos().subscribe(
@@ -31,7 +33,7 @@ export class ProductosComponent implements OnInit {
     
     swalWithBootstrapButtons.fire({
       title: 'Estas seguro?',
-      text: `¿Seguro que desea elimiar el producto ${producto.nombre}?`,
+      text: `¿Seguro que desea eliminar el producto ${producto.nombre}?`,
       icon: 'warning',
       showCancelButton: true,
       confirmButtonText: 'si, Eliminar!',
@@ -43,8 +45,8 @@ export class ProductosComponent implements OnInit {
           Response => {
             this.productos =  this.productos.filter(prod => prod !== producto)
             swalWithBootstrapButtons.fire(
-              'Producto Elimindo!',
-              'Producto elminado con éxito.',
+              'Producto Eliminado!',
+              'Producto eliminado con éxito.',
               'success'
             )
           }
