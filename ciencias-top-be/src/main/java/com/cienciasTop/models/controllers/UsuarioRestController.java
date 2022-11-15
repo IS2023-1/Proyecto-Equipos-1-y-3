@@ -78,7 +78,7 @@ public class UsuarioRestController {
             return new ResponseEntity<Map<String,Object>>(response, HttpStatus.NOT_FOUND);
         }
         try {
-        	currentUsuario.setNum_cuenta_trabajador(usuario.getNum_cuenta_trabajador());
+        	currentUsuario.setCuenta(usuario.getCuenta());
             currentUsuario.setNombre(usuario.getNombre());
             currentUsuario.setApellidoPaterno(usuario.getApellidoPaterno());
             currentUsuario.setApellidoMaterno(usuario.getApellidoMaterno());
@@ -113,4 +113,50 @@ public class UsuarioRestController {
 		response.put("mensaje", "El usuario ha sido eliminado con exito");
         return new ResponseEntity<Map<String,Object>>(response,HttpStatus.OK);
     }
+    
+    //Controlador para buscar un usuario por su nombre
+    @GetMapping("/buscar/{nombre}")
+    public List<Usuario> findByNombre(@PathVariable String nombre){
+    	return usuarioService.findByNombre(nombre);
+    }
+    
+    //Controlador para buscar un usuario por su correo
+    @GetMapping("/buscar/correo/{correo}")
+    public ResponseEntity<?> findByCorreo(@PathVariable String correo){
+        Usuario usuario = usuarioService.findByCorreo(correo);
+        Map<String, Object> response = new HashMap<>();
+        try {
+            usuario = usuarioService.findByCorreo(correo);
+        } catch (DataAccessException e) {
+            response.put("mensaje", "Error al realizar la consulta en la base de datos");
+            response.put("error",e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
+            return new ResponseEntity<Map<String,Object>>(response,HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        if(usuario == null){
+            response.put("mensaje", "El usuario ID:".concat(correo.toString().concat(" no existe en la base de datos.")));
+            return new ResponseEntity<Map<String,Object>>(response,HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<Usuario>(usuario,HttpStatus.OK);
+    }
+    
+    //Controlador para buscar un usuario por su numero de cuenta o trabajador
+    @GetMapping("/cuenta/{cuenta}")
+    public ResponseEntity<?> findByCuenta(@PathVariable Long cuenta){
+        Usuario usuario = usuarioService.findByCuenta(cuenta);
+        Map<String, Object> response = new HashMap<>();
+        try {
+            usuario = usuarioService.findByCuenta(cuenta);
+        } catch (DataAccessException e) {
+            response.put("mensaje", "Error al realizar la consulta en la base de datos");
+            response.put("error",e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
+            return new ResponseEntity<Map<String,Object>>(response,HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        if(usuario == null){
+            response.put("mensaje", "El usuario ID:".concat(cuenta.toString().concat(" no existe en la base de datos.")));
+            return new ResponseEntity<Map<String,Object>>(response,HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<Usuario>(usuario,HttpStatus.OK);
+    }
+    
+
 }

@@ -40,4 +40,24 @@ public class UsuarioServiceImpl implements IUsuarioService {
 		
 	}
 
+	// Método para buscar a un usuario por su nombre
+	@Override
+	@Transactional(readOnly=true)
+	public List<Usuario> findByNombre(String nombre) {
+		return usuarioDao.findByNombre(nombre);
+	}
+	
+	// Método para buscar a un usuario por su correo
+	@Override
+	@Transactional(readOnly=true)
+	public Usuario findByCorreo(String correo) {
+		return usuarioDao.findByCorreo(correo);
+	}
+
+	@Override
+	@Transactional(readOnly=true)
+	public Usuario findByCuenta(Long cuenta) {
+		return usuarioDao.findByCuenta(cuenta);
+	}
+
 }

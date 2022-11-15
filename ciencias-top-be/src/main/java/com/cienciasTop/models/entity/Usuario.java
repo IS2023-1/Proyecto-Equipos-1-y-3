@@ -19,8 +19,8 @@ public class Usuario implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id_usuario;
 	
-	@Column(name = "num_cuenta_trabajador", unique = true, updatable = false, nullable = false, columnDefinition = "BIGINT CHECK(num_cuenta_trabajador BETWEEN 100000 AND 999999999)")
-	private Long num_cuenta_trabajador; // Numero de trabajador o numer de cuenta
+	@Column(name = "cuenta", unique = true, updatable = false, nullable = false, columnDefinition = "BIGINT CHECK(cuenta BETWEEN 100000 AND 999999999)")
+	private Long cuenta; // Numero de trabajador o numer de cuenta
 
 	@Column(name = "nombre", length = 50, nullable = false)
 	private String nombre;
@@ -59,12 +59,12 @@ public class Usuario implements Serializable {
 		this.id_usuario = id_usuario;
 	}
 
-	public Long getNum_cuenta_trabajador() {
-		return num_cuenta_trabajador;
+	public Long getCuenta() {
+		return cuenta;
 	}
 
-	public void setNum_cuenta_trabajador(Long num_cuenta_trabajador) {
-		this.num_cuenta_trabajador = num_cuenta_trabajador;
+	public void setCuenta(Long cuenta) {
+		this.cuenta = cuenta;
 	}
 
 	public String getNombre() {
