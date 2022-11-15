@@ -12,6 +12,7 @@ import { UsuarioService } from './usuarios.service';
 export class UsuariosComponent implements OnInit {
 
   usuarios: Usuario[];
+  matches: Usuario[];
 
   searchInput: string = "";
   placeholder: string = "";
@@ -35,12 +36,12 @@ export class UsuariosComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.usuarios = USUARIOS;
+    this.usuarioService.getUsuarios().subscribe(u => this.usuarios = u);
     document.getElementById("res-bus-usuario").style.display = "none";
-    var matches = this.getMatches();
-    console.log(matches)
+    this.usuarioService.lookup(this.searchInput).subscribe(u => this.matches = u);
+    console.log(this.matches)
     console.log(this.searchInput);
-    if(matches.length == 0) {
+    if(this.matches.length == 0) {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
@@ -49,7 +50,7 @@ export class UsuariosComponent implements OnInit {
     } else {
       this.placeholder = this.searchInput;
       document.getElementById("res-bus-usuario").style.display = "block";
-      this.usuarios = matches;
+      this.usuarios = this.matches;
     }
   }
 

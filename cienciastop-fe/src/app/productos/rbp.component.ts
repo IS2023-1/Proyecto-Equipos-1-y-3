@@ -3,6 +3,7 @@ import { Producto } from './producto';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PRODUCTOS } from './productos.json';
 import Swal from 'sweetalert2';
+import { RbpService } from './rbp.service';
 
 @Component({
   selector: 'app-rbp',
@@ -14,7 +15,9 @@ export class RbpComponent implements OnInit {
   public productMatches: Producto[] = [];
   public input: string = ""; //this.headerService.getMessage()[1];
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) { 
+  constructor(private router: Router, 
+              private activatedRoute: ActivatedRoute,
+              private rbpService: RbpService) { 
   }
 
   ngOnInit(): void {
@@ -24,7 +27,7 @@ export class RbpComponent implements OnInit {
   public getMatches(): void {
     this.productMatches = [];
     var searchInputLower = this.input.trim().toLowerCase();
-    if(!this.input || searchInputLower.length === 0) {console.log("HUH?"); return;};
+    if(!this.input || searchInputLower.length === 0) return;
     var matches = [];
     matches = [];
     var ss = require("string-similarity");
@@ -48,9 +51,16 @@ export class RbpComponent implements OnInit {
   lookup(): void {
     this.activatedRoute.params.subscribe(input => {
       this.input = input['input'];
-      this.getMatches();
-      console.log(this.productMatches)
-      console.log("\""+ this.input + "\"");
+      this.productMatches = [];
+      var searchInputLower = this.input.trim().toLowerCase();
+      if(!this.input || searchInputLower.length === 0) {
+
+      } else {
+        this.rbpService.lookup(searchInputLower).subscribe(res => this.productMatches = res);
+        console.log(this.productMatches)
+        console.log("\""+ this.input + "\"");
+      }
+
       if(this.productMatches.length == 0) {
         Swal.fire({
           icon: 'error',
