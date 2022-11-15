@@ -70,14 +70,17 @@ localhost:10000/<endpoint>
 **/usuarios**
 + /buscar/todo
   + Devuelve todos los usuarios. Uso: ```localhost:10000/usuarios/buscar/todo```
-+ /buscar/{id}
++ /id/{id}
   +  Devuelve el usuario mediante su id (generado automáticamente). Uso: ```localhost:10000/usuarios/buscar/{id}```
 + /buscar/{nombre}
-  + Devuelve el una lista de usuarios mediante su nombre. Uso: ```localhost:10000/usuarios/buscar/{nombre}``
+  + Devuelve el una lista de usuarios mediante su nombre. Uso: ```localhost:10000/usuarios/buscar/{nombre}```
 + /buscar/{numIdentificacion}
 + /agregar/
-+ /actualizar/{numIdentificacion}
-+ /eliminar/{numIdentificacion}
+  + Agrega un usuario. Uso: ```localhost:10000/usuarios/agregar```
++ /editar/{id}
+  + Edita un usuario a través de su id (generado automáticamente). Uso: ```localhost:10000/usuarios/editar/{id}```
++ /eliminar/{id}
+  + Elimina un usuario a través de su id (generado automáticamente). Uso: ```localhost:10000/usuarios/eliminar/{id}```
 
 **/rentar**
 + /buscar/id
