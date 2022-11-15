@@ -20,7 +20,6 @@ public class ProductoServiceImpl implements IProductoService{
 	@Override
 	@Transactional(readOnly=true)
 	public List<Producto> findAll() {
-		// TODO Auto-generated method stub
 		return (List<Producto>) productoDao.findAll();
 	}
 
@@ -28,7 +27,6 @@ public class ProductoServiceImpl implements IProductoService{
 	@Override
 	@Transactional(readOnly=true)
 	public Producto findById(Long id) {
-		// TODO Auto-generated method stub
 		return productoDao.findById(id).orElse(null);
 	}
 
@@ -36,7 +34,6 @@ public class ProductoServiceImpl implements IProductoService{
 	@Override
 	@Transactional()
 	public Producto save(Producto producto) {
-		// TODO Auto-generated method stub
 		return productoDao.save(producto);
 	}
 
@@ -44,7 +41,6 @@ public class ProductoServiceImpl implements IProductoService{
 	@Override
 	@Transactional()
 	public void delete(Long id) {
-		// TODO Auto-generated method stub
 		productoDao.deleteById(id);
 		
 	}
