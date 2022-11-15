@@ -17,9 +17,9 @@
         </li>
         
       </ul>
-      <form class="d-flex" role="search" (submit)="onSubmit()">
+      <form class="d-flex" role="search">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" [(ngModel)]="searchInput" name="searchInput">
-        <button class="btn btn-outline-success" type="submit">Buscar</button>
+        <button class="btn btn-outline-success" type="submit" [routerLink]="['/productos/rbp', searchInput]">Buscar</button>
       </form>
     </div>
   </div>

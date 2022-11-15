@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { USUARIOS } from './usuarios.json';
 import { Usuario } from './usuarios';
 import Swal from 'sweetalert2';
+import { UsuarioService } from './usuarios.service';
 
 @Component({
   selector: 'app-usuarios',
@@ -15,7 +16,7 @@ export class UsuariosComponent implements OnInit {
   searchInput: string = "";
   placeholder: string = "";
 
-  constructor() { }
+  constructor(private usuarioService: UsuarioService) { }
 
   ngOnInit(): void {
     this.usuarios = USUARIOS;
@@ -24,13 +25,12 @@ export class UsuariosComponent implements OnInit {
   getMatches(): Usuario[] {
     console.log(this.searchInput);
     var matches = []
-    
     this.usuarios.forEach(e => {
       if((`${e.nombre} ${e.apellidoPaterno} ${e.apellidoMaterno}`).toLowerCase().includes(this.searchInput.toLowerCase())) {
         matches.push(e);
       }
     })
-
+    
     return matches;
   }
 

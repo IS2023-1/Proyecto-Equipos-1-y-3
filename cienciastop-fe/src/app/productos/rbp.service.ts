@@ -4,7 +4,6 @@ import { HttpClient } from '@angular/common/http';
 import { Producto } from './producto';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
-import { PRODUCTOS } from './productos.json';
 
 
 @Injectable({ providedIn: 'root' })
@@ -17,8 +16,8 @@ export class RbpService {
     lookup(searchInput: string): Observable<Producto[]> {
         return this.http.get<Producto[]>(`${this.urlEndpoint}/${searchInput}`).pipe(
             catchError(error => {
-                Swal.fire("Error al buscar producto", error.error.message, 'error');
                 this.router.navigate(['/productos']);
+                Swal.fire("Error al buscar producto", error.error.message, 'error');
                 return throwError(() => error);
             })
         )

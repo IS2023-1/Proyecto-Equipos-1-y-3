@@ -20,7 +20,7 @@ const routes: Routes = [
   {path: 'productos', component: ProductosComponent},
   {path: 'productos/form', component: FormComponent},
   {path: 'productos/form/:id', component: FormComponent},
-  {path: 'productos/rbp', component: RbpComponent}]
+  {path: 'productos/rbp/:input', component: RbpComponent}]
 
 @NgModule({
   declarations: [
