@@ -1,13 +1,13 @@
 # Backend para Ciencias Top
 
 ## Uso
- > Puede correr un entorno de desarrollo completo con [Docker](https://www.docker.com/), no es necesario hacer configuración adicional al instalar.
+ > Requiere [Docker](https://www.docker.com/), no es necesario hacer configuración adicional al instalar.
 
 Para correr el entorno de desarrollo, se ejecuta Docker compose desde el inicio de nuestro directorio de trabajo.
 
 ```bash
 cd <UbicacionDelProyecto>/Proyecto-Equipos-1-y-3/ciencias-top-be
-docker compose up
+docker-compose up
 ```
 
 ## Git
@@ -50,63 +50,14 @@ git push --set-upstream origin <rama nueva (repetir nombre local)> # p. e. git p
 
 Para poder acceder localmente a la API es necesario tener corriendo la aplicación en Docker Compose, [*remitir a Uso*](#uso).
 
-Se puede accesar a la API a traves del puerto **10000** (sujeto a cambio). 
+Se puede accesar a la API a traves del puerto **8080** (sujeto a cambio). 
 
 ```bash
-localhost:10000/<endpoint>
+localhost:8080/<endpoint>
 ```
 
 ### Endpoints:
-**/producto**
+/producto
 + /buscar/todo
-  + Devuelve todos los productos disponibles. Uso: ```localhost:10000/producto/buscar/todo```
-+ /buscar/{id}
-+ /buscar/{nombre}
-+ /buscar/{codigo}
-+ /agregar
-+ /actualizar/{id}
-+ /eliminar/{id}
+  + Devuelve todos los productos disponibles. 
   
-**/usuario**
-+ /buscar/todo
-  + Devuelve todos los productos disponibles. Uso: ```localhost:10000/producto/buscar/todo```
-+ /buscar/{id}
-+ /buscar/{nombre}
-+ /buscar/{numIdentificacion}
-+ /agregar/
-+ /actualizar/{numIdentificacion}
-+ /eliminar/{numIdentificacion}
-
-**/renta**
-+ /buscar/id
-+ /buscar/idProducto
-(Por definir si es necesario)
-  + /buscar/{codigo}
-  + /buscar/{idUsuario}
-+ /buscar/{numIdentificacion}
-+ /nueva/{idProducto}&{idUsuario}
-+ /actualizar/{numIdentificacion}
-+ /eliminar/{numIdentificacion}
-  
-**/proveedor**
-+ /buscar/{id}
-+ /buscar/{numIdentificacion}
-
-**/proveedor**
-+ /buscar/{id}
-+ /buscar/{numIdentificacion}
-
-## TODO
-+ Configurar el entorno local
-  + Instalar Java 17
-  + Instalar Maven
-  + Instalar Postgres 14.5
-  + Crear base de datos cienciastop_bd, con acceso de usuario: **admin** y contraseña **admin**. 
-  + Clonar el repositorio local.
-  + Cambiar
-  + Actualizar base de datos local a cienciastop_bd
-  + 
-+ Actualizar los metodos que usan ids
-
-### Endpoints 
- - [ ] /productos
