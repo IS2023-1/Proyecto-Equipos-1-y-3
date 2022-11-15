@@ -119,4 +119,42 @@ public class ProductoRestController {
 		response.put("mensaje", "El producto ha sido eliminado con exito");
 		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
 	}
+	
+	//Controlador para buscar un producto por su nombre
+    @GetMapping("/buscar/nombre/{nombre}")
+    public ResponseEntity<?> findByNombre(@PathVariable String nombre){
+        Producto producto = productoService.findByNombre(nombre);
+        Map<String, Object> response = new HashMap<>();
+        try {
+            producto = productoService.findByNombre(nombre);
+        } catch (DataAccessException e) {
+            response.put("mensaje", "Error al realizar la consulta en la base de datos");
+            response.put("error",e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
+            return new ResponseEntity<Map<String,Object>>(response,HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        if(producto == null){
+            response.put("mensaje", "El usuario ID:".concat(nombre.toString().concat(" no existe en la base de datos.")));
+            return new ResponseEntity<Map<String,Object>>(response,HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<Producto>(producto,HttpStatus.OK);
+    }
+    
+    //Controlador para buscar un producto por su codigo
+    @GetMapping("/buscar/codigo/{codigo}")
+    public ResponseEntity<?> findByCodigo(@PathVariable String codigo){
+        Producto producto = productoService.findByCodigo(codigo);
+        Map<String, Object> response = new HashMap<>();
+        try {
+            producto = productoService.findByCodigo(codigo);
+        } catch (DataAccessException e) {
+            response.put("mensaje", "Error al realizar la consulta en la base de datos");
+            response.put("error",e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
+            return new ResponseEntity<Map<String,Object>>(response,HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        if(producto == null){
+            response.put("mensaje", "El usuario ID:".concat(codigo.toString().concat(" no existe en la base de datos.")));
+            return new ResponseEntity<Map<String,Object>>(response,HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<Producto>(producto,HttpStatus.OK);
+    }
 }

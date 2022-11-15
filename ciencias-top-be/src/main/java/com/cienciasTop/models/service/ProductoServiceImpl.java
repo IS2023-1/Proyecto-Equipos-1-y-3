@@ -45,4 +45,15 @@ public class ProductoServiceImpl implements IProductoService{
 		
 	}
 
+	@Override
+	@Transactional(readOnly=true)
+	public Producto findByNombre(String nombre) {
+		return productoDao.findByNombre(nombre);
+	}
+
+	@Override
+	public Producto findByCodigo(String codigo) {
+		return productoDao.findByCodigo(codigo);
+	}
+
 }

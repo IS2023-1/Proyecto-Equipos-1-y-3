@@ -23,8 +23,8 @@ public class Producto implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id_producto;
 
-	@Column(name = "codigo", unique = true, updatable = false, nullable = false, columnDefinition = "BIGINT CHECK(codigo BETWEEN 100000000000 AND 999999999999)")
-	private Long codigo;
+	@Column(name = "codigo", unique = true, updatable = false, nullable = false, columnDefinition = "CHAR(12) CHECK(CHAR_LENGTH(codigo) = 12)")
+	private String codigo;
 
 	@Column(name = "nombre", length = 50, nullable = false, unique = true)
 	private String nombre;
@@ -65,11 +65,11 @@ public class Producto implements Serializable {
 		this.id_producto = id_producto;
 	}
 
-	public Long getCodigo() {
+	public String getCodigo() {
 		return codigo;
 	}
 
-	public void setCodigo(Long codigo) {
+	public void setCodigo(String codigo) {
 		this.codigo = codigo;
 	}
 

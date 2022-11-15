@@ -14,4 +14,10 @@ public interface IProductoService {
 	public void delete(Long id);
 	
 	//public Optional<Producto> findByName(String nombre);
+	
+	//Método para buscar un usuario por su nombre
+    public Producto findByNombre(String nombre);
+    
+  //Método para buscar un usuario por su codigo
+    public Producto findByCodigo(String codigo);
 }
