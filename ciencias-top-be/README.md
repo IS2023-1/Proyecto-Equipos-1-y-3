@@ -57,7 +57,7 @@ localhost:10000/<endpoint>
 ```
 
 ### Endpoints:
-**/producto**
+**/productos**
 + /buscar/todo
   + Devuelve todos los productos disponibles. 
 + /buscar/{id}
@@ -67,17 +67,19 @@ localhost:10000/<endpoint>
 + /actualizar/{id}
 + /eliminar/{id}
   
-**/usuario**
+**/usuarios**
 + /buscar/todo
-  + Devuelve todos los productos disponibles. Uso: ```localhost:10000/producto/buscar/todo```
+  + Devuelve todos los usuarios. Uso: ```localhost:10000/usuarios/buscar/todo```
 + /buscar/{id}
+  +  Devuelve el usuario mediante su id (generado automáticamente). Uso: ```localhost:10000/usuarios/buscar/{id}```
 + /buscar/{nombre}
+  + Devuelve el una lista de usuarios mediante su nombre. Uso: ```localhost:10000/usuarios/buscar/{nombre}``
 + /buscar/{numIdentificacion}
 + /agregar/
 + /actualizar/{numIdentificacion}
 + /eliminar/{numIdentificacion}
 
-**/renta**
+**/rentar**
 + /buscar/id
 + /buscar/idProducto
 (Por definir si es necesario)
