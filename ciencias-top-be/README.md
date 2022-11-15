@@ -90,6 +90,8 @@ localhost:10000/<endpoint>
   + Edita un usuario a través de su id (generado automáticamente). Uso: ```localhost:10000/usuarios/editar/{id}```
 + /eliminar/{id}
   + Elimina un usuario a través de su id (generado automáticamente). Uso: ```localhost:10000/usuarios/eliminar/{id}```
++ /updateContrasena/{password1}/{password2}/{id}
+  + Resetea la contrasena de un usuario atraves de su id (generado automáticamente). Uso: ```localhost:10000/usuarios/updateContrasena/{password1}/{password2}/{id}```
 
 **/rentar**
 + /buscar/id
