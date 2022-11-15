@@ -57,7 +57,7 @@ localhost:10000/<endpoint>
 ```
 
 ### Endpoints:
-**/producto**
+**/productos**
 + /buscar/todo
   + Devuelve todos los productos disponibles. 
 + /buscar/{id}
@@ -67,17 +67,25 @@ localhost:10000/<endpoint>
 + /actualizar/{id}
 + /eliminar/{id}
   
-**/usuario**
+**/usuarios**
 + /buscar/todo
-  + Devuelve todos los productos disponibles. Uso: ```localhost:10000/producto/buscar/todo```
-+ /buscar/{id}
+  + Devuelve todos los usuarios. Uso: ```localhost:10000/usuarios/buscar/todo```
++ /id/{id}
+  +  Devuelve el usuario mediante su id (generado automáticamente). Uso: ```localhost:10000/usuarios/id/{id}```
 + /buscar/{nombre}
-+ /buscar/{numIdentificacion}
+  + Devuelve el una lista de usuarios mediante su nombre. Uso: ```localhost:10000/usuarios/buscar/{nombre}```
++ /cuenta/{cuenta}
+  + Devuelve un usuario mediante su numero de cuenta o trabajador. Uso: ```localhost:10000/usuarios/cuenta/{cuenta}```
++ /buscar/correo/{correo}
+  + Devuelve un usuario mediante su correo. Uso: ```localhost:10000/usuarios/buscar/correo/{correo}```
 + /agregar/
-+ /actualizar/{numIdentificacion}
-+ /eliminar/{numIdentificacion}
+  + Agrega un usuario. Uso: ```localhost:10000/usuarios/agregar```
++ /editar/{id}
+  + Edita un usuario a través de su id (generado automáticamente). Uso: ```localhost:10000/usuarios/editar/{id}```
++ /eliminar/{id}
+  + Elimina un usuario a través de su id (generado automáticamente). Uso: ```localhost:10000/usuarios/eliminar/{id}```
 
-**/renta**
+**/rentar**
 + /buscar/id
 + /buscar/idProducto
 (Por definir si es necesario)
