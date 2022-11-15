@@ -1,35 +1,52 @@
-<form (ngSubmit)="update()" *ngIf="user">
-    <h1>{{titulo}}</h1>
-    <form class="form-inline" (ngSubmit)="update()">
-        <div class="form-group mx-sm-3">
-            <label for="inputPass" class="sr-only">Nombre</label>
-            <input type="text" class="form-control"  name="Nombre" placeholder="Nombre" [(ngModel)]="user.nombre">
-        </div>
-        <div class="form-group mx-sm-3">
-            <label for="inputPass" class="sr-only">Apellido Paterno</label>
-            <input type="text" class="form-control" [(ngModel)]="user.apellidoPaterno" name="Apellido Paterno"
-                placeholder="Apellido Paterno">
-        </div>
-        <div class="form-group mx-sm-3">
-            <label for="inputPass" class="sr-only">Apellido Materno</label>
-            <input type="text" class="form-control" [(ngModel)]="user.apellidoMaterno" name="Apellido Materno"
-                placeholder="Apellido Materno">
-        </div>
-    </form>
-
-    <div class="form-group">
-        <label for="validation01">Correo</label>
-        <input type="text" class="form-control is-valid" id="validation01" placeholder="Correo" required
-            [(ngModel)]="user.correo">
+<h1>{{titulo}}</h1>
+<form class="form-inline" (ngSubmit)="update()" *ngIf="user">
+    <div class="form-group mx-sm-3">
+        <label for="inputPass" class="sr-only">Nombre</label>
+        <input type="text" class="form-control" name="Nombre" placeholder="Nombre" [(ngModel)]="user.nombre">
     </div>
-    <div class="form-group">
-        <label for="validation02">Numero de celular</label>
-        <input type="number" class="form-control is-invalid" id="validation02" placeholder="Celular" required
-            [(ngModel)]="user.correo">
+    <div class="form-group mx-sm-3">
+        <label for="inputPass" class="sr-only">Apellido Paterno</label>
+        <input type="text" class="form-control" [(ngModel)]="user.apellidoPaterno" name="Apellido Paterno"
+            placeholder="Apellido Paterno">
+    </div>
+    <div class="form-group mx-sm-3">
+        <label for="inputPass" class="sr-only">Apellido Materno</label>
+        <input type="text" class="form-control" [(ngModel)]="user.apellidoMaterno" name="Apellido Materno"
+            placeholder="Apellido Materno">
+    </div>
+    <div class="form-group mx-sm-3">
+        <label for="inputPass" class="sr-only">Correo</label>
+        <input type="text" class="form-control" [(ngModel)]="user.correo" name="Correo" placeholder="Correo">
+    </div>
+    <div class="form-group mx-sm-3">
+        <label for="inputPass" class="sr-only">Numero de celular</label>
+        <input type="number" class="form-control" [(ngModel)]="user.numeroCel" name="Numero de celular"
+            placeholder="Celular">
+    </div>
+    <div class="form-row align-items-center mx-sm-3">
+        <div class="col-auto my-1">
+            <label class="mr-sm-2" for="inlineFormCustomSelect">Rol</label>
+            <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                <option selected>Escoge</option>
+                <option value="1" [(ngModel)]="user.rol">Usuario</option>
+                <option value="2" [(ngModel)]="user.rol">Administrador</option>
+                <option value="3" [(ngModel)]="user.rol">Proveedor</option>
+            </select>
+        </div>
     </div>
 
-    <button class="bg-success d-flex align-items-center justify-content-center shadow-1-strong" type="button"
-        style="width: 80px; height: 35px; border-radius: 5px;">
-        <p class="text-white mb-0 small"> Guardar</p>
-    </button>
+    <div class="form-group mx-sm-3">
+        <label for="inputPassword6">Contraseña</label>
+        <input type="password" id="inputPassword6" class="form-control mx-sm-3" aria-describedby="passwordHelpInline"
+            [(ngModel)]="user.password">
+        <small id="passwordHelpInline" class="text-muted">
+            En caso de necesitar cambiar contraseña
+        </small>
+    </div>
+
 </form>
+
+<button class="bg-success d-flex align-items-center justify-content-center shadow-1-strong" type="button"
+    style="width: 80px; height: 35px; border-radius: 5px;" [routerLink]="['/usuarios/perfil', user.id]">
+    <p class="text-white mb-0 small"> Guardar</p>
+</button>

@@ -30,13 +30,19 @@ export class UsuarioService {
     //return this.http.get<Usuario>(`${this.urlEndPoint}/${id}`);
   }
 
-  update(usuario: Usuario): void{//Observable<Usuario>{
+  /*update(usuario: Usuario): void{//Observable<Usuario>{
     //return this.http.put<Usuario>(`${this.urlEndPoint}/${usuario.id}`, usuario, {headers: this.httpHeaders})
     const usuarios= of(USUARIOS);
     var aEditar = USUARIOS.find(u => u.id === usuario.id);
     if (aEditar != null) {
       aEditar.nombre = usuario.nombre;
+      aEditar.apellidoPaterno = usuario.apellidoPaterno;
+      aEditar.apellidoMaterno = usuario.apellidoMaterno;
     }
+  }*/
+ 
+  update(usuario: Usuario): Observable<Usuario>{
+    return this.http.put<Usuario>(`${this.urlEndPoint}/${usuario.id}`, usuario, {headers: this.httpHeaders})
   }
 
 }

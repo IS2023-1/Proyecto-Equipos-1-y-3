@@ -1,6 +1,9 @@
 <div *ngIf="u">
     <div class="container mt-5">
-
+        <button class="bg-secondary d-flex align-items-center justify-content-center shadow-1-strong" type="button"
+            style="width: 80px; height: 35px; border-radius: 5px;" [routerLink]="['/usuarios/']">
+            <p class="text-white mb-0 small">Volver</p>
+        </button>
         <div class="row d-flex justify-content-center">
 
             <div class="col-md-7">
@@ -9,6 +12,9 @@
 
                     <div class="text-center mt-5">
                         <h1>{{u.nombre}} {{u.apellidoPaterno}} {{u.apellidoMaterno}}</h1>
+                        <small id="Rol" class="text-muted">
+                            {{u.rol}}
+                        </small>
                     </div>
 
                     <div class="text-center mt-2">
@@ -31,11 +37,12 @@
 
 
                         <div class="buttons">
-        
-                                <button class="bg-danger d-flex align-items-center justify-content-center shadow-1-strong" type="button"
-                                style="width: 80px; height: 35px; border-radius: 5px;"
+
+                            <button class="bg-danger d-flex align-items-center justify-content-center shadow-1-strong"
+                                type="button" style="width: 80px; height: 35px; border-radius: 5px;"
                                 [routerLink]="['/usuarios/perfil/edit', u.id]">
-                                <p class="text-white mb-0 small">Editar</p> </button> 
+                                <p class="text-white mb-0 small">Editar</p>
+                            </button>
 
                         </div>
 
