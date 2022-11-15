@@ -52,4 +52,10 @@ export class UsuariosComponent implements OnInit {
       this.usuarios = matches;
     }
   }
+
+  clear(): void {
+    document.getElementById("res-bus-usuario").style.display = "none";
+    this.searchInput = "";
+    this.usuarios = USUARIOS;
+  }
 }
