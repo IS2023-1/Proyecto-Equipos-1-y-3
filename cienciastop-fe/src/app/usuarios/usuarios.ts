@@ -14,7 +14,7 @@ export class Usuario {
 
     carrera: string;
 
-    contraseña: string;
+    password: string;
 
     rol: string;
 

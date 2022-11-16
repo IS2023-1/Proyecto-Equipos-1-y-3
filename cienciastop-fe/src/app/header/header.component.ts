@@ -3,6 +3,7 @@ import { AuthService } from '../usuarios/auth.service';
 import {Router} from '@angular/router';
 import Swal from 'sweetalert2'; 
 
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -11,6 +12,8 @@ import Swal from 'sweetalert2';
 export class HeaderComponent implements OnInit {
 
   constructor(public authService:AuthService, private router: Router ) { }
+  
+  searchInput: string = "";
 
   logout():void {
     let username = this.authService.usuario.username;
@@ -20,8 +23,5 @@ export class HeaderComponent implements OnInit {
   }
   
   ngOnInit(): void {
-
   }
-
-  searchInput: string = "";
 }
