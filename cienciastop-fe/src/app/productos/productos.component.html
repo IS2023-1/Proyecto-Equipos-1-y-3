@@ -8,7 +8,7 @@
         class="col-md-6 col-lg-4 mb-4 mb-md-0"
         *ngFor="let producto of productos">
         <div class="w-100 p-3" style="background-color: #eee;"></div>
-
+        
         <div class="card">
           <div class="d-flex justify-content-between p-3">
             <p class="lead mb-0">{{ producto.nombre }}</p>
@@ -19,12 +19,13 @@
               <div class="bg-primary d-flex align-items-center justify-content-center shadow-1-strong" style="width: 60px; height: 35px" *ngIf="authService.hasRole('ROLE_ADMIN')">
                 <p class="text-white mb-0 small" [routerLink]="['/productos/form', producto.id]">Editar</p>
               </div>
+
           </div>
           
           <img
             src={{producto.imagen}}
-            class="card-img-top visible-xs img-responsiv"
-            alt="Laptop"
+            class="card-img-top"
+            alt={{producto.descripcion}}
           />
           <div class="card-body codigo">
             <div class="d-flex">

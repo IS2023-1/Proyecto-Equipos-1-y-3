@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Producto } from './producto';
 import { ProductoService } from './producto.service';
 import Swal from 'sweetalert2';

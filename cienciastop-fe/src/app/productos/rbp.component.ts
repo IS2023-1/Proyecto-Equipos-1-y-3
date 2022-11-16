@@ -1,8 +1,9 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { HeaderComponent } from '../header/header.component';
+import { Component, OnInit } from '@angular/core';
 import { Producto } from './producto';
-import { HeaderService } from '../header/header.service';
-import { Subscription } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
+import { PRODUCTOS } from './productos.json';
+import Swal from 'sweetalert2';
+import { RbpService } from './rbp.service';
 
 @Component({
   selector: 'app-rbp',
@@ -11,23 +12,64 @@ import { Subscription } from 'rxjs';
 })
 export class RbpComponent implements OnInit {
 
-  public matches: Producto[] = []; // this.headerService.getMessage()[0];
+  public productMatches: Producto[] = [];
   public input: string = ""; //this.headerService.getMessage()[1];
-  public subscription: Subscription;
 
-  constructor(private headerService: HeaderService) { 
-    this.subscription = this.headerService.getMessage().subscribe(message => {
-      this.matches = message[0];
-      this.input = message[1];
-    })
-  }
-
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+  constructor(private router: Router, 
+              private activatedRoute: ActivatedRoute,
+              private rbpService: RbpService) { 
   }
 
   ngOnInit(): void {
+    this.lookup();
+  }
 
+  public getMatches(): void {
+    this.productMatches = [];
+    var searchInputLower = this.input.trim().toLowerCase();
+    if(!this.input || searchInputLower.length === 0) return;
+    var matches = [];
+    matches = [];
+    var ss = require("string-similarity");
+    var productos = PRODUCTOS;
+    productos.forEach(e => {
+      var nombreLower = e.nombre.toLowerCase();
+      var codigoLower = e.codigo.toLowerCase();
+      if(ss.compareTwoStrings(codigoLower, searchInputLower) > 0.6) {
+        matches.push([e, ss.compareTwoStrings(codigoLower, searchInputLower)])
+      } else if(ss.compareTwoStrings(nombreLower, searchInputLower) > 0.6) {
+        matches.push([e, ss.compareTwoStrings(nombreLower, searchInputLower)])
+      } else if(nombreLower.includes(searchInputLower) || codigoLower.includes(searchInputLower)) {
+        matches.push([e, 0.6])
+      }
+    });
+
+    matches = matches.sort((e1, e2) => (e1 > e2 ? -1 : 1)).map(e => e[0]);
+    this.productMatches = matches;
+  }
+
+  lookup(): void {
+    this.activatedRoute.params.subscribe(input => {
+      this.input = input['input'];
+      this.productMatches = [];
+      var searchInputLower = this.input.trim().toLowerCase();
+      if(!this.input || searchInputLower.length === 0) {
+
+      } else {
+        this.rbpService.lookup(searchInputLower).subscribe(res => this.productMatches = res);
+        console.log(this.productMatches)
+        console.log("\""+ this.input + "\"");
+      }
+
+      if(this.productMatches.length == 0) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: `No hubo resultados para la búsqueda "${this.input.trim()}"`,
+        });
+        this.router.navigate(['/productos']);
+      }
+    })
   }
 
 }
