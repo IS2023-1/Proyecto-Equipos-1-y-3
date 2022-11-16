@@ -24,7 +24,8 @@ export class UsuariosComponent implements OnInit {
       usuarios => this.usuarios = usuarios
     );*/
     //this.getUsuarios();
-    this.usuarios=USUARIOS;
+    //this.usuarios=USUARIOS;
+    this.getUsuarios()
   }
 
   getUsuarios() : void {
