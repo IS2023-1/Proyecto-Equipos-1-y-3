@@ -7,7 +7,7 @@ import { UsuarioService } from './usuarios.service';
 @Component({
   selector: 'app-usuarios',
   templateUrl: './usuarios.component.html',
-  styleUrls: ['../productos/productos.component.css']
+  styleUrls: ['../productos/productos.component.css', 'usuarios.component.css']
 })
 export class UsuariosComponent implements OnInit {
 
@@ -36,11 +36,18 @@ export class UsuariosComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.usuarioService.getUsuarios().subscribe(u => this.usuarios = u);
-    document.getElementById("res-bus-usuario").style.display = "none";
-    this.usuarioService.lookup(this.searchInput).subscribe(u => this.matches = u);
-    console.log(this.matches)
-    console.log(this.searchInput);
+    this.matches = []
+    var searchInputLower = this.searchInput.trim().toLowerCase();
+    if(!this.searchInput || searchInputLower.length == 0) {
+
+    } else {
+      document.getElementById("res-bus-usuario").style.display = "none";
+      this.usuarioService.getUsuarios().subscribe(u => this.usuarios = u);
+      this.usuarioService.lookup(this.searchInput).subscribe(u => this.matches = u);
+      console.log(this.matches)
+      console.log(this.searchInput);
+    }
+
     if(this.matches.length == 0) {
       Swal.fire({
         icon: 'error',

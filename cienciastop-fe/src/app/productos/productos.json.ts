@@ -2,17 +2,11 @@ import { Producto } from './producto';
 
 
 export const PRODUCTOS: Producto[] = [
-    {id: 1, nombre: 'Monopoli', codigo: 'AG23F23DSN21', stock: 45, precio: 200, descripcion: "Es un juego de mesa basado en el intercambio y la compraventa de bienes raíces"},
-    {id: 2, nombre: 'Balon de Football', codigo: 'AG23F23DSN21', stock: 45, precio: 200, descripcion: "Es un juego de mesa basado en el intercambio y la compraventa de bienes raíces"},
-    {id: 3, nombre: 'Raquetas de Pin Pon', codigo: 'AG23F23DSN21', stock: 45, precio: 200, descripcion: "Es un juego de mesa basado en el intercambio y la compraventa de bienes raíces"},
-    {id: 4, nombre: 'Periodico', codigo: 'AG23F23DSN21', stock: 45, precio: 200, descripcion: "Es un juego de mesa basado en el intercambio y la compraventa de bienes raíces"},
-    {id: 5, nombre: 'Pelicula Buscando a memo', codigo: 'AG23F23DSN21', stock: 45, precio: 200, descripcion: "Es un juego de mesa basado en el intercambio y la compraventa de bienes raíces"},
-    {id: 6, nombre: 'MOTOMAMI', codigo: '69696969696', stock: 45, precio: 200, descripcion: "Es un juego de mesa basado en el intercambio y la compraventa de bienes raíces"},
-    {id: 7, nombre: 'KIck iii', codigo: 'MU74N73666', stock: 45, precio: 200, descripcion: "Es un juego de mesa basado en el intercambio y la compraventa de bienes raíces"},
-    {id: 8, nombre: 'CRASH', codigo: 'XCXCXCXCXCX', stock: 45, precio: 200, descripcion: "Es un juego de mesa basado en el intercambio y la compraventa de bienes raíces"},
-    {id: 9, nombre: 'Balon', codigo: '19191919191', stock: 45, precio: 200, descripcion: "Es un juego de mesa basado en el intercambio y la compraventa de bienes raíces"},
-    {id: 10, nombre: 'Juego de mesa de Football', codigo: '666666666', stock: 45, precio: 200, descripcion: "Es un juego de mesa basado en el intercambio y la compraventa de bienes raíces"},
-    {id: 11, nombre: 'Tenis de Football', codigo: 'FUCKITILU', stock: 45, precio: 200, descripcion: "Es un juego de mesa basado en el intercambio y la compraventa de bienes raíces"},
-    {id: 12, nombre: 'Balon de volleyball', codigo: 'M3XLL153', stock: 45, precio: 200, descripcion: "Es un juego de mesa basado en el intercambio y la compraventa de bienes raíces"},
-    {id: 13, nombre: 'Balon de basketball', codigo: 'MSMSMSMSMSMS', stock: 45, precio: 200, descripcion: "Es un juego de mesa basado en el intercambio y la compraventa de bienes raíces"},
-]
+    {id: 1, nombre: 'MOTOMAMI', codigo: '696969696969', stock: 45, precio: 200, descripcion: "AOTY", imagen: "https://www.lahiguera.net/musicalia/artistas/rosalia/disco/11741/rosalia_motomami-portada.jpg"},
+    {id: 1, nombre: 'Melodrama', codigo: '191919191919', stock: 45, precio: 200, descripcion: "Best album ever made", imagen: "https://assets.vogue.com/photos/58b9984661298051ac278def/master/w_2560%2Cc_limit/00-holding-lorde-album-art.jpg"},
+    {id: 1, nombre: 'CRASH', codigo: '666666666666', stock: 45, precio: 200, descripcion: "AOTY also", imagen: "https://indiehoy.com/wp-content/uploads/2022/06/charli-xcx-crash.jpg"},
+    {id: 1, nombre: 'KiCk i', codigo: '@@@@@@@@@@@@', stock: 45, precio: 200, descripcion: "AOTY also", imagen: "https://m.media-amazon.com/images/I/61E29EHrPhL._AC_SL1400_.jpg"},
+    {id: 1, nombre: 'NFR!', codigo: 'FUCKITILUVUU', stock: 45, precio: 200, descripcion: "AOTY also", imagen: "https://m.media-amazon.com/images/I/51LGe4tBSIL._AC_SX425_.jpg"},
+    {id: 1, nombre: 'LP1', codigo: '111222333444', stock: 45, precio: 200, descripcion: "AOTY also", imagen: "https://m.media-amazon.com/images/I/71AAHY5B-VL._AC_SX522_.jpg"},
+    {id: 1, nombre: 'Preacher\'s Daughter', codigo: '666666666666', stock: 45, precio: 200, descripcion: "AOTY also", imagen: "https://media.pitchfork.com/photos/627c0ad088edeb4d342d9258/1:1/w_600/Ethel-Cain-Preachers-Daughter-2022.jpg"},
+  ]

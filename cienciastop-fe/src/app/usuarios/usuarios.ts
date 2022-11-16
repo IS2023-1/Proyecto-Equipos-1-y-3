@@ -21,4 +21,6 @@ export class Usuario {
     esActivo: boolean;
 
     pumapuntos: number;
+
+    imagen: string;
 }

@@ -1,0 +1,9 @@
+.nav-bar-opt {
+    margin-left: 10px;
+}
+
+@media only screen and (min-width: 900px) {
+    #bus-prod {
+        width: 50%;
+    }
+}

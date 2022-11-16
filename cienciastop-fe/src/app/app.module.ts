@@ -7,20 +7,21 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { ProductosComponent } from './productos/productos.component';
 import { RouterModule, Routes } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
-import { FormComponent } from './productos/form.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
+import { HttpClientModule} from '@angular/common/http';
+import { FormComponent } from './productos/form.component';
+import { FormsModule } from '@angular/forms';
+import { LoginComponent } from './usuarios/login.component';
 import { RbpComponent } from './productos/rbp.component';
-
 const routes: Routes = [
-  {path: "", redirectTo: "/productos", pathMatch: "full"},
   {path: '', redirectTo: '/productos', pathMatch: 'full'},
   {path: 'usuarios', component: UsuariosComponent },
   {path: 'productos', component: ProductosComponent},
   {path: 'productos/form', component: FormComponent},
   {path: 'productos/form/:id', component: FormComponent},
-  {path: 'productos/rbp/:input', component: RbpComponent}]
+  {path: 'login', component: LoginComponent},
+  {path: 'productos/rbp/:input', component: RbpComponent}];
+
 
 @NgModule({
   declarations: [
@@ -30,14 +31,15 @@ const routes: Routes = [
     ProductosComponent,
     UsuariosComponent,
     FormComponent,
-    RbpComponent,
+    LoginComponent,
+    RbpComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    RouterModule.forRoot(routes),
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    RouterModule.forRoot(routes)
   ],
   providers: [HeaderComponent, RbpComponent],
   bootstrap: [AppComponent]
