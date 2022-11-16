@@ -22,7 +22,7 @@ export class UsuarioService {
   }
 
   getUsuario(id_usuario:number): Observable<Usuario>{
-    return this.http.get<Usuario>(`${this.urlEndPoint}/${id_usuario}`);
+    return this.http.get<Usuario>(`${this.urlEndPoint}/buscar/${id_usuario}`);
   }
 
   /*update(usuario: Usuario): void{//Observable<Usuario>{
@@ -37,7 +37,7 @@ export class UsuarioService {
   }*/
  
   update(usuario: Usuario): Observable<Usuario>{
-    return this.http.put<Usuario>(`${this.urlEndPoint}/${usuario.id_usuario}`, usuario, {headers: this.httpHeaders})
+    return this.http.post<Usuario>(`${this.urlEndPoint}/editar/${usuario.id_usuario}`, usuario, {headers: this.httpHeaders})
   }
 
 }
