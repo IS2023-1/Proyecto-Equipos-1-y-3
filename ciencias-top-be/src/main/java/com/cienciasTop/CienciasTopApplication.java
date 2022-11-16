@@ -1,4 +1,4 @@
-package is20231.cienciastopbe;
+package com.cienciasTop;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
