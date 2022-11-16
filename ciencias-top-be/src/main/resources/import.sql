@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 INSERT INTO productos (codigo, nombre, descripcion, disponibles, ruta_imagen, costo, dias_a_prestar) VALUES( '123456789112', 'Raquetas', 'Raquetas para jugar', '10', 'raquetas.png', '50', '5');
+=======
+INSERT INTO productos (codigo, nombre, descripcion, disponibles, ruta_imagen, costo, dias_a_prestar) VALUES( '123456789112', 'Raquetas', 'Raquetas para jugar', '10', 'https://ss201.liverpool.com.mx/xl/1082903093.jpg', '50', '5');
+>>>>>>> origin/Merge
 INSERT INTO productos (codigo, nombre, descripcion, disponibles, ruta_imagen, costo, dias_a_prestar) VALUES( '123456789117', 'Balon', 'Balon de futbol', '4', 'balon.png', '100', '4');
 INSERT INTO productos (codigo, nombre, descripcion, disponibles, ruta_imagen, costo, dias_a_prestar) VALUES( '123456789114', 'PS5', 'Consola de videojuegos', '2', 'consola.png', '200', '2');
 INSERT INTO productos (codigo, nombre, descripcion, disponibles, ruta_imagen, costo, dias_a_prestar) VALUES( '123456789115', 'Blu Ray de Animes', 'Animes para ver', '10', 'shingeji.png', '40', '7');

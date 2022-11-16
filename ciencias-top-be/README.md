@@ -7,7 +7,11 @@ Para correr el entorno de desarrollo, se ejecuta Docker compose desde el inicio 
 
 ```bash
 cd <UbicacionDelProyecto>/Proyecto-Equipos-1-y-3/ciencias-top-be
+<<<<<<< HEAD
 sudo docker compose up
+=======
+docker compose up
+>>>>>>> origin/Merge
 ```
 
 ## Git

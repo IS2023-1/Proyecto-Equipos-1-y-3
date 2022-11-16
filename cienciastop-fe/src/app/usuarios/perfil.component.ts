@@ -49,13 +49,14 @@ export class PerfilComponent implements OnInit {
       reverseButtons: true
     }).then((result) => {
       if (result.isConfirmed) {
-        this.usuarioService.delete(usuario.id).subscribe(
+        this.usuarioService.delete(usuario.id_usuario).subscribe(
           Response => {
             swalWithBootstrapButtons.fire(
               'Usuario eliminado!',
               '¡Usuario eliminado con éxito!.',
               'success'
             )
+            this.router.navigate(['/usuarios'])
           }
         ) 
       } 
