@@ -9,33 +9,30 @@ import { Router } from '@angular/router';
 @Injectable({ providedIn: 'root' })
 export class RbpService {
 
-    private urlEndpointNombre = 'localhost:10000/productos/buscar/nombre';
-    private urlEndpointCodigo = 'localhost:10000/productos/buscar/codigo';
+    private urlEndpointAll = 'http://localhost:10000/productos/buscar/todo';
+    private urlEndpointNombre = 'http://localhost:10000/productos/buscar/nombre';
+    private urlEndpointCodigo = 'http://localhost:10000/productos/buscar/codigo';
 
     constructor(private http: HttpClient, private router: Router) {}
 
-    lookup(searchInput: string): Observable<Producto[]> {
-        var matches = []
-
-        var byName = this.http.get<Producto[]>(`${this.urlEndpointNombre}/${searchInput}`).pipe(
-            catchError(error => {
-                this.router.navigate(['/productos']);
-                Swal.fire("Error al buscar producto", error.error.message, 'error');
-                return throwError(() => error);
-            })
-        )
-
-        var byCode = this.http.get<Producto[]>(`${this.urlEndpointCodigo}/${searchInput}`).pipe(
-            catchError(error => {
-                this.router.navigate(['/productos']);
-                Swal.fire("Error al buscar producto", error.error.message, 'error');
-                return throwError(() => error);
-            })
-        )
-
-        byName.forEach(e => matches.push(e));
-        byCode.forEach(e => matches.push(e));
-
-        return of(matches);
+    lookup(searchInput: string): Observable<any> {
+        var searchInputNumber = Number(searchInput);
+        if(searchInputNumber) {
+            return this.http.get<Producto[]>(`${this.urlEndpointCodigo}/${searchInputNumber}`).pipe(
+                catchError(error => {
+                    this.router.navigate(['/productos']);
+                    Swal.fire("Error al buscar producto", error.error.message, 'error');
+                    return throwError(() => error);
+                })
+            );
+        } else {
+            return this.http.get<Producto[]>(`${this.urlEndpointNombre}/${searchInput}`).pipe(
+                catchError(error => {
+                    this.router.navigate(['/productos']);
+                    Swal.fire("Error al buscar producto", error.error.message, 'error');
+                    return throwError(() => error);
+                })
+            );
+        }
     }
 }

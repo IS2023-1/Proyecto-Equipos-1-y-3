@@ -18,6 +18,8 @@ export class ProductoService {
 
   private urlEndPoint:string = 'http://localhost:8080/api/productos';
 
+  private urlEndpointAll: string = 'http://localhost:10000/productos/buscar/todo';
+
   private httpHeaders = new HttpHeaders({'Content-Type': 'application/json'})
 
   constructor(private http: HttpClient, private router: Router, private authService: AuthService) { }
@@ -49,7 +51,7 @@ export class ProductoService {
 
 
   getProductos(): Observable<Producto[]>{
-    return this.http.get<Producto[]>(this.urlEndPoint);
+    return this.http.get<Producto[]>(this.urlEndpointAll);
   }
 
   create(producto: Producto): Observable<Producto>{

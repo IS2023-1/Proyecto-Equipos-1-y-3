@@ -2,6 +2,8 @@ export class Usuario {
 
     id: number;
 
+    cuenta: number;
+
     nombre: string;
 
     apellidoPaterno: string;
