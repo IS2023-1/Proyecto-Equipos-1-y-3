@@ -17,9 +17,10 @@ export class ProductosComponent implements OnInit {
   constructor(private productoService: ProductoService,  public authService: AuthService) { }
 
   ngOnInit(): void {
-    this.productoService.getProductos().subscribe(
+    /*this.productoService.getProductos().subscribe(
       productos => this.productos = productos
-    );
+    );*/
+    this.productos = PRODUCTOS;
   }
 
   delete(producto: Producto): void {
@@ -36,8 +37,8 @@ export class ProductosComponent implements OnInit {
       text: `¿Seguro que desea eliminar el producto ${producto.nombre}?`,
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonText: 'si, Eliminar!',
-      cancelButtonText: 'No, cancelar!',
+      confirmButtonText: 'Eliminar',
+      cancelButtonText: 'Cancelar',
       reverseButtons: true
     }).then((result) => {
       if (result.isConfirmed) {

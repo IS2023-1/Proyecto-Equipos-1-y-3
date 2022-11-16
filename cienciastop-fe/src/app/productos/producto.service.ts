@@ -105,4 +105,8 @@ export class ProductoService {
       })
     )  
   }
+
+  lookup(lookupFactor: string): Observable<Producto[]>{
+    return null;
+  }
 }

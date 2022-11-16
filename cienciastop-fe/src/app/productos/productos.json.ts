@@ -8,3 +8,4 @@ export const PRODUCTOS: Producto[] = [
     {id: 4, nombre: 'Periodico', codigo: 'AG23F23DSN21', stock: 45, precio: 200, descripcion: "Es un juego de mesa basado en el intercambio y la compraventa de bienes raíces", imagen: "../../../img/monopoly.jpg"},
     {id: 5, nombre: 'Pelicula Buscando a memo', codigo: 'AG23F23DSN21', stock: 45, precio: 200, descripcion: "Es un juego de mesa basado en el intercambio y la compraventa de bienes raíces", imagen: "../../../img/monopoly.jpg"}
   ]
+

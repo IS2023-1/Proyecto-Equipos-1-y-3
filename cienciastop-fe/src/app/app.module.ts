@@ -12,17 +12,23 @@ import { HttpClientModule} from '@angular/common/http';
 import { FormComponent } from './productos/form.component';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './usuarios/login.component';
-
+import { RbpComponent } from './productos/rbp.component';
+import { PerfilComponent } from './usuarios/perfil.component';
+import { FormUsuarioComponent } from './usuarios/form-usuario.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/productos', pathMatch: 'full'},
   {path: 'usuarios', component: UsuariosComponent },
+  {path: 'usuarios/perfil', component: PerfilComponent },
+  {path: 'usuarios/perfil/:id', component: PerfilComponent },
+  {path: 'usuarios/perfil/edit/:id', component: FormUsuarioComponent },
   {path: 'productos', component: ProductosComponent},
   {path: 'productos/form', component: FormComponent},
   {path: 'productos/form/:id', component: FormComponent},
   {path: 'login', component: LoginComponent},
-
+  {path: 'productos/rbp', component: RbpComponent}
 ];
+
 
 
 @NgModule({
@@ -34,6 +40,9 @@ const routes: Routes = [
     UsuariosComponent,
     FormComponent,
     LoginComponent,
+    PerfilComponent,
+    RbpComponent,
+    FormUsuarioComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +51,7 @@ const routes: Routes = [
     FormsModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [],
+  providers: [HeaderComponent, RbpComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
