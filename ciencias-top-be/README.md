@@ -77,15 +77,15 @@ localhost:10000/<endpoint>
 + /buscar/todo
   + Devuelve todos los usuarios. Uso: ```localhost:10000/usuarios/buscar/todo```
 + /id/{id}
-  +  Devuelve el usuario mediante su id (generado automáticamente). Uso: ```localhost:10000/usuarios/id/{id}```
+  +  Devuelve el usuario mediante su id (generado automáticamente). Uso: ```localhost:10000/usuarios/buscar/{id}```
 + /buscar/{nombre}
   + Devuelve el una lista de usuarios mediante su nombre. Uso: ```localhost:10000/usuarios/buscar/{nombre}```
 + /cuenta/{cuenta}
-  + Devuelve un usuario mediante su numero de cuenta o trabajador. Uso: ```localhost:10000/usuarios/cuenta/{cuenta}```
+  + Devuelve un usuario mediante su numero de cuenta o trabajador. Uso: ```localhost:10000/usuarios/buscar/cuenta/{cuenta}```
 + /buscar/correo/{correo}
   + Devuelve un usuario mediante su correo. Uso: ```localhost:10000/usuarios/buscar/correo/{correo}```
 + /agregar/
-  + Agrega un usuario. Uso: ```localhost:10000/usuarios/agregar```
+  + Agrega un usuario, recibido en el Body. Uso: ```localhost:10000/usuarios/agregar```
 + /editar/{id}
   + Edita un usuario a través de su id (generado automáticamente). Uso: ```localhost:10000/usuarios/editar/{id}```
 + /eliminar/{id}
@@ -93,6 +93,18 @@ localhost:10000/<endpoint>
 + /updateContrasena/{password1}/{password2}/{id}
   + Resetea la contrasena de un usuario atraves de su id (generado automáticamente). Uso: ```localhost:10000/usuarios/updateContrasena/{password1}/{password2}/{id}```
 
+
+## TODO
++ Configurar el entorno local
+  + Instalar Java 17
+  + Instalar Maven
+  + Instalar Postgres 14.5
+  + Crear base de datos cienciastop_bd, con acceso de usuario: **admin** y contraseña **admin**. 
+  + Clonar el repositorio local.
+  + Cambiar
+  + Actualizar base de datos local a cienciastop_bd
+
+### Endpoints 
 **/rentar**
 + /buscar/id
 + /buscar/idProducto
@@ -112,17 +124,3 @@ localhost:10000/<endpoint>
 + /buscar/{id}
 + /buscar/{numIdentificacion}
 
-## TODO
-+ Configurar el entorno local
-  + Instalar Java 17
-  + Instalar Maven
-  + Instalar Postgres 14.5
-  + Crear base de datos cienciastop_bd, con acceso de usuario: **admin** y contraseña **admin**. 
-  + Clonar el repositorio local.
-  + Cambiar
-  + Actualizar base de datos local a cienciastop_bd
-  + 
-+ Actualizar los metodos que usan ids
-
-### Endpoints 
- - [ ] /productos

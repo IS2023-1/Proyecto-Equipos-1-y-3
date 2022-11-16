@@ -66,7 +66,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"codigo\": 123456789112,\n    \"nombre\": \"Raquetas\",\n    \"descripcion\": \"Raquetas para jugar\",\n    \"disponibles\": 10,\n    \"rutaImagen\": \"raquetas.png\",\n    \"costo\": 50,\n    \"diasAPrestar\": 5,\n    \"usuario\": []\n}",
+							"raw": "{\n    \"codigo\": \"123456789112\",\n    \"nombre\": \"Raquetas\",\n    \"descripcion\": \"Raquetas para jugar\",\n    \"disponibles\": 10,\n    \"rutaImagen\": \"raquetas.png\",\n    \"costo\": 50,\n    \"diasAPrestar\": 5,\n    \"usuario\": []\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -157,7 +157,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"codigo\": 123456789112,\n    \"nombre\": \"Raquetas\",\n    \"descripcion\": \"Raquetas para jugar\",\n    \"disponibles\": 10,\n    \"rutaImagen\": \"raquetas.png\",\n    \"costo\": 50,\n    \"diasAPrestar\": 5,\n    \"usuario\": []\n}",
+							"raw": "",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -174,6 +174,39 @@
 								"productos",
 								"buscar",
 								"{{id_productoA}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Producto por Nombre",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"codigo\": 123456789112,\n    \"nombre\": \"Raquetas\",\n    \"descripcion\": \"Raquetas para jugar\",\n    \"disponibles\": 10,\n    \"rutaImagen\": \"raquetas.png\",\n    \"costo\": 50,\n    \"diasAPrestar\": 5,\n    \"usuario\": []\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}:{{port}}/productos/buscar/nombre/{{nombre_productoA}}",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"productos",
+								"buscar",
+								"nombre",
+								"{{nombre_productoA}}"
 							]
 						}
 					},
@@ -197,7 +230,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}:{{port}}/productos/buscar/{{codigo_productoA}}",
+							"raw": "{{host}}:{{port}}/productos/buscar/codigo/{{codigo_productoA}}",
 							"host": [
 								"{{host}}"
 							],
@@ -205,7 +238,28 @@
 							"path": [
 								"productos",
 								"buscar",
+								"codigo",
 								"{{codigo_productoA}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Después de ejecución buscar todos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/productos/buscar/todo",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"productos",
+								"buscar",
+								"todo"
 							]
 						}
 					},
@@ -354,6 +408,102 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Buscar Usuario por Nombre",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"id_usuarioA\", 5);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/usuarios/buscar/nombre/{{nombre_usuarioA}}",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"usuarios",
+								"buscar",
+								"nombre",
+								"{{nombre_usuarioA}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Usuario por Correo",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"id_usuarioA\", 5);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/usuarios/buscar/correo/{{correo_usuarioA}}",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"usuarios",
+								"buscar",
+								"correo",
+								"{{correo_usuarioA}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Usuario por Cuenta",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"id_usuarioA\", 5);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/usuarios/buscar/cuenta/{{cuenta_usuarioA}}",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"usuarios",
+								"buscar",
+								"cuenta",
+								"{{cuenta_usuarioA}}"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}
@@ -380,11 +530,6 @@
 	],
 	"variable": [
 		{
-			"key": "id_productoA",
-			"value": "1",
-			"type": "default"
-		},
-		{
 			"key": "host",
 			"value": "localhost",
 			"type": "default"
@@ -395,8 +540,8 @@
 			"type": "default"
 		},
 		{
-			"key": "correo_usuarioA",
-			"value": "armandoaac@ciencias.unam.mx",
+			"key": "id_productoA",
+			"value": "1",
 			"type": "default"
 		},
 		{
@@ -415,13 +560,18 @@
 			"type": "default"
 		},
 		{
-			"key": "cuenta_usuarioA",
-			"value": "419001122",
+			"key": "nombre_usuarioA",
+			"value": "Antonio",
 			"type": "default"
 		},
 		{
-			"key": "nombre_usuarioA",
-			"value": "Armando",
+			"key": "correo_usuarioA",
+			"value": "antonio@ciencias.unam.mx",
+			"type": "default"
+		},
+		{
+			"key": "cuenta_usuarioA",
+			"value": "419001122",
 			"type": "default"
 		}
 	]

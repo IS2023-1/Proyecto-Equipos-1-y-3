@@ -19,7 +19,7 @@ public class Usuario implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id_usuario;
 	
-	@Column(name = "cuenta", unique = true, updatable = false, nullable = false, columnDefinition = "BIGINT CHECK(cuenta BETWEEN 100000 AND 999999999)")
+	@Column(name = "cuenta", unique = true, updatable = true, nullable = false, columnDefinition = "BIGINT CHECK(cuenta BETWEEN 100000 AND 999999999)")
 	private Long cuenta; // Numero de trabajador o numer de cuenta
 
 	@Column(name = "nombre", length = 50, nullable = false)

@@ -150,14 +150,14 @@ public class UsuarioRestController {
             currentUsuario.setPassword(usuario.getPassword());
             currentUsuario.setEsActivo(usuario.getEsActivo());
             currentUsuario.setPumapuntos(usuario.getPumapuntos());
-            currentUsuario = usuarioService.save(currentUsuario);
+            usuarioUpdate = usuarioService.save(currentUsuario);
         } catch (DataAccessException e) {
             response.put("mensaje", "Error al actualizar el usuario en la base de datos.");
             response.put("error",e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
             return new ResponseEntity<Map<String,Object>>(response,HttpStatus.INTERNAL_SERVER_ERROR);
         }        
         response.put("mensaje","El usuario ha sido actualizado con éxito.");
-        response.put("usuario",currentUsuario);
+        response.put("usuario", usuarioUpdate);
         return new ResponseEntity<Map<String,Object>>(response,HttpStatus.CREATED);
     }
 

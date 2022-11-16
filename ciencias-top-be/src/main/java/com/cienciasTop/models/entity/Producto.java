@@ -23,7 +23,7 @@ public class Producto implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id_producto;
 
-	@Column(name = "codigo", unique = true, updatable = false, nullable = false, columnDefinition = "CHAR(12) CHECK(CHAR_LENGTH(codigo) = 12)")
+	@Column(name = "codigo", unique = true, updatable = true, nullable = false, columnDefinition = "CHAR(12) CHECK(CHAR_LENGTH(codigo) = 12)")
 	private String codigo;
 
 	@Column(name = "nombre", length = 50, nullable = false, unique = true)
