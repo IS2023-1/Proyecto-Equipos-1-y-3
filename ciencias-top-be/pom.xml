@@ -8,11 +8,11 @@
 		<version>2.7.5</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>is20231</groupId>
-	<artifactId>ciencias-top-be</artifactId>
+	<groupId>com.cienciasTop</groupId>
+	<artifactId>cienciasTop</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Ciencias Top</name>
-	<description>Sistema de puntos y recompensas para la Facultad de Ciencias, UNAM.</description>
+	<name>cienciasTop</name>
+	<description>Proyecto de IS</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>
@@ -38,11 +38,6 @@
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<optional>true</optional>
-		</dependency>
-		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
@@ -54,14 +49,6 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<configuration>
-					<excludes>
-						<exclude>
-							<groupId>org.projectlombok</groupId>
-							<artifactId>lombok</artifactId>
-						</exclude>
-					</excludes>
-				</configuration>
 			</plugin>
 		</plugins>
 	</build>

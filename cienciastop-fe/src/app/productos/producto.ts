@@ -14,7 +14,7 @@ export class Producto {
 
 	descripcion: string;
 
-	imagen: string;
+	rutaImagen: string;
 
 }
 

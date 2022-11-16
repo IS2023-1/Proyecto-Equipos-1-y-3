@@ -40,11 +40,9 @@ export class FormUsuarioComponent implements OnInit {
     //this.usuarioService.update(this.user); 
     this.usuarioService.update(this.user).subscribe(user => {
       this.router.navigate['/usuarios/perfil']
-      swal.fire('Campos Actualizados', `Usuario ${this.user.id}$ actualizado correctamente`, 'success')
+      swal.fire('Campos Actualizados', `Usuario ${this.user.id_usuario}$ actualizado correctamente`, 'success')
     }
     )
   }
-
-
 
 }
