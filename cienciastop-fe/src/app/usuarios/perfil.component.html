@@ -40,16 +40,16 @@
 
                         <div class="buttons">
 
-                            <button class="bg-danger d-flex align-items-center justify-content-center shadow-1-strong"
+                            <button class="bg-success d-flex align-items-center justify-content-center shadow-1-strong"
                                 type="button" style="width: 80px; height: 35px; border-radius: 5px; border: none;"
                                 [routerLink]="['/usuarios/perfil/edit', u.id]">
                                 <p class="text-white mb-0 small">Editar</p>
                             </button>
-
+                            <button class="btn btn-danger" type="button"
+                                style="width: 80px; height: 35px; border-radius: 5px;">
+                                <p class="text-white mb-0 small"(click)="delete(usuario)"> Eliminar</p>
+                            </button>
                         </div>
-
-
-
 
                     </div>
 

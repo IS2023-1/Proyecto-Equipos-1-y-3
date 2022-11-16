@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { USUARIOS } from './usuarios.json';
 import { Usuario } from './usuarios';
 import Swal from 'sweetalert2';
-import { UsuarioService } from './usuarios.service';
+import { UsuarioService } from './usuario.service';
 
 @Component({
   selector: 'app-usuarios',
@@ -74,4 +74,5 @@ export class UsuariosComponent implements OnInit {
     this.searchInput = "";
     this.usuarios = USUARIOS;
   }
+  
 }
