@@ -57,8 +57,7 @@ export class PerfilComponent implements OnInit {
               'success'
             )
           }
-        )
-       
+        ) 
       } 
     })
   }
