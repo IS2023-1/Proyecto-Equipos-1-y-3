@@ -1,0 +1,428 @@
+{
+	"info": {
+		"_postman_id": "6d5f04d4-ba3f-4309-adf2-1b4a395cadb1",
+		"name": "cienciastop",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Productos",
+			"item": [
+				{
+					"name": "Buscar todos los productos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/productos/buscar/todo",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"productos",
+								"buscar",
+								"todo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar Producto por ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/productos/eliminar/{{id_productoA}}",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"productos",
+								"eliminar",
+								"{{id_productoA}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Agregar producto",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"codigo\": 123456789112,\n    \"nombre\": \"Raquetas\",\n    \"descripcion\": \"Raquetas para jugar\",\n    \"disponibles\": 10,\n    \"rutaImagen\": \"raquetas.png\",\n    \"costo\": 50,\n    \"diasAPrestar\": 5,\n    \"usuario\": []\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}:{{port}}/productos/agregar",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"productos",
+								"agregar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar Producto por ID",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"id_productoA\", 5);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"{{nombre_productoA}}\",\n    \"codigo\": \"{{codigo_productoA}}\",\n    \"descripcion\": \"Pelotas para jugar\",\n    \"disponibles\": 10,\n    \"rutaImagen\": \"pelotas.png\",\n    \"costo\": 50,\n    \"diasAPrestar\": 5,\n    \"usuario\": []\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}:{{port}}/productos/editar/{{id_productoA}}",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"productos",
+								"editar",
+								"{{id_productoA}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Producto por ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"id_productoA\", 5);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"codigo\": 123456789112,\n    \"nombre\": \"Raquetas\",\n    \"descripcion\": \"Raquetas para jugar\",\n    \"disponibles\": 10,\n    \"rutaImagen\": \"raquetas.png\",\n    \"costo\": 50,\n    \"diasAPrestar\": 5,\n    \"usuario\": []\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}:{{port}}/productos/buscar/{{id_productoA}}",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"productos",
+								"buscar",
+								"{{id_productoA}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Producto por Código",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"codigo\": 123456789112,\n    \"nombre\": \"Raquetas\",\n    \"descripcion\": \"Raquetas para jugar\",\n    \"disponibles\": 10,\n    \"rutaImagen\": \"raquetas.png\",\n    \"costo\": 50,\n    \"diasAPrestar\": 5,\n    \"usuario\": []\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}:{{port}}/productos/buscar/{{codigo_productoA}}",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"productos",
+								"buscar",
+								"{{codigo_productoA}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Usuarios",
+			"item": [
+				{
+					"name": "Buscar todos los usuarios",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/usuarios/buscar/todo",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"usuarios",
+								"buscar",
+								"todo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar Usuario por ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/usuarios/eliminar/{{id_usuarioA}}",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"usuarios",
+								"eliminar",
+								"{{id_usuarioA}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Agregar usuario",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"cuenta\": 317058163,\n    \"nombre\": \"Armando\",\n    \"apellidoPaterno\": \"Aquino\",\n    \"apellidoMaterno\": \"Chapa\",\n    \"numeroCel\": 5555845448,\n    \"correo\": \"armandoaac@ciencias.unam.mx\",\n    \"carrera\": \"Ciencias de la Computacion\",\n    \"password\": \"pugespia\",\n    \"esActivo\": true,\n    \"pumapuntos\": 300\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}:{{port}}/usuarios/agregar",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"usuarios",
+								"agregar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar Usuario por ID",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"id_usuarioA\", 5)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"cuenta\": \"{{cuenta_usuarioA}}\",\n    \"nombre\": \"Armando\",\n    \"apellidoPaterno\": \"Aquino\",\n    \"apellidoMaterno\": \"Chapa\",\n    \"numeroCel\": 5555845448,\n    \"correo\": \"{{correo_usuarioA}}\",\n    \"carrera\": \"Ciencias de la Computacion\",\n    \"password\": \"pugespia\",\n    \"esActivo\": true,\n    \"pumapuntos\": 300\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}:{{port}}/usuarios/editar/{{id_usuarioA}}",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"usuarios",
+								"editar",
+								"{{id_usuarioA}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Usuario por ID",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"id_usuarioA\", 5);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/usuarios/buscar/{{id_usuarioA}}",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"usuarios",
+								"buscar",
+								"{{id_usuarioA}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "id_productoA",
+			"value": "1",
+			"type": "default"
+		},
+		{
+			"key": "host",
+			"value": "localhost",
+			"type": "default"
+		},
+		{
+			"key": "port",
+			"value": "10000",
+			"type": "default"
+		},
+		{
+			"key": "correo_usuarioA",
+			"value": "armandoaac@ciencias.unam.mx",
+			"type": "default"
+		},
+		{
+			"key": "nombre_productoA",
+			"value": "Pelota",
+			"type": "default"
+		},
+		{
+			"key": "codigo_productoA",
+			"value": "123456789116",
+			"type": "default"
+		},
+		{
+			"key": "id_usuarioA",
+			"value": "1",
+			"type": "default"
+		},
+		{
+			"key": "cuenta_usuarioA",
+			"value": "419001122",
+			"type": "default"
+		},
+		{
+			"key": "nombre_usuarioA",
+			"value": "Armando",
+			"type": "default"
+		}
+	]
+}

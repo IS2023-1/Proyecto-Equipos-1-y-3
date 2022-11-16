@@ -33,7 +33,7 @@ public class UsuarioRestController {
     	return usuarioService.findAll();
     }
 
-    @GetMapping("/id/{id}")
+    @GetMapping("/buscar/{id}")
     public ResponseEntity<?> show(@PathVariable Long id){
         Usuario usuario = usuarioService.findById(id);
         Map<String, Object> response = new HashMap<>();
@@ -150,14 +150,14 @@ public class UsuarioRestController {
             currentUsuario.setPassword(usuario.getPassword());
             currentUsuario.setEsActivo(usuario.getEsActivo());
             currentUsuario.setPumapuntos(usuario.getPumapuntos());
-            usuarioUpdate = usuarioService.save(currentUsuario);
+            currentUsuario = usuarioService.save(currentUsuario);
         } catch (DataAccessException e) {
             response.put("mensaje", "Error al actualizar el usuario en la base de datos.");
             response.put("error",e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
             return new ResponseEntity<Map<String,Object>>(response,HttpStatus.INTERNAL_SERVER_ERROR);
         }        
-        response.put("mensaje","El usuario ha sido creado con éxito.");
-        response.put("usuario",usuarioUpdate);
+        response.put("mensaje","El usuario ha sido actualizado con éxito.");
+        response.put("usuario",currentUsuario);
         return new ResponseEntity<Map<String,Object>>(response,HttpStatus.CREATED);
     }
 
@@ -177,7 +177,7 @@ public class UsuarioRestController {
     }
     
     //Controlador para buscar un usuario por su nombre
-    @GetMapping("/buscar/{nombre}")
+    @GetMapping("/buscar/nombre/{nombre}")
     public List<Usuario> findByNombre(@PathVariable String nombre){
     	return usuarioService.findByNombre(nombre);
     }
@@ -202,7 +202,7 @@ public class UsuarioRestController {
     }
     
     //Controlador para buscar un usuario por su numero de cuenta o trabajador
-    @GetMapping("/cuenta/{cuenta}")
+    @GetMapping("/buscar/cuenta/{cuenta}")
     public ResponseEntity<?> findByCuenta(@PathVariable Long cuenta){
         Usuario usuario = usuarioService.findByCuenta(cuenta);
         Map<String, Object> response = new HashMap<>();

@@ -99,7 +99,7 @@ public class ProductoRestController {
 			response.put("error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
 			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		response.put("mensaje", "El producto ha sido creado con éxito :3");
+		response.put("mensaje", "El producto ha sido actualizado con éxito :3");
 		response.put("producto", productoUpdate);
 		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
 		
