@@ -9,8 +9,8 @@ import { Router } from '@angular/router';
 @Injectable({ providedIn: 'root' })
 export class RbpService {
 
-    private urlEndpointNombre = 'localhost:10000/productos/buscar/nombre';
-    private urlEndpointCodigo = 'localhost:10000/productos/buscar/codigo';
+    private urlEndpointNombre = 'http://localhost:10000/productos/buscar/nombre';
+    private urlEndpointCodigo = 'http://localhost:10000/productos/buscar/codigo';
 
     constructor(private http: HttpClient, private router: Router) {}
 
@@ -33,8 +33,8 @@ export class RbpService {
             })
         )
 
-        byName.forEach(e => matches.push(e));
-        byCode.forEach(e => matches.push(e));
+        byName.subscribe(res => res.forEach(e => matches.push(e)));
+        byCode.subscribe(res => res.forEach(e => matches.push(e)));
 
         return of(matches);
     }
