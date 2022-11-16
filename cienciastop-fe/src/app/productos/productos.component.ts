@@ -12,15 +12,14 @@ import { PRODUCTOS } from './productos.json';
 })
 export class ProductosComponent implements OnInit {
 
-  productos: Producto[] = PRODUCTOS;
+  productos: Producto[] = [];
 
   constructor(private productoService: ProductoService,  public authService: AuthService) { }
 
   ngOnInit(): void {
-    /*this.productoService.getProductos().subscribe(
+    this.productoService.getProductos().subscribe(
       productos => this.productos = productos
-    );*/
-    this.productos = PRODUCTOS;
+    )
   }
 
   delete(producto: Producto): void {

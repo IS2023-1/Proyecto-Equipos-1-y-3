@@ -52,22 +52,28 @@ export class RbpComponent implements OnInit {
     this.activatedRoute.params.subscribe(input => {
       this.input = input['input'];
       this.productMatches = [];
-      var searchInputLower = this.input.trim().toLowerCase();
-      if(!this.input || searchInputLower.length === 0) {
-
-      } else {
-        this.rbpService.lookup(searchInputLower).subscribe(res => this.productMatches = res);
-        console.log(this.productMatches)
-        console.log("\""+ this.input + "\"");
-      }
-
-      if(this.productMatches.length == 0) {
+      var searchInputTrim = this.input.trim();
+      if(!this.input || searchInputTrim.length === 0) {
         Swal.fire({
           icon: 'error',
           title: 'Oops...',
-          text: `No hubo resultados para la búsqueda "${this.input.trim()}"`,
+          text: `No hubo resultados para la búsqueda ""`,
         });
         this.router.navigate(['/productos']);
+        input['input'] = "";
+      } else {
+        this.rbpService.lookup(searchInputTrim).subscribe(res => {
+          console.log(res);
+          this.productMatches.push(res);
+          if(!this.productMatches) {
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: `No hubo resultados para la búsqueda "${this.input.trim()}"`,
+            });
+            this.router.navigate(['/productos']);
+          }
+        });
       }
     })
   }

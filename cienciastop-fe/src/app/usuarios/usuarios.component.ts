@@ -3,6 +3,7 @@ import { USUARIOS } from './usuarios.json';
 import { Usuario } from './usuarios';
 import Swal from 'sweetalert2';
 import { UsuarioService } from './usuarios.service';
+import { delay } from 'rxjs';
 
 @Component({
   selector: 'app-usuarios',
@@ -12,7 +13,7 @@ import { UsuarioService } from './usuarios.service';
 export class UsuariosComponent implements OnInit {
 
   usuarios: Usuario[];
-  matches: Usuario[];
+  matches: Usuario[] = [];
 
   searchInput: string = "";
   placeholder: string = "";
@@ -32,12 +33,17 @@ export class UsuariosComponent implements OnInit {
     this.usuarioService.getUsuarios().subscribe(usuarios => this.usuarios = usuarios)
   }
 
-  getMatches(): Usuario[] {
-    console.log(this.searchInput);
+  getMatches(input: string): Usuario[] {
+    //console.log(this.searchInput);
+    //this.getUsuarios();
     var matches = []
     this.usuarios.forEach(e => {
-      if((`${e.nombre} ${e.apellidoPaterno} ${e.apellidoMaterno}`).toLowerCase().includes(this.searchInput.toLowerCase())) {
+      if(e.nombre.toLowerCase().includes(input)) {
         matches.push(e);
+      } else if (Number(input)) {
+        if (e.cuenta === Number(input)) {
+          matches.push(e);
+        }
       }
     })
     
@@ -45,34 +51,70 @@ export class UsuariosComponent implements OnInit {
   }
 
   onSubmit(): void {
+    this.matches = [];
+    this.usuarioService.getUsuarios().subscribe(u => {
+      this.usuarios = u;
+      var input = this.searchInput.trim().toLowerCase();
+      if(!input || input.length == 0) {
+        
+      } else {
+        this.matches = this.getMatches(input);
+        document.getElementById("res-bus-usuario").style.display = "none";
+        this.usuarios = this.matches;
+      }
+
+      if(this.matches.length == 0) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: `No hubo resultados para la búsqueda "${this.searchInput.trim()}"`,
+        });
+        this.clear();
+      } else {
+        this.placeholder = this.searchInput;
+        document.getElementById("res-bus-usuario").style.display = "block";
+        this.usuarios = this.matches;
+      }
+    });
+  }
+
+  /*
+  onSubmit(): void {
     this.matches = []
-    var searchInputLower = this.searchInput.trim().toLowerCase();
-    if(!this.searchInput || searchInputLower.length == 0) {
-
-    } else {
-      document.getElementById("res-bus-usuario").style.display = "none";
-      this.usuarioService.getUsuarios().subscribe(u => this.usuarios = u);
-      this.usuarioService.lookup(this.searchInput).subscribe(u => this.matches = u);
-      console.log(this.matches)
-      console.log(this.searchInput);
-    }
-
-    if(this.matches.length == 0) {
+    var searchInputTrim = this.searchInput.trim();
+    if(!this.searchInput || searchInputTrim.length == 0) {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
-        text: `No hubo resultados para la búsqueda "${this.searchInput}"`,
+        text: `No hubo resultados para la búsqueda ""`,
       });
+      //this.getUsuarios();
+      this.clear();
     } else {
-      this.placeholder = this.searchInput;
-      document.getElementById("res-bus-usuario").style.display = "block";
-      this.usuarios = this.matches;
+      document.getElementById("res-bus-usuario").style.display = "none";
+      this.usuarioService.getUsuarios().subscribe(u => this.usuarios = u);
+      this.usuarioService.lookup(searchInputTrim).subscribe(res => {
+        res.forEach(e => this.matches.push(e));
+        if(this.matches.length == 0) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: `No hubo resultados para la búsqueda "${this.searchInput}"`,
+          });
+          this.clear();
+        } else {
+          this.placeholder = this.searchInput;
+          document.getElementById("res-bus-usuario").style.display = "block";
+          this.usuarios = this.matches;
+        }
+      });
     }
   }
+  */
 
   clear(): void {
     document.getElementById("res-bus-usuario").style.display = "none";
     this.searchInput = "";
-    this.usuarios = USUARIOS;
+    this.usuarioService.getUsuarios().subscribe(u => this.usuarios = u);
   }
 }
