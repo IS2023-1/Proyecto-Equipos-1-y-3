@@ -1,11 +1,3 @@
 import { Usuario } from "./usuarios";
 
-export const USUARIOS: Usuario[] = [
-    {id: 0, cuenta: 1234567, nombre: 'Arca', apellidoPaterno: 'Ghersi', apellidoMaterno: 'Rodriguez', correo: 'mutante@ciencias.unam.mx', numeroCel: 12334444, carrera: 'Putologia', password: '&&&&&&&&&', rol: 'activa', esActivo: true, pumapuntos: 666, imagen: "https://lastfm.freetls.fastly.net/i/u/770x0/09c95bb093417af0347d1716f93eaaef.jpg"},
-    {id: 1, cuenta: 1234567, nombre: 'Charlotte', apellidoPaterno: 'Emma', apellidoMaterno: 'Aitchison', correo: 'angel@ciencias.unam.mx', numeroCel: 12334444, carrera: 'Putologia', password: '&&&&&&&&&', rol: 'activa', esActivo: true, pumapuntos: 666, imagen: "https://i.scdn.co/image/ab6761610000e5eb576cb43281160e345f728b71"},
-    {id: 2, cuenta: 1234567, nombre: 'Lana', apellidoPaterno: 'Del', apellidoMaterno: 'Rey', correo: 'gangsta@ciencias.unam.mx', numeroCel: 12334444, carrera: 'Putologia', password: '&&&&&&&&&', rol: 'activa', esActivo: true, pumapuntos: 666, imagen: "https://yt3.ggpht.com/ytc/AMLnZu9ldmj1MrtuNCFIzWjMJAQDt7g-EpRN6cr2jlbB8g=s900-c-k-c0x00ffffff-no-rj"},
-    {id: 3, cuenta: 1234567, nombre: 'Ethel', apellidoPaterno: 'Hayden', apellidoMaterno: 'Cain', correo: 'redneck@ciencias.unam.mx', numeroCel: 12334444, carrera: 'Putologia', password: '&&&&&&&&&', rol: 'activa', esActivo: true, pumapuntos: 666, imagen: "https://media.resources.festicket.com/www/artists/ethel-cain.jpg"},
-    {id: 4, cuenta: 1234567, nombre: 'FKA', apellidoPaterno: 'Thalia', apellidoMaterno: 'Twigs', correo: 'twigs@ciencias.unam.mx', numeroCel: 12334444, carrera: 'Putologia', password: '&&&&&&&&&', rol: 'activa', esActivo: true, pumapuntos: 666, imagen: "https://akamai.sscdn.co/uploadfile/letras/fotos/7/b/0/3/7b032aa3e766685c33c3e97ea38d9eac.jpg"},
-    {id: 5, cuenta: 1234567, nombre: 'Lorde', apellidoPaterno: 'Yellich', apellidoMaterno: 'O\'Connor', correo: 'scwwts@ciencias.unam.mx', numeroCel: 12334444, carrera: 'Putologia', password: '&&&&&&&&&', rol: 'activa', esActivo: true, pumapuntos: 666, imagen: "https://i.scdn.co/image/ab6761610000e5ebc4902f080d3620b3e6da80c3"},
-    {id: 6, cuenta: 1234567, nombre: 'Rosalía', apellidoPaterno: 'Vila', apellidoMaterno: 'Tobella', correo: 'motomami@ciencias.unam.mx', numeroCel: 12334444, carrera: 'Putologia', password: '&&&&&&&&&', rol: 'activa', esActivo: true, pumapuntos: 666, imagen: "https://cdn.smehost.net/sonymusicfr-frprod/wp-content/uploads/2022/02/playlist-nouveautes-semaine-18-03-2022-Rosalia.jpg"}
-]
+

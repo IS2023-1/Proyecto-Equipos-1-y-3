@@ -1,6 +1,6 @@
 export class Usuario {
 
-    id: number;
+    id_usuario: number;
 
     cuenta: number;
 
