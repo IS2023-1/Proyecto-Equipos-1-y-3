@@ -42,8 +42,8 @@ export class UsuarioService {
     return this.http.post<Usuario>(`${this.urlEndPoint}/editar/${usuario.id_usuario}`, usuario, {headers: this.httpHeaders})
   }
 
-  delete(id:number):Observable<Usuario>{
-    return this.http.delete<Usuario>(`${this.urlEndPoint}/${id}`, {headers: this.httpHeaders})
+  delete(id_usuario:number):Observable<Usuario>{
+    return this.http.delete<Usuario>(`${this.urlEndPoint}/eliminar/${id_usuario}`, {headers: this.httpHeaders})
   }
 
 }
