@@ -15,13 +15,15 @@ services:
     image: amazoncorretto:17-alpine
     working_dir: /home/app
     ports:
-      - "8080:8080"
+      - 10000:10000
     command: ./mvnw spring-boot:run
     depends_on:
       - db
     volumes:
       - .:/home/app
       - mvn_data:/root/.m2
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/cienciastop_db
 
 #  pg:
 #    image: dpage/pgadmin4
