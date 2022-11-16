@@ -1,7 +1,7 @@
 <div *ngIf="u">
     <div class="container mt-5">
         <button class="bg-secondary d-flex align-items-center justify-content-center shadow-1-strong" type="button"
-            style="width: 80px; height: 35px; border-radius: 5px;" [routerLink]="['/usuarios/']">
+            style="width: 80px; height: 35px; border-radius: 5px; border: none;" [routerLink]="['/usuarios/']">
             <p class="text-white mb-0 small">Volver</p>
         </button>
         <div class="row d-flex justify-content-center">
@@ -19,19 +19,21 @@
 
                     <div class="text-center mt-2">
                         <div class="px-4 mt-1">
-                            <p class="mb-0 biggy-text">Numero de cuenta: <span class="text-dark mb-0">{{u.id}} </span>
+                            <p class="mb-0 biggy-text">Numero de cuenta: <span class="fw-bold">{{u.id}} </span>
                             </p>
                         </div>
-                        <span>Carrera: {{u.carrera}}</span>
 
                         <div class="px-4 mt-1">
-                            <p class="mb-0 biggy-text">Puma Puntos: <span class="text-dark mb-0">{{u.pumapuntos}}
-                                    PP</span></p>
+                            <p class="mb-0 biggy-text">Carrera: <span class="fw-bold">{{u.carrera}}</span>
+                            </p>
                         </div>
 
-                        <div class="d-flex mb-2">
-                            <p class="text-muted mb-0">
-                                Email: <span class="fw-bold">{{u.correo}}</span>
+                        <div class="px-4 mt-1">
+                            <p class="mb-0 biggy-text">Puma Puntos: <span class="fw-bold">{{u.pumapuntos}}PP</span></p>
+                        </div>
+
+                        <div class="px-4 mb-2">
+                            <p class="mb-0 biggy-text">Email: <span class="fw-bold">{{u.correo}}</span>
                             </p>
                         </div>
 
@@ -39,7 +41,7 @@
                         <div class="buttons">
 
                             <button class="bg-danger d-flex align-items-center justify-content-center shadow-1-strong"
-                                type="button" style="width: 80px; height: 35px; border-radius: 5px;"
+                                type="button" style="width: 80px; height: 35px; border-radius: 5px; border: none;"
                                 [routerLink]="['/usuarios/perfil/edit', u.id]">
                                 <p class="text-white mb-0 small">Editar</p>
                             </button>
