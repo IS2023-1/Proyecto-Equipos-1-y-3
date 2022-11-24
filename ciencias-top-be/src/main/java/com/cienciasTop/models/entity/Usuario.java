@@ -50,7 +50,7 @@ public class Usuario implements Serializable {
 	@Column(name = "carrera", length = 50, nullable = true)
 	private String carrera;
 
-	@Column(name = "contrasena", length = 20, nullable = false)
+	@Column(name = "contrasena", length = 60, nullable = false)
 	private String password;
 
 	@Column(name = "esActivo", nullable = false)
