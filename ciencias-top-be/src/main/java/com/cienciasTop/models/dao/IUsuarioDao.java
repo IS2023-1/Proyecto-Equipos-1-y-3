@@ -11,6 +11,9 @@ public interface IUsuarioDao extends CrudRepository<Usuario,Long> {
 	//Método para buscar un usuario por su nombre
     public List<Usuario> findByNombre(String name);
     
+    //Método para buscar a un usuario por su username
+    public Usuario findByUsername(String username);
+    
     //Método para buscar un usuario por su correo
     public Usuario findByCorreo(String correo);
     
