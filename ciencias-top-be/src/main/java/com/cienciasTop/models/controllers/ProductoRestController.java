@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -53,6 +54,7 @@ public class ProductoRestController {
 		return new ResponseEntity<Producto>(producto, HttpStatus.OK);
 	}
 	
+	@Secured({"ROLE_ADMIN","ROLE_PROV"})
 	@PostMapping("/agregar")
 	//@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<?> create(@RequestBody Producto producto) {
@@ -72,6 +74,7 @@ public class ProductoRestController {
 		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
 	}
 	
+	@Secured({"ROLE_ADMIN","ROLE_PROV"})
 	@PostMapping("/editar/{id}")
 	//@ResponseStatus(HttpStatus.CREATED)
 	public 	ResponseEntity<?> update(@RequestBody Producto producto, @PathVariable Long id) {
@@ -105,6 +108,7 @@ public class ProductoRestController {
 		
 	}
 	
+	@Secured({"ROLE_ADMIN","ROLE_PROV"})
 	@DeleteMapping("/eliminar/{id}")
 	//@ResponseStatus(HttpStatus.NO_CONTENT)
 	public ResponseEntity<?> delete(@PathVariable Long id) {

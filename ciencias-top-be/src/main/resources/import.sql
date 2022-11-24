@@ -8,6 +8,12 @@ INSERT INTO usuarios (cuenta, nombre, apellido_paterno, apellido_materno, numero
 INSERT INTO usuarios (cuenta, nombre, apellido_paterno, apellido_materno, numero_cel, correo, carrera, contrasena, es_activo, pumapuntos) VALUES('314657123', 'Andrea', 'Reyes', 'Alonso', '1234567890', 'aaalonso@ciencias.unam.mx', 'Biologgiaa', '1122asswq', 'false', '500');
 INSERT INTO usuarios (cuenta, nombre, apellido_paterno, apellido_materno, numero_cel, correo, carrera, contrasena, es_activo, pumapuntos) VALUES('315048033', 'Ellie', 'Ramirez', 'Montaño', '7987654321', 'aguass23@ciencias.unam.mx', 'Fisica', 'ajolete2021', 'true', '430');
 
+INSERT INTO roles (nombre) VALUES ('ROLE_USER');
+INSERT INTO roles (nombre) VALUES ('ROLE_PROV');
+INSERT INTO roles (nombre) VALUES ('ROLE_ADMIN');
+
+
+
 
 --INSERT INTO administradores (id_administrador) VALUES ('1');
 --INSERT INTO administradores (id_administrador) VALUES ('3');

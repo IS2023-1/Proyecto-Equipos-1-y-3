@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cienciasTop.models.entity.Usuario;
 import com.cienciasTop.models.service.IUsuarioService;
 
-// @CrossOrigin(origins = {"http://localhost:4200"})
+@CrossOrigin(origins = {"http://localhost:4200"})
 @RestController
 @RequestMapping("/usuarios")
 public class UsuarioRestController {
@@ -32,7 +34,8 @@ public class UsuarioRestController {
     public List<Usuario> index(){
     	return usuarioService.findAll();
     }
-
+    
+    @Secured({"ROLE_ADMIN"})
     @GetMapping("/buscar/{id}")
     public ResponseEntity<?> show(@PathVariable Long id){
         Usuario usuario = usuarioService.findById(id);
@@ -50,7 +53,8 @@ public class UsuarioRestController {
         }
         return new ResponseEntity<Usuario>(usuario,HttpStatus.OK);
     }
-
+    
+    @Secured({"ROLE_ADMIN"})
     @PostMapping("/agregar")
     //@ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<?> create(@RequestBody Usuario usuario){
@@ -129,6 +133,7 @@ public class UsuarioRestController {
      * @param id        id del usuario al cual modificar.
      * @return Mensaje de error o exito segun sea el caso.
      */
+    @Secured({"ROLE_ADMIN"})
     @PostMapping("/editar/{id}")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<?> update(@RequestBody Usuario usuario, @PathVariable Long id){
@@ -160,7 +165,8 @@ public class UsuarioRestController {
         response.put("usuario", usuarioUpdate);
         return new ResponseEntity<Map<String,Object>>(response,HttpStatus.CREATED);
     }
-
+    
+    @Secured({"ROLE_ADMIN"})
     @DeleteMapping("/eliminar/{id}")
     //@ResponseStatus(HttpStatus.NO_CONTENT)
     public ResponseEntity<?> delete(@PathVariable Long id){
@@ -177,12 +183,14 @@ public class UsuarioRestController {
     }
     
     //Controlador para buscar un usuario por su nombre
+    @Secured({"ROLE_ADMIN"})
     @GetMapping("/buscar/nombre/{nombre}")
     public List<Usuario> findByNombre(@PathVariable String nombre){
     	return usuarioService.findByNombre(nombre);
     }
     
     //Controlador para buscar un usuario por su correo
+    @Secured({"ROLE_ADMIN"})
     @GetMapping("/buscar/correo/{correo}")
     public ResponseEntity<?> findByCorreo(@PathVariable String correo){
         Usuario usuario = usuarioService.findByCorreo(correo);
@@ -202,6 +210,7 @@ public class UsuarioRestController {
     }
     
     //Controlador para buscar un usuario por su numero de cuenta o trabajador
+    @Secured({"ROLE_ADMIN"})
     @GetMapping("/buscar/cuenta/{cuenta}")
     public ResponseEntity<?> findByCuenta(@PathVariable Long cuenta){
         Usuario usuario = usuarioService.findByCuenta(cuenta);
