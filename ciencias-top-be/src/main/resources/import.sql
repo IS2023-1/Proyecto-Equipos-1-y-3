@@ -8,6 +8,7 @@ INSERT INTO usuarios (username, cuenta, nombre, apellido_paterno, apellido_mater
 INSERT INTO usuarios (username, cuenta, nombre, apellido_paterno, apellido_materno, numero_cel, correo, carrera, contrasena, es_activo, pumapuntos) VALUES('Andrea','314657123', 'Andrea', 'Reyes', 'Alonso', '1234567890', 'aaalonso@ciencias.unam.mx', 'Biologgiaa', '1122asswq', 'false', '500');
 INSERT INTO usuarios (username, cuenta, nombre, apellido_paterno, apellido_materno, numero_cel, correo, carrera, contrasena, es_activo, pumapuntos) VALUES('Ellie','315048033', 'Ellie', 'Ramirez', 'Montaño', '7987654321', 'aguass23@ciencias.unam.mx', 'Fisica', 'ajolete2021', 'true', '430');
 INSERT INTO usuarios (username, cuenta, nombre, apellido_paterno, apellido_materno, numero_cel, correo, carrera, contrasena, es_activo, pumapuntos) VALUES('Raul','316155063', 'Raul', 'Martinez', 'Damaso', '5516938851', 'raulmartinez@ciencias.unam.mx', 'Ciencias de la Computacion', '$2a$10$KLQKI1HDs344FNhTAS/CvuKavpkoxGyz.D6J293s.tOqupSXS1cde', 'true', '100');
+INSERT INTO usuarios (username, cuenta, nombre, apellido_paterno, apellido_materno, numero_cel, correo, carrera, contrasena, es_activo, pumapuntos) VALUES('Luis','308294064', 'Luis', 'Martinez', 'Damaso', '5516889901', 'luismanuel@ciencias.unam.mx', 'Ciencias de la Computacion', '$2a$10$eOuJ6h/JN0UceXmb9WY2Ou4/RweDfzIw1hEfpc1eaW8bLTFuspb4S', 'true', '100');
 
 INSERT INTO roles (nombre) VALUES ('ROLE_USER');
 INSERT INTO roles (nombre) VALUES ('ROLE_PROV');
