@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { UsuarioService } from './usuario.service';
-import { Usuario } from './usuarios';
+import { Usuario } from './usuario';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
 

@@ -22,24 +22,24 @@
         <form id="bus-prod" class="d-flex" role="search">
           <input class="form-control me-2" type="search" placeholder="Buscar producto por nombre o código" aria-label="Search" [(ngModel)]="searchInput" name="searchInput">
           <button class="btn btn-outline-success" type="submit" [routerLink]="['/productos/rbp', searchInput]">Buscar</button>
+
+          <ul class="navbar-nav navbar-right">
+            <li class="nav-bar-opt">
+              <a *ngIf="!authService.isAuthenticated()"  routerLink="/login" class="btn btn-outline-primary">Login</a>
+            </li>
+  
+            <li *ngIf="authService.isAuthenticated()" class="dropdown">
+              <a class="btn btn-outline-primary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                {{authService.usuario.username}}
+              </a>
+  
+              <ul class="dropdown-menu">
+                  <button (click)="logout()" class="dropdown-item">Cerrar Sesión</button>
+              </ul>
+            </li>
+            
+          </ul>
         </form>
-
-        <ul class="navbar-nav navbar-right">
-          <li class="nav-bar-opt">
-            <a *ngIf="!authService.isAuthenticated()"  routerLink="/login" class="btn btn-outline-primary">Login</a>
-          </li>
-
-          <li *ngIf="authService.isAuthenticated()" class="dropdown">
-            <a class="btn btn-outline-primary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              {{authService.usuario.username}}
-            </a>
-
-            <ul class="dropdown-menu">
-                <button (click)="logout()" class="dropdown-item">Cerrar Sesión</button>
-            </ul>
-          </li>
-          
-        </ul>
 
       </div>
 

@@ -15,6 +15,16 @@ export class RbpService {
 
     constructor(private http: HttpClient, private router: Router) {}
 
+    buscarProductos(): Observable<Producto[]> {
+        return this.http.get<Producto[]>(this.urlEndpointAll).pipe(
+            catchError(error => {
+                this.router.navigate(['/productos']);
+                Swal.fire("Error al buscar producto", error.error.message, 'error');
+                return throwError(() => error);
+            })
+        );
+    }
+
     lookup(searchInput: string): Observable<any> {
         var searchInputNumber = Number(searchInput);
         if(searchInputNumber) {

@@ -1,11 +1,30 @@
+import { Role } from './roles';
+
 export class Usuario {
 
-    id:number;
-    username:string;
-    password:string;
-    nombre:string;
-    apellido:string
-    email:string
-    roles:string[]=[]
+    id_usuario: number;
 
+    username: string;
+
+    cuenta: number;
+
+    nombre: string;
+
+    apellidoPaterno: string;
+
+    apellidoMaterno: string;
+
+    numeroCel: number;
+
+    correo: string;
+
+    carrera: string;
+
+    password: string;
+
+    esActivo: boolean;
+
+    pumapuntos: number;
+
+    roles: string[];
 }

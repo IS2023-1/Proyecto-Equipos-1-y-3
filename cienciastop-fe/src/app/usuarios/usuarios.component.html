@@ -25,7 +25,7 @@
           </div>
           
           <img
-            src={{u.imagen}}
+            src="https://www.hotelbooqi.com/wp-content/uploads/2021/12/128-1280406_view-user-icon-png-user-circle-icon-png.png"
             class="card-img-top"
             alt="Laptop"
           />
@@ -37,11 +37,11 @@
             </div>
 
             <div class="d-flex">
-              <p class="mb-0 biggy-text">Puma Puntos: <span class="text-dark mb-0">{{u.pumapuntos}} PP</span></p>
+              <p class="mb-0">Puma Puntos: <span class="mb-0">{{u.pumapuntos}} PP</span></p>
             </div>
 
             <div class="d-flex mb-2">
-              <p class="text-muted mb-0 correo">
+              <p class="mb-0">
                 Email: <span class="fw-bold">{{u.correo}}</span>
               </p>
               <div class="ms-auto text-warning">
@@ -72,4 +72,7 @@
     </div>
   </div>
 </section>
-<a class="nav-link " routerLinkActive="active" aria-current="page" routerLink="agregar-usuarios">agregar usuario</a>
+<div class="bg-danger d-flex align-items-center justify-content-center shadow-1-strong agregar"
+      routerLinkActive="active" aria-current="page" routerLink="agregar-usuarios">
+  <span>Agregar Usuario</span>
+</div>

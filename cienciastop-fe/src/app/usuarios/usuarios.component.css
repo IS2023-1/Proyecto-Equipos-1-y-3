@@ -6,3 +6,16 @@ img {
     width: 100%;
     margin: 10px 0px;
 }
+
+.card-666 {
+    width: 100%;
+}
+
+.agregar {
+    width: 20%;
+    margin: auto;
+    padding: 10px;
+    color: #FFFFFF;
+    border-radius: 5px;
+    margin: 10px auto;
+}

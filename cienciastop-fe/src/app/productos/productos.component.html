@@ -12,34 +12,25 @@
         <div class="card">
           <div class="d-flex justify-content-between p-3">
             <p class="lead mb-0">{{ producto.nombre }}</p>
-              <div class="bg-danger d-flex align-items-center justify-content-center shadow-1-strong"
-                style="width: 60px; height: 35px" *ngIf="authService.hasRole('ROLE_ADMIN')">
-                <p class="text-white mb-0 small" (click)="delete(producto)">Eliminar</p>
-              </div>
-              <div class="bg-primary d-flex align-items-center justify-content-center shadow-1-strong" style="width: 60px; height: 35px" *ngIf="authService.hasRole('ROLE_ADMIN')">
-                <p class="text-white mb-0 small" [routerLink]="['/productos/form', producto.id]">Editar</p>
-              </div>
              
           </div>
           <img
-            src={{producto.rutaImagen}}
+            src="https://static.vecteezy.com/system/resources/previews/005/337/799/original/icon-image-not-found-free-vector.jpg"
             class="card-img-top visible-xs img-responsiv"
             
           />
           <div class="card-body">
             <div class="d-flex justify-content-between">
-              <p class="small"><a href="#!" class="text-muted">Codigo:</a></p>
-              <p class="small text-danger">{{ producto.codigo }}</p>
+              <p class="small text-muted">Codigo: <span class="small text-danger">{{ producto.codigo}}</span></p>
             </div>
 
             <div class="d-flex justify-content-between mb-3">
-              <h5 class="mb-0">Precio:</h5>
-              <h5 class="text-dark mb-0">{{ producto.precio }} PP</h5>
+              <h5 class="mb-0">Precio: <span class="text-dark mb-0">{{ producto.costo }} PP</span></h5>
             </div>
 
             <div class="d-flex justify-content-between mb-2">
               <p class="text-muted mb-0">
-                Stock: <span class="fw-bold">{{ producto.stock }}</span>
+                Stock: <span class="fw-bold">{{ producto.disponibles}}</span>
               </p>
               <div class="ms-auto text-warning">
                 <i class="fas fa-star"></i>
@@ -49,6 +40,17 @@
                 <i class="far fa-star"></i>
               </div>
             </div>
+
+            <div class="botones">
+              <div class="bg-danger boton d-flex align-items-center justify-content-center shadow-1-strong"
+                style="width: 60px; height: 35px" *ngIf="authService.hasRole('ROLE_ADMIN')">
+                <p class="text-white mb-0 small" (click)="delete(producto)">Eliminar</p>
+              </div>
+              <div class="bg-primary boton d-flex align-items-center justify-content-center shadow-1-strong" style="width: 60px; height: 35px" *ngIf="authService.hasRole('ROLE_ADMIN')">
+                <p class="text-white mb-0 small" [routerLink]="['/productos/form', producto.id]">Editar</p>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Usuario } from './usuarios';
-import { Observable } from 'rxjs';
+import { Usuario } from './usuario';
+import { Observable, catchError } from 'rxjs';
 import { of } from 'rxjs';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { UsuariosComponent } from './usuarios.component';
@@ -12,7 +12,7 @@ import Swal from 'sweetalert2';
 })
 export class UsuarioService {
 
-  private urlEndPoint:string = 'http://localhost:10000/usuarios';
+  private urlEndPoint: string = 'http://localhost:10000/usuarios';
 
   private httpHeaders = new HttpHeaders({'Content-Type': 'application/json'})
 
@@ -46,4 +46,7 @@ export class UsuarioService {
     return this.http.delete<Usuario>(`${this.urlEndPoint}/eliminar/${id_usuario}`, {headers: this.httpHeaders})
   }
 
+  lookup(searchInput: string): Observable<Usuario[]> {
+    return this.http.get<Usuario[]>(`${this.urlEndPoint}/buscar/nombre/${searchInput}`);
+  }
 }

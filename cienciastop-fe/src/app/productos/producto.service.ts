@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { PRODUCTOS } from './productos.json';
 import { Producto } from './producto';
 import { Observable } from 'rxjs';
 import { of } from 'rxjs';
@@ -49,7 +48,6 @@ export class ProductoService {
     return false;
   }
 
-
   getProductos(): Observable<Producto[]>{
     return this.http.get<Producto[]>(this.urlEndpointAll);
   }
@@ -85,7 +83,7 @@ export class ProductoService {
     )  }
 
   update(producto: Producto): Observable<Producto>{
-    return this.http.put<any>(`${this.urlEndPoint}/${producto.id}`, producto, {headers: this.agregarAuthorizationHeader()}).pipe(
+    return this.http.put<any>(`${this.urlEndPoint}/${producto.id_producto}`, producto, {headers: this.agregarAuthorizationHeader()}).pipe(
       catchError(e => {
         if(this.isNoAutorizado(e)){
           return throwError( () => e );
@@ -106,9 +104,5 @@ export class ProductoService {
         return throwError( () => e );
       })
     )  
-  }
-
-  lookup(lookupFactor: string): Observable<Producto[]>{
-    return null;
   }
 }

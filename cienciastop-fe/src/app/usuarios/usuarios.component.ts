@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 // import { USUARIOS } from './usuarios.json';
-import { Usuario } from './usuarios';
+import { Usuario } from './usuario';
 import Swal from 'sweetalert2';
-import { UsuarioService } from './usuarios.service';
+import { UsuarioService } from './usuario.service';
 import { delay } from 'rxjs';
 
 @Component({
@@ -41,7 +41,7 @@ export class UsuariosComponent implements OnInit {
       if(e.nombre.toLowerCase().includes(input)) {
         matches.push(e);
       } else if (Number(input)) {
-        if (e.cuenta === Number(input)) {
+        if (e.id_usuario === Number(input)) {
           matches.push(e);
         }
       }

@@ -1,5 +1,7 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
+cienciastop-fe/node_modules
+
 # Compiled output
 /dist
 /tmp
@@ -19,6 +21,7 @@ yarn-error.log
 *.launch
 .settings/
 *.sublime-workspace
+.angular
 
 # Visual Studio Code
 .vscode/*

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Producto } from './producto';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PRODUCTOS } from './productos.json';
 import Swal from 'sweetalert2';
 import { RbpService } from './rbp.service';
 
@@ -31,7 +30,8 @@ export class RbpComponent implements OnInit {
     var matches = [];
     matches = [];
     var ss = require("string-similarity");
-    var productos = PRODUCTOS;
+    var productos = [];
+    this.rbpService.buscarProductos().subscribe(p => productos = p);
     productos.forEach(e => {
       var nombreLower = e.nombre.toLowerCase();
       var codigoLower = e.codigo.toLowerCase();
