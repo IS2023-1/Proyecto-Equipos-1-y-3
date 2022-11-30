@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Producto } from './producto';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PRODUCTOS } from './productos.json';
 import Swal from 'sweetalert2';
 import { RbpService } from './rbp.service';
 
@@ -24,29 +23,7 @@ export class RbpComponent implements OnInit {
     this.lookup();
   }
 
-  public getMatches(): void {
-    this.productMatches = [];
-    var searchInputLower = this.input.trim().toLowerCase();
-    if(!this.input || searchInputLower.length === 0) return;
-    var matches = [];
-    matches = [];
-    var ss = require("string-similarity");
-    var productos = PRODUCTOS;
-    productos.forEach(e => {
-      var nombreLower = e.nombre.toLowerCase();
-      var codigoLower = e.codigo.toLowerCase();
-      if(ss.compareTwoStrings(codigoLower, searchInputLower) > 0.6) {
-        matches.push([e, ss.compareTwoStrings(codigoLower, searchInputLower)])
-      } else if(ss.compareTwoStrings(nombreLower, searchInputLower) > 0.6) {
-        matches.push([e, ss.compareTwoStrings(nombreLower, searchInputLower)])
-      } else if(nombreLower.includes(searchInputLower) || codigoLower.includes(searchInputLower)) {
-        matches.push([e, 0.6])
-      }
-    });
 
-    matches = matches.sort((e1, e2) => (e1 > e2 ? -1 : 1)).map(e => e[0]);
-    this.productMatches = matches;
-  }
 
   lookup(): void {
     this.activatedRoute.params.subscribe(input => {

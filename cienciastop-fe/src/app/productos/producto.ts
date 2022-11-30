@@ -2,19 +2,24 @@
 
 export class Producto {
 
-    id: number;
+    id_producto: number;
 
 	nombre: string;
 
     codigo: string;
 
-	stock: number;
+	disponibles: number;
 
-	precio: number;
+	costo: number;
 
 	descripcion: string;
 
 	rutaImagen: string;
+
+	diasAPrestar: number;
+
+	usuario: []
+
 
 }
 
