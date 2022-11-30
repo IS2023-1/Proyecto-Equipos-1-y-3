@@ -18,9 +18,11 @@ public class CienciasTopApplication implements CommandLineRunner{
 	
 	@Override
 	public void run(String... args) throws Exception {
-		String password = "luis";
-		String passwordBcrypt = passwordEncoder.encode(password);
-		System.out.println(passwordBcrypt);
+		String [] list_of_passwords = {"pugespia","siuuuuu", "1122asswq", "ajolete2021"};
+		for(int i = 0; i<list_of_passwords.length; i++) {
+			String passwordBcrypt = passwordEncoder.encode(list_of_passwords[i]);
+			System.out.println(list_of_passwords[i] + ": " + passwordBcrypt);
+		}
 	}
 
 }

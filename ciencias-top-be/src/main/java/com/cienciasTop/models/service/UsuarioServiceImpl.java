@@ -28,46 +28,8 @@ public class UsuarioServiceImpl implements IUsuarioService, UserDetailsService {
 	
 	@Override
 	@Transactional(readOnly=true)
-	public List<Usuario> findAll() {
-		return (List<Usuario>)usuarioDao.findAll();
-	}
-
-	@Override
-	@Transactional(readOnly=true)
 	public Usuario findById(Long id) {
 		return usuarioDao.findById(id).orElse(null);
-	}
-
-	@Override
-	@Transactional()
-	public Usuario save(Usuario usuario) {
-		return usuarioDao.save(usuario);
-	}
-
-	@Override
-	@Transactional()
-	public void deleteById(Long id) {
-		usuarioDao.deleteById(id);
-	}
-
-	// Método para buscar a un usuario por su nombre
-	@Override
-	@Transactional(readOnly=true)
-	public List<Usuario> findByNombre(String nombre) {
-		return usuarioDao.findByNombre(nombre);
-	}
-	
-	// Método para buscar a un usuario por su correo
-	@Override
-	@Transactional(readOnly=true)
-	public Usuario findByCorreo(String correo) {
-		return usuarioDao.findByCorreo(correo);
-	}
-
-	@Override
-	@Transactional(readOnly=true)
-	public Usuario findByCuenta(Long cuenta) {
-		return usuarioDao.findByCuenta(cuenta);
 	}
 	
 	@Override
@@ -95,5 +57,40 @@ public class UsuarioServiceImpl implements IUsuarioService, UserDetailsService {
 	public Usuario findByUsername(String username) {
 		return usuarioDao.findByUsername(username);
 	}
+	
+	@Override
+	@Transactional(readOnly=true)
+	public Usuario findByCuenta(Long cuenta) {
+		return usuarioDao.findByCuenta(cuenta);
+	}
+	
+	@Override
+	@Transactional(readOnly=true)
+	public Usuario findByCorreo(String correo) {
+		return usuarioDao.findByCorreo(correo);
+	}
+	
+	@Override
+	@Transactional(readOnly=true)
+	public List<Usuario> findByNombre(String nombre) {
+		return usuarioDao.findByNombre(nombre);
+	}
+	
+	@Override
+	@Transactional(readOnly=true)
+	public List<Usuario> findAll() {
+		return (List<Usuario>)usuarioDao.findAll();
+	}
 
+	@Override
+	@Transactional()
+	public Usuario save(Usuario usuario) {
+		return usuarioDao.save(usuario);
+	}
+
+	@Override
+	@Transactional()
+	public void deleteById(Long id) {
+		usuarioDao.deleteById(id);
+	}
 }
