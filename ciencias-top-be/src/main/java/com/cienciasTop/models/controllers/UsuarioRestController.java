@@ -220,7 +220,7 @@ public class UsuarioRestController {
      * @return Mensaje de éxito si se actualizó la contraseña, error en otro caso.
      */
     @Secured({"ROLE_ADMIN"})
-    @PutMapping("/updateContrasena/{password_1}/{password_2}/{id}")
+    @PostMapping("/updateContrasena/{password_1}/{password_2}/{id}")
     //@ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<?> updatePassword(@PathVariable String password_1, @PathVariable String password_2,
             @PathVariable Long id) {
