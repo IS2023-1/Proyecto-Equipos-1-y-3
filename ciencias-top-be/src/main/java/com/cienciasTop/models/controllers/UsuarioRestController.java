@@ -219,9 +219,10 @@ public class UsuarioRestController {
      * @param id Identificador del usuario al que será actualizado su contraseña.
      * @return Mensaje de éxito si se actualizó la contraseña, error en otro caso.
      */
-    @PutMapping("/usuarios/updateContrasena/{password_1}/{password_2}/{id}")
-    @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<?> updatePassword(@RequestBody String password_1, @RequestBody String password_2,
+    @Secured({"ROLE_ADMIN"})
+    @PutMapping("/updateContrasena/{password_1}/{password_2}/{id}")
+    //@ResponseStatus(HttpStatus.CREATED)
+    public ResponseEntity<?> updatePassword(@PathVariable String password_1, @PathVariable String password_2,
             @PathVariable Long id) {
         if (areEqual(password_1, password_2)) {
             Usuario current_Usuario = this.usuario_Service.findById(id);
