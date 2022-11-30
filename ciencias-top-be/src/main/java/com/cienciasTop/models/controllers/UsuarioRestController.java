@@ -15,10 +15,8 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cienciasTop.models.entity.Usuario;
@@ -169,7 +167,6 @@ public class UsuarioRestController {
      */
     @Secured({"ROLE_ADMIN"})
     @PostMapping("/editar/{id}")
-    @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<?> update(@RequestBody Usuario usuario, @PathVariable Long id){
         Usuario current_Usuario = this.usuario_Service.findById(id);
         Usuario usuario_Update = null;
@@ -219,9 +216,7 @@ public class UsuarioRestController {
      * @param id Identificador del usuario al que será actualizado su contraseña.
      * @return Mensaje de éxito si se actualizó la contraseña, error en otro caso.
      */
-    @Secured({"ROLE_ADMIN"})
     @PostMapping("/updateContrasena/{password_1}/{password_2}/{id}")
-    //@ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<?> updatePassword(@PathVariable String password_1, @PathVariable String password_2,
             @PathVariable Long id) {
         if (areEqual(password_1, password_2)) {
