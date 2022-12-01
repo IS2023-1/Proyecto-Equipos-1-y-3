@@ -35,7 +35,7 @@ public class Producto implements Serializable {
 	@Column(name = "disponibles", columnDefinition = "INT NOT NULL CHECK(disponibles >= 0)")
 	private Integer disponibles;
 
-	@Column(name = "ruta_imagen", length = 50, nullable = false)
+	@Column(name = "ruta_imagen", length = 500000, nullable = false)
 	private String rutaImagen;
 
 	@Column(name = "costo", columnDefinition = "INT NOT NULL CHECK(costo >= 0)")

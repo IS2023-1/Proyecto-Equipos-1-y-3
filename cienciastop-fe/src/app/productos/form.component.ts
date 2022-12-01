@@ -4,6 +4,7 @@ import { ProductoService } from './producto.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import swal from 'sweetalert2';
 import { Observable } from 'rxjs';
+import { AuthService } from '../usuarios/auth.service';
 
 
 @Component({
@@ -16,7 +17,7 @@ export class FormComponent implements OnInit {
   titulo: string = "Añadir Producto"
   producto: Producto = new Producto()
 
-  constructor(private productoService: ProductoService, private router: Router, private activateRoute: ActivatedRoute) { }
+  constructor(private productoService: ProductoService, private router: Router, private activateRoute: ActivatedRoute, public authService: AuthService) { }
 
   ngOnInit(): void {
     this.cargarProducto()

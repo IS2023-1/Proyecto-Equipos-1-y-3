@@ -34,7 +34,7 @@ export class AuthService {
   }
 
   login(usuario:Usuario):Observable<any>{
-    const urlEndPoint = 'http://localhost:8080/oauth/token';
+    const urlEndPoint = 'http://localhost:10000/oauth/token';
 
     const credenciales = btoa('angularapp' + ':' + '12345');
 
@@ -52,6 +52,7 @@ export class AuthService {
   }
 
   guardarUsuario(accessToken: string):void{
+    console.log(accessToken)
     let payload = this.obtenerDatosToken(accessToken);
     this._usuario = new Usuario();
     this._usuario.id = payload.id;

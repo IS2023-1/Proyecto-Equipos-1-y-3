@@ -15,7 +15,7 @@ export class ProductoService {
 
 
 
-  private urlEndPoint:string = 'http://localhost:8080/api/productos';
+  private urlEndPoint:string = 'http://localhost:10000/productos';
 
   private urlEndpointAll: string = 'http://localhost:10000/productos/buscar/todo';
 
@@ -54,7 +54,7 @@ export class ProductoService {
   }
 
   create(producto: Producto): Observable<Producto>{
-    return this.http.post<any>(this.urlEndPoint, producto, {headers: this.agregarAuthorizationHeader()} ).pipe(
+    return this.http.post<any>(this.urlEndPoint+"/agregar", producto, {headers: this.agregarAuthorizationHeader()} ).pipe(
       
       catchError(e => {
 
