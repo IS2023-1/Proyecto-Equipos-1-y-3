@@ -96,7 +96,7 @@ export class ProductoService {
   }
 
   delete(id: number): Observable<Producto>{
-    return this.http.delete<Producto>(`${this.urlEndPoint}/${id}`, {headers: this.agregarAuthorizationHeader()}).pipe(
+    return this.http.delete<Producto>(`${this.urlEndPoint}/eliminar/${id}`, {headers: this.agregarAuthorizationHeader()}).pipe(
       catchError(e => {
         if(this.isNoAutorizado(e)){
           return throwError( () => e );
