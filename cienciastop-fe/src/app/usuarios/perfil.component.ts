@@ -30,6 +30,7 @@ export class PerfilComponent implements OnInit {
     const id = Number( this.activatedRoute.snapshot.paramMap.get('id'));
           this.usuarioService.getUsuario(id).subscribe(u => this.u = u);
   }
+  
   delete(usuario: Usuario) : void {
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
