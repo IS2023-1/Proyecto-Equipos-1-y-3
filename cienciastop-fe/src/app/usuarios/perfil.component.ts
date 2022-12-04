@@ -4,16 +4,18 @@ import { UsuarioService } from './usuario.service';
 import { Usuario } from './usuarios';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { AuthService } from './auth.service';
 
 @Component({
   selector: 'app-perfil',
   templateUrl: './perfil.component.html',
   styleUrls: ['./perfil.component.css']
 })
-export class PerfilComponent implements OnInit { 
-  u : Usuario | undefined;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
-  constructor(private usuarioService : UsuarioService, private router:Router, private activatedRoute:ActivatedRoute) { 
+export class PerfilComponent implements OnInit {
+  u: Usuario = new Usuario();//| undefined;
+  //nombre : String = this.u.nombre;
+
+  constructor(private usuarioService: UsuarioService, private router: Router, private activatedRoute: ActivatedRoute, public authService: AuthService) {
     //const id = this.activatedRoute.data.subscribe( v=> console.log(v));
     let params: any = this.activatedRoute.snapshot.params;
     //console
@@ -21,17 +23,15 @@ export class PerfilComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUsuario();
-   }
+  }
+
 
   public getUsuario(): void {//Observable <Usuario>{
-    /*this.usuarioService.getUsuario(this.id).subscribe(
-      Response => this.router.navigate(['/usuarios/perfil'])
-    );*/
-    const id = Number( this.activatedRoute.snapshot.paramMap.get('id'));
-          this.usuarioService.getUsuario(id).subscribe(u => this.u = u);
+    const id = Number(this.activatedRoute.snapshot.paramMap.get('id'));
+    this.usuarioService.getUsuario(id).subscribe(u => this.u = u);
   }
-  
-  delete(usuario: Usuario) : void {
+
+  delete(usuario: Usuario): void {
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
         confirmButton: 'btn btn-success',
@@ -39,7 +39,7 @@ export class PerfilComponent implements OnInit {
       },
       buttonsStyling: false
     })
-    
+
     swalWithBootstrapButtons.fire({
       title: '¿Estás seguro?',
       text: '¿Estás seguro de eliminar al usuario ${usuario.nombre}?',
@@ -59,8 +59,8 @@ export class PerfilComponent implements OnInit {
             )
             this.router.navigate(['/usuarios'])
           }
-        ) 
-      } 
+        )
+      }
     })
   }
 }

@@ -1,9 +1,6 @@
-<div class="container mt-5">
-    <button class="bg-secondary d-flex align-items-center justify-content-center shadow-1-strong" type="button"
-        style="width: 80px; height: 35px; border-radius: 5px; border: none;" [routerLink]="['/usuarios/buscar/todo']">
-        <p class="text-white mb-0 small">Volver</p>
-    </button>
-    <div *ngIf="u">
+
+<div *ngIf="u">
+    
         <div class="row d-flex justify-content-center">
 
             <div class="col-md-7">
@@ -11,7 +8,7 @@
                 <div class="card p-3 py-4">
 
                     <div class="text-center mt-5">
-                        <h1>{{u.nombre}} {{u.apellidoPaterno}} {{u.apellidoMaterno}}</h1>
+                        <h1>{{id}} {{nombre}} {{u.nombre}} {{u.apellidoPaterno}} {{u.apellidoMaterno}}</h1>
                         <!--<small id="Rol" class="text-muted">
                             {{u.rol}}
                         </small>-->
@@ -42,12 +39,12 @@
 
                             <button class="bg-success d-flex align-items-center justify-content-center shadow-1-strong"
                                 type="button" style="width: 80px; height: 35px; border-radius: 5px; border: none;"
-                                [routerLink]="['/usuarios/perfil/edit', u.id]">
+                                [routerLink]="['usuarios/editar', u.id_usuario]">
                                 <p class="text-white mb-0 small">Editar</p>
                             </button>
                             <button class="btn btn-danger" type="button"
                                 style="width: 80px; height: 35px; border-radius: 5px;">
-                                <p class="text-white mb-0 small" (click)="delete(u)"> Eliminar</p>
+                                <p class="text-white mb-0 small"(click)="delete(u)"> Eliminar</p>
                             </button>
                         </div>
 

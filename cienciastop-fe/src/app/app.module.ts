@@ -27,6 +27,8 @@ const routes: Routes = [
   { path: 'usuarios/buscar/:id', component: PerfilComponent },
   //{ path: 'usuarios/perfil/:id', component: PerfilComponent },
   //{ path: 'usuarios/perfil/edit/:id', component: FormUsuarioComponent },
+
+  { path: 'usuarios/editar/:id', component: FormUsuarioComponent },
   { path: 'productos', component: ProductosComponent },
   { path: 'productos/form', component: FormComponent },
   { path: 'productos/form/:id', component: FormComponent },
