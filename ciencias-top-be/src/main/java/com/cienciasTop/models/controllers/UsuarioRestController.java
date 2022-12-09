@@ -212,14 +212,11 @@ public class UsuarioRestController {
     /**
      * Función para cambiar la contraseña de un usuario por su id.
      * @param password_1 Contraseña nueva.
-     * @param password_2 Verificación de la contraseña nueva. 
      * @param id Identificador del usuario al que será actualizado su contraseña.
      * @return Mensaje de éxito si se actualizó la contraseña, error en otro caso.
      */
-    @PostMapping("/updateContrasena/{password_1}/{password_2}/{id}")
-    public ResponseEntity<?> updatePassword(@PathVariable String password_1, @PathVariable String password_2,
-            @PathVariable Long id) {
-        if (areEqual(password_1, password_2)) {
+    @PostMapping("/updateContrasena/{password_1}/{id}")
+    public ResponseEntity<?> updatePassword(@PathVariable String password_1, @PathVariable Long id) {
             Usuario current_Usuario = this.usuario_Service.findById(id);
             Usuario usuario_Update = null;
             Map<String, Object> response = new HashMap<>();
@@ -239,12 +236,6 @@ public class UsuarioRestController {
             response.put("mensaje", "Se ha cambiado la contraseña con exito.");
             response.put("usuario", usuario_Update);
             return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
-        } else {
-            Map<String, Object> response = new HashMap<>();
-            response.put("mensaje", "Error: no se puede cambiar la contraseña del usuario ID:"
-                    .concat(id.toString().concat(" ya que las contraseñas no son iguales.")));
-            return new ResponseEntity<Map<String, Object>>(response, HttpStatus.NOT_FOUND);
-        }
     }
     /* ------------------------------ UPDATE ------------------------------ */
     
