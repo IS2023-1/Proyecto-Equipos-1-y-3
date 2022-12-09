@@ -109,7 +109,24 @@ export class UsuarioService {
   }
 
   delete(id_usuario: number): Observable<Usuario> {
-    return this.http.delete<Usuario>(`${this.urlEndPoint}/eliminar/${id_usuario}`, { headers: this.httpHeaders })
+    return this.http.delete<Usuario>(`${this.urlEndPoint}/eliminar/${id_usuario}`, { headers: this.agregarAuthorizationHeader() }).pipe(
+      catchError(e => {
+        if(this.isNoAutorizado(e)){
+          return throwError( () => e );
+        }
+        Swal.fire('Error al eliminar al usuario', 'No ha sido posible eliminar al usuario, intenta de nuevo', 'error');
+        return throwError( () => e );
+      })
+    )
+  }
+
+  resetPassword(passwor1: string, password2: string, id_usuario: number): Observable<Usuario> {
+    return this.http.post<Usuario>(`${this.urlEndPoint}/updateContrasena/${passwor1}/${password2}/${id_usuario}`, { headers: this.httpHeaders}) .pipe(
+      catchError(e => {
+        Swal.fire('Error al recuperar contraseña', 'No ha sido posible cambiar tu contraseña, el usuario es inválido', 'error');
+        return throwError( () => e );
+      })
+    )
   }
 
 }
