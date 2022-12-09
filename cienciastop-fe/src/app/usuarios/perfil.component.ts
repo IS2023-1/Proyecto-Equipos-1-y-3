@@ -39,28 +39,31 @@ export class PerfilComponent implements OnInit {
       },
       buttonsStyling: false
     })
-    
-    swalWithBootstrapButtons.fire({
-      title: '¿Estás seguro?',
-      text: '¿Estás seguro de eliminar al usuario ' + `${usuario.nombre}`+'?',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Sí, eliminar',
-      cancelButtonText: 'No, cancelar!',
-      reverseButtons: true
-    }).then((result) => {
-      if (result.isConfirmed) {
-        this.usuarioService.delete(usuario.id_usuario).subscribe(
-          Response => {
-            swalWithBootstrapButtons.fire(
-              'Usuario eliminado!',
-              '¡Usuario eliminado con éxito!.',
-              'success'
-            )
-            this.router.navigate(['/usuarios/buscar/todo'])
-          }
-        )
-      }
-    })
+    if (this.authService.usuario.id == usuario.id_usuario){
+      Swal.fire('Error al eliminar al usuario', 'No puedes eliminar a este usuario mientras su sesión está activa', 'error');
+    }else{
+      swalWithBootstrapButtons.fire({
+        title: '¿Estás seguro?',
+        text: '¿Estás seguro de eliminar al usuario ' + `${usuario.nombre}`+'?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Sí, eliminar',
+        cancelButtonText: 'No, cancelar!',
+        reverseButtons: true
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.usuarioService.delete(usuario.id_usuario).subscribe(
+            Response => {
+              swalWithBootstrapButtons.fire(
+                'Usuario eliminado!',
+                '¡Usuario eliminado con éxito!.',
+                'success'
+              )
+              this.router.navigate(['/usuarios/buscar/todo'])
+            }
+          )
+        }
+      })
+    }
   }
 }
