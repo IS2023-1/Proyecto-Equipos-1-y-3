@@ -215,7 +215,6 @@ public class UsuarioRestController {
      * @param id Identificador del usuario al que será actualizado su contraseña.
      * @return Mensaje de éxito si se actualizó la contraseña, error en otro caso.
      */
-    @Secured({"ROLE_USER"})
     @PostMapping("/updateContrasena/{password_1}/{id}")
     public ResponseEntity<?> updatePassword(@PathVariable String password_1, @PathVariable Long id) {
             Usuario current_Usuario = this.usuario_Service.findById(id);
