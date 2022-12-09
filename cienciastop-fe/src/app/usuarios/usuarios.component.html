@@ -2,33 +2,28 @@
   <div class="container py-5">
 
     <form class="d-flex" role="search" (submit)="onSubmit()">
-      <input class="form-control me-2" type="search" placeholder="Buscar usuarios por nombre o identificador" 
-             aria-label="Search" [(ngModel)]="searchInput" name="searchInput">
+      <input class="form-control me-2" type="search" placeholder="Buscar usuarios por nombre o identificador"
+        aria-label="Search" [(ngModel)]="searchInput" name="searchInput">
       <button class="btn btn-outline-success" type="submit">Buscar</button>
     </form>
-    
+
     <hr>
 
-    <h2 id="res-bus-usuario" style="display: none;">Resultados de la búsqueda "{{placeholder}}" 
-    <button class="btn btn-outline-success" (click)="clear()">Limpiar</button></h2>
+    <h2 id="res-bus-usuario" style="display: none;">Resultados de la búsqueda "{{placeholder}}"
+      <button class="btn btn-outline-success" (click)="clear()">Limpiar</button>
+    </h2>
 
     <div class="row">
-      <div
-        class="col-md-6 col-lg-4 mb-4 mb-md-0" 
-        *ngFor="let u of usuarios">
+      <div class="col-md-6 col-lg-4 mb-4 mb-md-0" *ngFor="let u of usuarios">
         <div class="card-666">
           <div class="d-flex justify-content-between">
             <p class="lead mb-0">{{u.nombre}} {{u.apellidoPaterno}} {{u.apellidoMaterno}}</p>
-              <!--<div class="bg-primary d-flex align-items-center justify-content-center shadow-1-strong" style="width: 60px; height: 35px">
+            <!--<div class="bg-primary d-flex align-items-center justify-content-center shadow-1-strong" style="width: 60px; height: 35px">
                 <p class="text-white mb-0 small" [routerLink]="['/productos/form', producto.id]">Editar</p>
               </div>-->
           </div>
-          
-          <img
-            src={{u.imagen}}
-            class="card-img-top"
-            alt="Laptop"
-          />
+
+          <img src={{u.imagen}} class="card-img-top" alt="Laptop" />
           <div class="card-body codigo">
             <div class="d-flex">
               <p class="small" style="margin-bottom: 0px;">
@@ -57,13 +52,14 @@
                   style="width: 80px; height: 35px; border-radius: 5px;">
                   <p class="text-white mb-0 small">Editar</p>
               </div>-->
-             
+
               <div class="bg-danger d-flex align-items-center justify-content-center shadow-1-strong"
                 style="width: 80px; height: 35px; border-radius: 5px;">
                 <button class="bg-danger d-flex align-items-center justify-content-center shadow-1-strong" type="button"
-                style="border: none;"
-                [routerLink]="['/usuarios/buscar', u.id_usuario]" >
-                <p class="text-white mb-0 small">Ver perfil</p> </button> 
+                  style="border: none;" [routerLink]="['/usuarios/buscar', u.id_usuario]">
+                  <p class="text-white mb-0 small">Ver perfil</p>
+                </button>
+
 
               </div>
             </div>

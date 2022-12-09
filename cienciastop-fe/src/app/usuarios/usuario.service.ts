@@ -13,30 +13,30 @@ import { AuthService } from './auth.service';
 })
 export class UsuarioService {
 
-  private urlEndPoint:string = 'http://localhost:10000/usuarios';
+  private urlEndPoint: string = 'http://localhost:10000/usuarios';
 
-  private httpHeaders = new HttpHeaders({'Content-Type': 'application/json'})
+  private httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' })
 
-  constructor(private http: HttpClient, private router: Router, private authService: AuthService) {}
+  constructor(private http: HttpClient, private router: Router, private authService: AuthService) { }
 
-  private agregarAuthorizationHeader(){
+  private agregarAuthorizationHeader() {
     let token = this.authService.token;
-    if(token != null){
+    if (token != null) {
       return this.httpHeaders.append('Authorization', 'Bearer ' + token);
     }
     return this.httpHeaders;
   }
 
-  private isNoAutorizado(e): boolean{
-    if(e.status==401){
-      if(this.authService.isAuthenticated()){
+  private isNoAutorizado(e): boolean {
+    if (e.status == 401) {
+      if (this.authService.isAuthenticated()) {
         this.authService.logout();
       }
       this.router.navigate(['/login'])
       return true;
     }
 
-    if(e.status==403){
+    if (e.status == 403) {
       Swal.fire('Acceso denegado', `Hola ${this.authService.usuario.username} no tienes acceso a este recurso!`, 'warning');
       this.router.navigate(['/productos'])
       return true;
@@ -44,25 +44,42 @@ export class UsuarioService {
     return false;
   }
 
-  getUsuarios(): Observable <Usuario[]>{
+  getUsuarios(): Observable<Usuario[]> {
     return this.http.get<Usuario[]>(this.urlEndPoint + '/buscar/todo');
     //return of(USUARIOS);
   }
 
-  getUsuario(id_usuario): Observable<Usuario>{
-    return this.http.get<Usuario>(`${this.urlEndPoint}/buscar/${id_usuario}`, {headers: this.agregarAuthorizationHeader() }).pipe(
+  getUsuario(id_usuario): Observable<Usuario> {
+    return this.http.get<Usuario>(`${this.urlEndPoint}/buscar/${id_usuario}`, { headers: this.agregarAuthorizationHeader() }).pipe(
       catchError(e => {
 
-        if(this.isNoAutorizado(e)){
-          return throwError( () => e );
+        if (this.isNoAutorizado(e)) {
+          return throwError(() => e);
+        }
+
+
+        this.router.navigate(['/usuarios']);
+        Swal.fire('Error al obtener usuario', e.error.mensaje, 'error');
+        return throwError(() => e);
+      })
+    )
+  }
+
+  editarUsuario(id_usuario): Observable<Usuario> {
+    return this.http.get<Usuario>(`${this.urlEndPoint}/editar/${id_usuario}`, { headers: this.agregarAuthorizationHeader() }).pipe(
+      catchError(e => {
+
+        if (this.isNoAutorizado(e)) {
+          return throwError(() => e);
         }
 
 
         this.router.navigate(['/usuarios']);
         Swal.fire('Error al editar', e.error.mensaje, 'error');
-        return throwError( () => e );
+        return throwError(() => e);
       })
-    )  }
+    )
+  }
 
   /*update(usuario: Usuario): void{//Observable<Usuario>{
     //return this.http.put<Usuario>(`${this.urlEndPoint}/${usuario.id}`, usuario, {headers: this.httpHeaders})
@@ -74,13 +91,25 @@ export class UsuarioService {
       aEditar.apellidoMaterno = usuario.apellidoMaterno;
     }
   }*/
- 
+
+  //update(usuario: Usuario): Observable<Usuario> {
+    //return this.http.post<Usuario>(`${this.urlEndPoint}/editar/${usuario.id_usuario}`, usuario, { headers: this.httpHeaders })
+  //}
+
   update(usuario: Usuario): Observable<Usuario>{
-    return this.http.post<Usuario>(`${this.urlEndPoint}/editar/${usuario.id_usuario}`, usuario, {headers: this.agregarAuthorizationHeader()})
+    return this.http.post<Usuario>(`${this.urlEndPoint}/editar/${usuario.id_usuario}`, usuario, {headers: this.agregarAuthorizationHeader()}).pipe(
+      catchError(e => {
+        if(this.isNoAutorizado(e)){
+          return throwError( () => e );
+        }
+        Swal.fire(e.error.mensaje, e.error.error, 'error');
+        return throwError( () => e );
+      })
+    )  
   }
 
-  delete(id_usuario:number):Observable<Usuario>{
-    return this.http.delete<Usuario>(`${this.urlEndPoint}/eliminar/${id_usuario}`, {headers: this.agregarAuthorizationHeader()})
+  delete(id_usuario: number): Observable<Usuario> {
+    return this.http.delete<Usuario>(`${this.urlEndPoint}/eliminar/${id_usuario}`, { headers: this.httpHeaders })
   }
 
 }

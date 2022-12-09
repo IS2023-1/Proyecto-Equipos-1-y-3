@@ -63,4 +63,13 @@ export class PerfilComponent implements OnInit {
       }
     })
   }
+
+  public update():void{
+    this.usuarioService.update(this.u).subscribe((usuario) => 
+      {
+      this.router.navigate(['/usuarios/editar'])
+      Swal.fire('Usuario Actualizado', `${usuario.nombre} actualizado exitosamente`, 'success')
+      }
+    )
+  }
 }
