@@ -39,7 +39,7 @@ export class PerfilComponent implements OnInit {
       },
       buttonsStyling: false
     })
-
+    
     swalWithBootstrapButtons.fire({
       title: '¿Estás seguro?',
       text: '¿Estás seguro de eliminar al usuario ' + `${usuario.nombre}`+'?',
