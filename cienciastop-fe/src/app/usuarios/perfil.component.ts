@@ -42,7 +42,7 @@ export class PerfilComponent implements OnInit {
 
     swalWithBootstrapButtons.fire({
       title: '¿Estás seguro?',
-      text: '¿Estás seguro de eliminar al usuario ${usuario.nombre}?',
+      text: '¿Estás seguro de eliminar al usuario ' + `${usuario.nombre}`+'?',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonText: 'Sí, eliminar',
@@ -57,7 +57,7 @@ export class PerfilComponent implements OnInit {
               '¡Usuario eliminado con éxito!.',
               'success'
             )
-            this.router.navigate(['/usuarios'])
+            this.router.navigate(['/usuarios/buscar/todo'])
           }
         )
       }

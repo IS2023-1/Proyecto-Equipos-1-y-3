@@ -76,11 +76,11 @@ export class UsuarioService {
   }*/
  
   update(usuario: Usuario): Observable<Usuario>{
-    return this.http.post<Usuario>(`${this.urlEndPoint}/editar/${usuario.id_usuario}`, usuario, {headers: this.httpHeaders})
+    return this.http.post<Usuario>(`${this.urlEndPoint}/editar/${usuario.id_usuario}`, usuario, {headers: this.agregarAuthorizationHeader()})
   }
 
   delete(id_usuario:number):Observable<Usuario>{
-    return this.http.delete<Usuario>(`${this.urlEndPoint}/eliminar/${id_usuario}`, {headers: this.httpHeaders})
+    return this.http.delete<Usuario>(`${this.urlEndPoint}/eliminar/${id_usuario}`, {headers: this.agregarAuthorizationHeader()})
   }
 
 }
