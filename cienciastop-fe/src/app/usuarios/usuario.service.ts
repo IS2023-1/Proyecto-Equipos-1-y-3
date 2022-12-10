@@ -65,39 +65,9 @@ export class UsuarioService {
     )
   }
 
-  editarUsuario(id_usuario): Observable<Usuario> {
-    return this.http.get<Usuario>(`${this.urlEndPoint}/editar/${id_usuario}`, { headers: this.agregarAuthorizationHeader() }).pipe(
-      catchError(e => {
-
-        if (this.isNoAutorizado(e)) {
-          return throwError(() => e);
-        }
-
-
-        this.router.navigate(['/usuarios']);
-        Swal.fire('Error al editar', e.error.mensaje, 'error');
-        return throwError(() => e);
-      })
-    )
-  }
-
-  /*update(usuario: Usuario): void{//Observable<Usuario>{
-    //return this.http.put<Usuario>(`${this.urlEndPoint}/${usuario.id}`, usuario, {headers: this.httpHeaders})
-    const usuarios= of(USUARIOS);
-    var aEditar = USUARIOS.find(u => u.id === usuario.id);
-    if (aEditar != null) {
-      aEditar.nombre = usuario.nombre;
-      aEditar.apellidoPaterno = usuario.apellidoPaterno;
-      aEditar.apellidoMaterno = usuario.apellidoMaterno;
-    }
-  }*/
-
-  //update(usuario: Usuario): Observable<Usuario> {
-    //return this.http.post<Usuario>(`${this.urlEndPoint}/editar/${usuario.id_usuario}`, usuario, { headers: this.httpHeaders })
-  //}
-
+ 
   update(usuario: Usuario): Observable<Usuario>{
-    return this.http.post<Usuario>(`${this.urlEndPoint}/editar/${usuario.id_usuario}`, usuario, {headers: this.httpHeaders}).pipe(
+    return this.http.post<Usuario>(`${this.urlEndPoint}/editar/${usuario.id_usuario}`, usuario, {headers: this.agregarAuthorizationHeader()}).pipe(
       catchError(e => {
         if(this.isNoAutorizado(e)){
           return throwError( () => e );

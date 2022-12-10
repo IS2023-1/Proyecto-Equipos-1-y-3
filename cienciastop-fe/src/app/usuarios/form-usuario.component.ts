@@ -35,23 +35,13 @@ export class FormUsuarioComponent implements OnInit {
     this.usuarioService.getUsuario(id).subscribe(u => this.user = u);
   }
 
-  /*public update(): void {
-    //console.log(this.user);
+  public update(): void{
+     //console.log(this.user);
     //this.usuarioService.update(this.user); 
     this.usuarioService.update(this.user).subscribe(user => {
-      this.router.navigate['/usuarios/editar, u.id_usuario']
-      swal.fire('Campos Actualizados', `Usuario ${this.user.id_usuario}$ actualizado correctamente`, 'success')
+      swal.fire('Campos Actualizados', `Usuario ${this.user.id_usuario} actualizado correctamente`, 'success')
+      this.router.navigate(['/usuarios/buscar/' + `${this.user.id_usuario}`])
     }
-    )
-  }*/
-
-  public update():void{
-    console.log(this.user)
-    this.usuarioService.update(this.user).subscribe((usuario) => 
-      {
-      this.router.navigate(['/usuarios'])
-      swal.fire('Usuario Actualizado', `${this.user.nombre} actualizado exitosamente`, 'success')
-      }
     )
   }
 
