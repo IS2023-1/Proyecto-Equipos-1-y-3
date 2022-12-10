@@ -18,7 +18,6 @@ export class FormUsuarioComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUsuario();
-    //this.cargarUsuario()
   }
 
   cargarUsuario(): void {
@@ -36,13 +35,10 @@ export class FormUsuarioComponent implements OnInit {
   }
 
   public update(): void{
-     //console.log(this.user);
-    //this.usuarioService.update(this.user); 
     this.usuarioService.update(this.user).subscribe(user => {
       swal.fire('Campos Actualizados', `Usuario ${this.user.id_usuario} actualizado correctamente`, 'success')
       this.router.navigate(['/usuarios/buscar/' + `${this.user.id_usuario}`])
-    }
-    )
+    })
   }
 
 }

@@ -13,12 +13,9 @@ import { AuthService } from './auth.service';
 })
 export class PerfilComponent implements OnInit {
   u: Usuario = new Usuario();//| undefined;
-  //nombre : String = this.u.nombre;
 
   constructor(private usuarioService: UsuarioService, private router: Router, private activatedRoute: ActivatedRoute, public authService: AuthService) {
-    //const id = this.activatedRoute.data.subscribe( v=> console.log(v));
     let params: any = this.activatedRoute.snapshot.params;
-    //console
   }
 
   ngOnInit(): void {
@@ -26,7 +23,7 @@ export class PerfilComponent implements OnInit {
   }
 
 
-  public getUsuario(): void {//Observable <Usuario>{
+  public getUsuario(): void {
     const id = Number(this.activatedRoute.snapshot.paramMap.get('id'));
     this.usuarioService.getUsuario(id).subscribe(u => this.u = u);
   }
