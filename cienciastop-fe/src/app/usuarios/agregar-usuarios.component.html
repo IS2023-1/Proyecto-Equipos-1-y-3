@@ -1,0 +1,88 @@
+<h1>{{titulo}}</h1>
+<form class="form-inline" *ngIf="user">
+    <div class="form-group mx-sm-3">
+        <label for="inputPass" class="sr-only">Nombre</label>
+        <input [(ngModel)]="user.nombre" name="Nombre">
+    </div>
+    <div class="form-group mx-sm-3">
+        <label for="inputPass" class="sr-only">Apellido Paterno</label>
+        <input [(ngModel)]="user.apellidoPaterno" name="Apellido Paterno"
+            placeholder="Apellido Paterno">
+    </div>
+
+    <div class="form-group mx-sm-3">
+        <label for="inputPass" class="sr-only">Apellido Materno</label>
+        <input [(ngModel)]="user.apellidoMaterno" name="Apellido Materno">
+    </div>
+
+    <div class="form-group mx-sm-3">
+      <label for="inputPass" class="sr-only">Correo</label>
+      <input [(ngModel)]="user.correo" name="Correo">
+    </div>
+
+    <div class="form-group mx-sm-3">
+      <label for="inputPass" class="sr-only">Carrera</label>
+      <input [(ngModel)]="user.carrera" name="Carrerar">
+    </div>
+
+    <div class="form-group mx-sm-3">
+      <label for="inputPass" class="sr-only">Numero de celular</label>
+      <input [(ngModel)]="user.numeroCel" name="Numero de celular">
+    </div>
+
+    <!--
+    <div class="checkbox">
+      <label for="inputPass" class="sr-only">¿Es Activo?</label>
+        <input type="checkbox" [checked]="user.esActivo=true" (change)="user.esActivo=='false'"/>
+    </div>
+    -->
+
+    <div class="form-group mx-sm-3">
+      <label for="inputPass" class="sr-only">¿Es Activo?</label>
+      <input [(ngModel)]="user.esActivo" name="¿Es Activo?">
+    </div>
+    
+    <div class="form-group mx-sm-3">
+      <label for="inputPass" class="sr-only">PumaPuntosr</label>
+      <input [(ngModel)]="user.pumapuntos" name="PumaPuntosr">
+    </div>
+
+    <div class="form-group mx-sm-3">
+      <label for="inputPass" class="sr-only">Cuenta</label>
+      <input [(ngModel)]="user.cuenta" name="Cuenta">
+    </div>
+
+    <div class="form-group mx-sm-3">
+      <label for="inputPass" class="sr-only">Contraseña</label>
+      <input [(ngModel)]="user.password" name="Contraseña">
+    </div>
+
+    <div class="form-row align-items-center mx-sm-3">
+        <div class="col-auto my-1">
+            <label class="mr-sm-2" for="inlineFormCustomSelect">Rol</label>
+            <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                <option selected>Escoge</option>
+                <option value="1" >Usuario</option>
+                <option value="2" >Administrador</option>
+                <option value="3" >Proveedor</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- <div class="form-group mx-sm-3">
+        <label for="inputPassword6">Contraseña</label>
+        <input type="password" id="inputPassword6" class="form-control mx-sm-3" aria-describedby="passwordHelpInline"
+            [(ngModel)]="user.password">
+        <small id="passwordHelpInline" class="text-muted">
+            En caso de necesitar cambiar contraseña
+        </small>
+    </div> -->
+
+</form>
+
+<div>
+<button class="bg-success d-flex align-items-center justify-content-center shadow-1-strong" type="button"
+    style="width: 80px; height: 35px; border-radius: 5px;" >
+    <p class="text-white mb-0 small" (click)="create()"> Guardar</p>
+    </button>
+</div>
