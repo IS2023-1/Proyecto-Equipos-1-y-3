@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UsuarioService } from './usuario.service';
 import { Usuario } from './usuario';
@@ -13,20 +13,52 @@ import { AuthService } from './auth.service';
     styleUrls: ['./recuperar.component.css']
   })
   export class RecuperarComponent implements OnInit {
-    id_usuario: number;
-    password1: string;
-    password2: string;
+    usuario: Usuario;
   
-    constructor(private usuarioService: UsuarioService) { }
+    constructor(private usuarioService: UsuarioService, private router: Router, private activatedRoute: ActivatedRoute) { 
+      this.usuario = new Usuario();
+    }
   
     ngOnInit(): void {
     }
 
-    public resetPassword() :void {
-      /*if(this.usuario.username == null || this.usuario.password == null){
-        Swal.fire('Error Login', 'Username o password vacías!', 'error');
+    public resetPassword( ) :void {
+      if(this.usuario.id == null || this.usuario.password1 == null || this.usuario.password2 == null){
+        Swal.fire('Error al recuperar contraseña', 'Username o password vacías!', 'error');
         return;
       }
-      */
+      if(this.usuario.password1 == this.usuario.password2){
+        const swalWithBootstrapButtons = Swal.mixin({
+          customClass: {
+            confirmButton: 'btn btn-success',
+            cancelButton: 'btn btn-danger'
+          },
+          buttonsStyling: false
+        })
+        swalWithBootstrapButtons.fire({
+          title: '¿Estás seguro?',
+          text: '¿Estás seguro de cambiar tu contraseña?',
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonText: 'Sí, cambiar',
+          cancelButtonText: 'No, cancelar!',
+          reverseButtons: true
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.usuarioService.resetPassword(this.usuario.password1, this.usuario.id).subscribe(
+              Response => {
+                swalWithBootstrapButtons.fire(
+                  'Contraseña cambiada',
+                  'Tu contraseña ha cambiado, inicia sesión de nuevo.',
+                  'success'
+                )
+                this.router.navigate(['/login'])
+              }
+            )
+          }
+        })
+      }else{
+        Swal.fire('Error al recuperar contraseña', 'Las contraseñas no coinciden', 'error');
+      }
     }
   }

@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
 
   login(){
       console.log(this.usuario);
-      if(this.usuario.username == null || this.usuario.password == null){
+      if(this.usuario.username == null || this.usuario.password1 == null){
         Swal.fire('Error Login', 'Username o password vacías!', 'error');
         return;
       }

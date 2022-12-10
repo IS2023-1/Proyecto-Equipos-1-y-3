@@ -97,7 +97,7 @@ export class UsuarioService {
   //}
 
   update(usuario: Usuario): Observable<Usuario>{
-    return this.http.post<Usuario>(`${this.urlEndPoint}/editar/${usuario.id_usuario}`, usuario, {headers: this.agregarAuthorizationHeader()}).pipe(
+    return this.http.post<Usuario>(`${this.urlEndPoint}/editar/${usuario.id_usuario}`, usuario, {headers: this.httpHeaders}).pipe(
       catchError(e => {
         if(this.isNoAutorizado(e)){
           return throwError( () => e );
@@ -120,8 +120,8 @@ export class UsuarioService {
     )
   }
 
-  resetPassword(passwor1: string, password2: string, id_usuario: number): Observable<Usuario> {
-    return this.http.post<Usuario>(`${this.urlEndPoint}/updateContrasena/${passwor1}/${password2}/${id_usuario}`, { headers: this.httpHeaders}) .pipe(
+  resetPassword(password: string, id: number): Observable<Usuario> {
+    return this.http.post<Usuario>(`${this.urlEndPoint}/updateContrasena/${password}/${id}`, { headers: this.agregarAuthorizationHeader()}) .pipe(
       catchError(e => {
         Swal.fire('Error al recuperar contraseña', 'No ha sido posible cambiar tu contraseña, el usuario es inválido', 'error');
         return throwError( () => e );
