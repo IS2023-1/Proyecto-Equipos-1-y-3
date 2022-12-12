@@ -115,7 +115,7 @@ public class UsuarioRestController {
             return new ResponseEntity<Map<String,Object>>(response,HttpStatus.INTERNAL_SERVER_ERROR);
         }
         if(usuario == null){
-            response.put("mensaje", "El usuario ID:".concat(cuenta.toString().concat(" no existe en la base de datos.")));
+            response.put("mensaje", "La cuenta:".concat(cuenta.toString().concat(" no existe en la base de datos.")));
             return new ResponseEntity<Map<String,Object>>(response,HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<Usuario>(usuario,HttpStatus.OK);
@@ -139,7 +139,7 @@ public class UsuarioRestController {
             return new ResponseEntity<Map<String,Object>>(response,HttpStatus.INTERNAL_SERVER_ERROR);
         }
         if(usuario == null){
-            response.put("mensaje", "El usuario ID:".concat(correo.toString().concat(" no existe en la base de datos.")));
+            response.put("mensaje", "El correo:".concat(correo.toString().concat(" no existe en la base de datos.")));
             return new ResponseEntity<Map<String,Object>>(response,HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<Usuario>(usuario,HttpStatus.OK);
@@ -245,6 +245,74 @@ public class UsuarioRestController {
                     .concat(id.toString().concat(" ya que las contraseñas no son iguales.")));
             return new ResponseEntity<Map<String, Object>>(response, HttpStatus.NOT_FOUND);
         }
+    }
+    
+    /**
+     * Método para sumar puntos a  un usuario por su id.
+     * @param usuario Usuario a sumar puntos.
+     * @param id Identificador del usuario a modificar.
+     * @return Mensaje de éxito si el usuario se modificó, error en otro caso.
+     */
+    @Secured({"ROLE_ADMIN"})
+    @PostMapping("/sumarPuntos/{id}")
+    public ResponseEntity<?> updateSumaPuntos(@RequestBody Usuario usuario, @PathVariable Long id){
+        Usuario current_Usuario = this.usuario_Service.findById(id);
+        Usuario usuario_Update = null;
+        Map<String,Object> response = new HashMap<>();
+        if(current_Usuario == null){
+            response.put("mensaje", "Error: no se puede editar el usuario ID:".concat(id.toString().concat(" no existe en la base de datos.")));
+            return new ResponseEntity<Map<String,Object>>(response, HttpStatus.NOT_FOUND);
+        }
+        try {
+        	if(usuario.getPumapuntos() < 0) {
+        		response.put("mensaje", "Error al actualizar el usuario en la base de datos.");
+        		return new ResponseEntity<Map<String,Object>>(response,HttpStatus.INTERNAL_SERVER_ERROR);
+        	}else {
+        		current_Usuario.setPumapuntos(current_Usuario.getPumapuntos() + usuario.getPumapuntos());
+        		usuario_Update = usuario_Service.save(current_Usuario);
+        	}
+        } catch (DataAccessException e) {
+            response.put("mensaje", "Error al actualizar el usuario en la base de datos.");
+            response.put("error",e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
+            return new ResponseEntity<Map<String,Object>>(response,HttpStatus.INTERNAL_SERVER_ERROR);
+        }        
+        response.put("mensaje","El usuario ha sido actualizado con éxito.");
+        response.put("usuario", usuario_Update);
+        return new ResponseEntity<Map<String,Object>>(response,HttpStatus.CREATED);
+    }
+    
+    /**
+     * Método para sumar puntos a  un usuario por su id.
+     * @param usuario Usuario a sumar puntos.
+     * @param id Identificador del usuario a modificar.
+     * @return Mensaje de éxito si el usuario se modificó, error en otro caso.
+     */
+    @Secured({"ROLE_ADMIN"})
+    @PostMapping("/restarPuntos/{id}")
+    public ResponseEntity<?> updateRestaPuntos(@RequestBody Usuario usuario, @PathVariable Long id){
+        Usuario current_Usuario = this.usuario_Service.findById(id);
+        Usuario usuario_Update = null;
+        Map<String,Object> response = new HashMap<>();
+        if(current_Usuario == null){
+            response.put("mensaje", "Error: no se puede editar el usuario ID:".concat(id.toString().concat(" no existe en la base de datos.")));
+            return new ResponseEntity<Map<String,Object>>(response, HttpStatus.NOT_FOUND);
+        }
+        try {
+        	if(usuario.getPumapuntos() < 0) {
+        		response.put("mensaje", "Error al actualizar el usuario en la base de datos.");
+        		return new ResponseEntity<Map<String,Object>>(response,HttpStatus.INTERNAL_SERVER_ERROR);
+        	}else {
+        		current_Usuario.setPumapuntos(current_Usuario.getPumapuntos() - usuario.getPumapuntos());
+        		usuario_Update = usuario_Service.save(current_Usuario);
+        	}
+        } catch (DataAccessException e) {
+            response.put("mensaje", "Error al actualizar el usuario en la base de datos.");
+            response.put("error",e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
+            return new ResponseEntity<Map<String,Object>>(response,HttpStatus.INTERNAL_SERVER_ERROR);
+        }        
+        response.put("mensaje","El usuario ha sido actualizado con éxito.");
+        response.put("usuario", usuario_Update);
+        return new ResponseEntity<Map<String,Object>>(response,HttpStatus.CREATED);
     }
     /* ------------------------------ UPDATE ------------------------------ */
     
