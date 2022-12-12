@@ -62,9 +62,9 @@ localhost:10000/<endpoint>
 
 **/usuarios**
 + /restarPuntos/{id}
-  + Resta puma puntos a un usuario a través de su id (generada automáticamente). Exclusiva para admins (análogo a editar usuarios). Uso: ```localhost:10000/restarPuntos//{id}```
+  + Resta puma puntos a un usuario a través de su id (generada automáticamente). Exclusiva para admins (análogo a editar usuarios). Uso: ```localhost:10000/restarPuntos/{id}```
 + /sumarPuntos/{id}
-  + Suma puma puntos a un usuario a través de su id (generada automáticamente). Exclusiva para admins (análogo a editar usuarios). Uso: ```localhost:10000/sumarPuntos//{id}```
+  + Suma puma puntos a un usuario a través de su id (generada automáticamente). Exclusiva para admins (análogo a editar usuarios). Uso: ```localhost:10000/sumarPuntos/{id}```
   
   
 ### :small_red_triangle_down:  :small_red_triangle_down: Iteración 1:  :small_red_triangle_down:  :small_red_triangle_down:
