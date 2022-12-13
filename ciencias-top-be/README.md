@@ -59,6 +59,8 @@ localhost:10000/<endpoint>
 ### Endpoints:
 ### :small_red_triangle_down:  :small_red_triangle_down: Iteración 2:  :small_red_triangle_down:  :small_red_triangle_down:
 **/productos**
++ /productos_baratos
+  + Regresa una lista de arreglos de los productos baratos, la posicion 0 es el nombre del producto y la posicion 1 es el costo del producto, esto por cada elemento de la lista. Uso: ```http://localhost:10000/productos/productos_baratos```
 
 **/usuarios**
 + /restarPuntos/{id}
@@ -71,7 +73,7 @@ localhost:10000/<endpoint>
 
 + /numero_inactivos 
   + Regresa el numero de alumnos inactivos en la pagina web. Uso: ```http://localhost:10000/usuarios/numero_inactivos```   
-  
+
 ### :small_red_triangle_down:  :small_red_triangle_down: Iteración 1:  :small_red_triangle_down:  :small_red_triangle_down:
 
 **/productos**

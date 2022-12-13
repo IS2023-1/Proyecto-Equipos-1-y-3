@@ -38,4 +38,6 @@ public class RentarRestController {
 		 return rentarService.findAll();
 	}
 
+    
+
 }
