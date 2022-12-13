@@ -65,7 +65,12 @@ localhost:10000/<endpoint>
   + Resta puma puntos a un usuario a través de su id (generada automáticamente). Exclusiva para admins (análogo a editar usuarios). Uso: ```localhost:10000/restarPuntos/{id}```
 + /sumarPuntos/{id}
   + Suma puma puntos a un usuario a través de su id (generada automáticamente). Exclusiva para admins (análogo a editar usuarios). Uso: ```localhost:10000/sumarPuntos/{id}```
-  
+
++ /numero_activos 
+  + Regresa una lista de arreglos de alumnos activos por carrera, la posicion 0 es de la carrera y la posicion 1 es el numero de alumnos activos en ella, esto por cada elemento de la lista. Uso: ```http://localhost:10000/usuarios/numero_activos```
+
++ /numero_inactivos 
+  + Regresa el numero de alumnos inactivos en la pagina web. Uso: ```http://localhost:10000/usuarios/numero_inactivos```   
   
 ### :small_red_triangle_down:  :small_red_triangle_down: Iteración 1:  :small_red_triangle_down:  :small_red_triangle_down:
 
