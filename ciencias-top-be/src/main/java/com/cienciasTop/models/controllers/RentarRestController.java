@@ -40,7 +40,7 @@ public class RentarRestController {
 	
 	/* ------------------------------ CREATE ------------------------------ */
 	
-	@PostMapping("/agregar/{id_usuario}/{id_producto}")
+	@PostMapping("/agregar")
 	public ResponseEntity<?> create(@RequestBody Rentar renta){
         Map<String,Object> response = new HashMap<>();
         Usuario usuario = usuario_Service.findById(renta.getUsuario().getId_usuario());
