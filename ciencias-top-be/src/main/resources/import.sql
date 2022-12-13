@@ -8,9 +8,6 @@ INSERT INTO usuarios (username, cuenta, nombre, apellido_paterno, apellido_mater
 INSERT INTO usuarios (username, cuenta, nombre, apellido_paterno, apellido_materno, numero_cel, correo, carrera, contrasena, es_activo, pumapuntos) VALUES('Andrea','314657123', 'Andrea', 'Reyes', 'Alonso', '1234567890', 'aaalonso@ciencias.unam.mx', 'Biologia', '$2a$10$17tRHEU5O8uXJhQVO5wbz.2fylrmDENoOEVPMOd5nlaCwyUErZlm6', 'false', '500');
 INSERT INTO usuarios (username, cuenta, nombre, apellido_paterno, apellido_materno, numero_cel, correo, carrera, contrasena, es_activo, pumapuntos) VALUES('    Ellie','315048033', 'Ellie', 'Ramirez', 'Montaño', '7987654321', 'aguass23@ciencias.unam.mx', 'Fisica', '$2a$10$e0LnQG0crDejYGSlr9f5Ae5xKawbxHPycryjc7KJJkr2VISwWcylu', 'true', '430');
 
-declare @usuario1 usuarios;
-set @usuario1 
-
 INSERT INTO roles (nombre) VALUES ('ROLE_ADMIN');
 INSERT INTO roles (nombre) VALUES ('ROLE_PROV');
 INSERT INTO roles (nombre) VALUES ('ROLE_USER');
@@ -25,7 +22,4 @@ INSERT INTO usuarios_roles (usuario_id, role_id) VALUES (4, 2);
 
 --Usuarios
 INSERT INTO usuarios_roles (usuario_id, role_id) VALUES (2, 3);
-
--- Renta
---INSERT INTO rentas (id_usuario,id_producto,fecha_de_renta,fecha_de_entrega) VALUES (1,1,'2022-12-10','2022-12-24');
 

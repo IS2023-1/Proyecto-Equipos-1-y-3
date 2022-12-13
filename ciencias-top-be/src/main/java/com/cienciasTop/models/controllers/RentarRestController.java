@@ -41,10 +41,10 @@ public class RentarRestController {
 	/* ------------------------------ CREATE ------------------------------ */
 	
 	@PostMapping("/agregar/{id_usuario}/{id_producto}")
-	public ResponseEntity<?> create(@RequestBody Rentar renta, @PathVariable Long id_usuario, @PathVariable Long id_producto){
+	public ResponseEntity<?> create(@RequestBody Rentar renta){
         Map<String,Object> response = new HashMap<>();
-        Usuario usuario = usuario_Service.findById(id_usuario);
-    	Producto producto = producto_Service.findById(id_producto);
+        Usuario usuario = usuario_Service.findById(renta.getUsuario().getId_usuario());
+    	Producto producto = producto_Service.findById(renta.getProducto().getId_producto());
     	if (usuario == null && producto == null) {
     		response.put("mensaje", "Error: No se puede llevar a cabo la renta debido a que no "
     				      + "existe el usuario que renta o el producto a rentar");
