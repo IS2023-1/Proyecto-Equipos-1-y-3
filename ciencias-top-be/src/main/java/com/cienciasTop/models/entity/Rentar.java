@@ -1,7 +1,7 @@
 package com.cienciasTop.models.entity;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,10 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 
 @Entity
-@Table(name = "rentas")
 public class Rentar implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -29,9 +27,6 @@ public class Rentar implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "id_producto")
 	private Producto producto;
-	
-	@Column(name = "fecha_de_renta", columnDefinition = "TIMESTAMP")
-	private LocalDateTime fecha_de_renta; 
 
 	public Long getId() {
 		return id;
@@ -56,12 +51,5 @@ public class Rentar implements Serializable {
 	public void setProducto(Producto producto) {
 		this.producto = producto;
 	}
-	
-	public LocalDateTime getFecha_de_renta() {
-		return fecha_de_renta;
-	}
 
-	public void setFecha_de_renta(LocalDateTime fecha_de_renta) {
-		this.fecha_de_renta = fecha_de_renta;
-	}
 }
