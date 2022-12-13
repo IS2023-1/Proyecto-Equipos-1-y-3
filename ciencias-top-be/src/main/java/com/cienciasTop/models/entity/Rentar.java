@@ -17,7 +17,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
-@Table(name = "rentas")
+@Table(name = "rentar")
 public class Rentar implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -41,6 +41,15 @@ public class Rentar implements Serializable {
 	
 	@Column(columnDefinition = "DATE")
 	private LocalDate fecha_de_entrega;
+	
+	public Rentar(Usuario usuario, Producto producto) {
+		LocalDate fecha_de_renta = LocalDate.now();
+		LocalDate fecha_de_entrega = fecha_de_renta.plusMonths(1);
+		this.usuario = usuario;
+		this.producto = producto;
+		this.fecha_de_renta = fecha_de_renta;
+		this.fecha_de_entrega = fecha_de_entrega;
+	}
 	
 	public Long getId() {
 		return id;
