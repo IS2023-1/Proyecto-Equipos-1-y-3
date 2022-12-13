@@ -5,8 +5,11 @@ INSERT INTO productos (codigo, nombre, descripcion, disponibles, ruta_imagen, co
 
 INSERT INTO usuarios (username, cuenta, nombre, apellido_paterno, apellido_materno, numero_cel, correo, carrera, contrasena, es_activo, pumapuntos) VALUES('Armando','317058163', 'Armando', 'Aquino', 'Chapa', '5555845448', 'armandoaac@ciencias.unam.mx', 'Ciencias de la Computacion', '$2a$10$V5EME6wFFXuKDOBEeLPdhuR8u5Eef8uPTztRQP22NTTnomM9AxboW', 'true', '300');
 INSERT INTO usuarios (username, cuenta, nombre, apellido_paterno, apellido_materno, numero_cel, correo, carrera, contrasena, es_activo, pumapuntos) VALUES('Pugberto','315083', 'Pugberto', 'Jaeger', 'Ackerman', '5528478963', 'adasdsd@ciencias.unam.mx', 'Actuaría', '$2a$10$hx59PEwCTiuAr0tQnbAQQeh6yOSas6sho1KostqYo08P7TNjyrCcG', 'true', '100');
-INSERT INTO usuarios (username, cuenta, nombre, apellido_paterno, apellido_materno, numero_cel, correo, carrera, contrasena, es_activo, pumapuntos) VALUES('Andrea','314657123', 'Andrea', 'Reyes', 'Alonso', '1234567890', 'aaalonso@ciencias.unam.mx', 'Biologgiaa', '$2a$10$17tRHEU5O8uXJhQVO5wbz.2fylrmDENoOEVPMOd5nlaCwyUErZlm6', 'false', '500');
+INSERT INTO usuarios (username, cuenta, nombre, apellido_paterno, apellido_materno, numero_cel, correo, carrera, contrasena, es_activo, pumapuntos) VALUES('Andrea','314657123', 'Andrea', 'Reyes', 'Alonso', '1234567890', 'aaalonso@ciencias.unam.mx', 'Biologia', '$2a$10$17tRHEU5O8uXJhQVO5wbz.2fylrmDENoOEVPMOd5nlaCwyUErZlm6', 'false', '500');
 INSERT INTO usuarios (username, cuenta, nombre, apellido_paterno, apellido_materno, numero_cel, correo, carrera, contrasena, es_activo, pumapuntos) VALUES('    Ellie','315048033', 'Ellie', 'Ramirez', 'Montaño', '7987654321', 'aguass23@ciencias.unam.mx', 'Fisica', '$2a$10$e0LnQG0crDejYGSlr9f5Ae5xKawbxHPycryjc7KJJkr2VISwWcylu', 'true', '430');
+
+declare @usuario1 usuarios;
+set @usuario1 
 
 INSERT INTO roles (nombre) VALUES ('ROLE_ADMIN');
 INSERT INTO roles (nombre) VALUES ('ROLE_PROV');
@@ -22,4 +25,7 @@ INSERT INTO usuarios_roles (usuario_id, role_id) VALUES (4, 2);
 
 --Usuarios
 INSERT INTO usuarios_roles (usuario_id, role_id) VALUES (2, 3);
+
+-- Renta
+--INSERT INTO rentas (id_usuario,id_producto,fecha_de_renta,fecha_de_entrega) VALUES (1,1,'2022-12-10','2022-12-24');
 
