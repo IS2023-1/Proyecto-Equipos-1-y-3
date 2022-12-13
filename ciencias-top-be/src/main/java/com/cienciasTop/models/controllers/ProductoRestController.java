@@ -84,7 +84,7 @@ public class ProductoRestController {
             return new ResponseEntity<Map<String,Object>>(response,HttpStatus.INTERNAL_SERVER_ERROR);
         }
         if(producto == null){
-            response.put("mensaje", "El usuario ID:".concat(nombre.toString().concat(" no existe en la base de datos.")));
+            response.put("mensaje", "El nombre:".concat(nombre.toString().concat(" no existe en la base de datos.")));
             return new ResponseEntity<Map<String,Object>>(response,HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<Producto>(producto,HttpStatus.OK);
@@ -107,7 +107,7 @@ public class ProductoRestController {
             return new ResponseEntity<Map<String,Object>>(response,HttpStatus.INTERNAL_SERVER_ERROR);
         }
         if(producto == null){
-            response.put("mensaje", "El usuario ID:".concat(codigo.toString().concat(" no existe en la base de datos.")));
+            response.put("mensaje", "El codigo:".concat(codigo.toString().concat(" no existe en la base de datos.")));
             return new ResponseEntity<Map<String,Object>>(response,HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<Producto>(producto,HttpStatus.OK);

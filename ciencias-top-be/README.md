@@ -57,6 +57,18 @@ localhost:10000/<endpoint>
 ```
 
 ### Endpoints:
+### :small_red_triangle_down:  :small_red_triangle_down: Iteración 2:  :small_red_triangle_down:  :small_red_triangle_down:
+**/productos**
+
+**/usuarios**
++ /restarPuntos/{id}
+  + Resta puma puntos a un usuario a través de su id (generada automáticamente). Exclusiva para admins (análogo a editar usuarios). Uso: ```localhost:10000/restarPuntos/{id}```
++ /sumarPuntos/{id}
+  + Suma puma puntos a un usuario a través de su id (generada automáticamente). Exclusiva para admins (análogo a editar usuarios). Uso: ```localhost:10000/sumarPuntos/{id}```
+  
+  
+### :small_red_triangle_down:  :small_red_triangle_down: Iteración 1:  :small_red_triangle_down:  :small_red_triangle_down:
+
 **/productos**
 + /buscar/todo
   + Devuelve todos los productos disponibles. Uso: ```localhost:10000/productos/buscar/todo```
@@ -92,35 +104,4 @@ localhost:10000/<endpoint>
   + Elimina un usuario a través de su id (generado automáticamente). Uso: ```localhost:10000/usuarios/eliminar/{id}```
 + /updateContrasena/{password1}/{password2}/{id}
   + Resetea la contrasena de un usuario atraves de su id (generado automáticamente). Uso: ```localhost:10000/usuarios/updateContrasena/{password1}/{password2}/{id}```
-
-
-## TODO
-+ Configurar el entorno local
-  + Instalar Java 17
-  + Instalar Maven
-  + Instalar Postgres 14.5
-  + Crear base de datos cienciastop_bd, con acceso de usuario: **admin** y contraseña **admin**. 
-  + Clonar el repositorio local.
-  + Cambiar
-  + Actualizar base de datos local a cienciastop_bd
-
-### Endpoints 
-**/rentar**
-+ /buscar/id
-+ /buscar/idProducto
-(Por definir si es necesario)
-  + /buscar/{codigo}
-  + /buscar/{idUsuario}
-+ /buscar/{numIdentificacion}
-+ /nueva/{idProducto}&{idUsuario}
-+ /actualizar/{numIdentificacion}
-+ /eliminar/{numIdentificacion}
-  
-**/proveedor**
-+ /buscar/{id}
-+ /buscar/{numIdentificacion}
-
-**/proveedor**
-+ /buscar/{id}
-+ /buscar/{numIdentificacion}
 
