@@ -40,30 +40,22 @@ public class RentarRestController {
 	
 	/* ------------------------------ CREATE ------------------------------ */
 	
-	@PostMapping("/agregar")
-	public ResponseEntity<?> create(@RequestBody Rentar renta){
+	@PostMapping("/agregar/{id_usuario}/{id_producto}")
+	public ResponseEntity<?> create(@RequestBody Rentar renta,
+									@PathVariable Long id_usuario,
+									@PathVariable Long id_producto){
         Map<String,Object> response = new HashMap<>();
-        Usuario usuario = usuario_Service.findById(renta.getUsuario().getId_usuario());
-    	Producto producto = producto_Service.findById(renta.getProducto().getId_producto());
-    	if (usuario == null && producto == null) {
-    		response.put("mensaje", "Error: No se puede llevar a cabo la renta debido a que no "
-    				      + "existe el usuario que renta o el producto a rentar");
-            return new ResponseEntity<Map<String, Object>>(response, HttpStatus.NOT_FOUND);
-    	} else {
-    		try {
-    			LocalDate fecha_de_renta = LocalDate.now();
-    			LocalDate fecha_de_entrega = fecha_de_renta.plusMonths(1);
-    			renta.setUsuario(usuario);
-    			renta.setProducto(producto);
-    			renta.setFecha_de_renta(fecha_de_renta);
-    			renta.setFecha_de_entrega(fecha_de_entrega);
-    			rentar_Service.save(renta);
-            } catch(DataAccessException e) {
-                response.put("mensaje", "Error al realizar el insert en la base de datos.");
-                response.put("error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
-                return new ResponseEntity<Map<String,Object>>(response,HttpStatus.INTERNAL_SERVER_ERROR);
-            }
-    	}
+    	try {
+    		Usuario usuario = usuario_Service.findById(id_usuario);
+        	Producto producto = producto_Service.findById(id_producto);
+			renta.setUsuario(usuario);
+			renta.setProducto(producto);
+			rentar_Service.save(renta);
+        } catch(DataAccessException e) {
+            response.put("mensaje", "Error al realizar el insert en la base de datos.");
+            response.put("error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
+            return new ResponseEntity<Map<String,Object>>(response,HttpStatus.INTERNAL_SERVER_ERROR);
+        }
         response.put("mensaje","La renta del producto ha sido creado con éxito.");
         response.put("renta", renta);
         return new ResponseEntity<Map<String,Object>>(response,HttpStatus.CREATED);

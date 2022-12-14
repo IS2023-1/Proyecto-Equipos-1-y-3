@@ -16,6 +16,8 @@ import javax.persistence.Table;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "rentar")
 public class Rentar implements Serializable {
@@ -29,6 +31,7 @@ public class Rentar implements Serializable {
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "id_usuario", nullable = false)
 	@OnDelete(action = OnDeleteAction.CASCADE)
+	@JsonIgnore
 	private Usuario usuario;
 
 	@ManyToOne(fetch = FetchType.EAGER, optional = false)
