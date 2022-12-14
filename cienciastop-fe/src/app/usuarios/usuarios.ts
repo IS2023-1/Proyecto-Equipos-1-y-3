@@ -18,7 +18,7 @@ export class Usuario {
 
     password: string;
 
-    rol: string;
+    roles: string[];
 
     esActivo: boolean;
 
