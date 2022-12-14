@@ -1,5 +1,6 @@
 package com.cienciasTop.models.controllers;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -155,6 +156,91 @@ public class UsuarioRestController {
     public List<Usuario> findByNombre(@PathVariable String nombre){
     	return usuario_Service.findByNombre(nombre);
     }
+
+     /**
+     * Regresa la cantidad de alumnos activos por la carrera pasada.
+     * @param carrera a buscar activos.
+     * @return numero de alumnos activos por carrera pasada.
+     */
+    private int numero_activos_por_carrera(String carrera) {
+    	List<Usuario> lista = usuario_Service.findAll();
+    	int cantidad = 0;
+        Usuario iterador = new Usuario();
+    	for(int i = 0; i < lista.size(); i++){
+            iterador = lista.get(i);
+            if(iterador.getEsActivo() && iterador.getCarrera().equals(carrera))
+              cantidad++;
+        }
+     return cantidad;
+    }
+
+    /**
+     * Las carreras registradas en la pagina web.
+     * @return lista de carreras registradas.
+     */
+    private List<String> carreras_registradas(){
+        List<Usuario> lista = usuario_Service.findAll();
+        List<String> carreras = new ArrayList<>();
+        
+        Usuario iterador = new Usuario();
+        for(int i = 0; i < lista.size(); i++){
+            iterador = lista.get(i);
+            if(!estaDentro(iterador.getCarrera(), carreras))
+                carreras.add(iterador.getCarrera());
+        }        
+      return carreras;
+    }
+    
+    /**
+     * Checa si un string esta dentro de la lista de string pasada.
+     * @param valor string a buscar
+     * @param lista lista donde buscar
+     * @return True si esta dentro, false si no esta dentro.
+     */
+    private boolean estaDentro(String valor, List<String> lista){
+        for(int i = 0; i < lista.size(); i++){
+            if(lista.get(i).equals(valor))
+               return true;
+        }
+        return false;
+    }
+
+    /**
+     * Numero de alumnos activos por carrera.
+     * @return Lista de arreglos por carrera, en cada arreglo la posicion 0 pertenece al nombre de la carrera y la posicion 1 a la cantidad de alumnos activos en esa carrera.
+     */
+    @Secured({"ROLE_ADMIN"})
+    @GetMapping("/numero_activos")
+    public List<String[]> numero_activos() {
+        List<String> carreras = carreras_registradas();
+        List<String[]> alumnos_carreras = new ArrayList<>();
+        String[] valor = new String[2];
+        for(int i = 0; i < carreras.size(); i++){
+            valor[0] = carreras.get(i);
+            valor[1] = numero_activos_por_carrera(carreras.get(i)) + "";
+          alumnos_carreras.add(valor.clone());
+        }
+      return alumnos_carreras;
+    }
+
+    /**
+     * Regresa la cantidad de usuarios inactivos en la pagina web.
+     * @return cantidad de usuarios inactivos en la pagina.
+     */
+    @Secured({"ROLE_ADMIN"})
+    @GetMapping("/numero_inactivos")
+    public int numero_inactivos() {
+    	List<Usuario> lista = usuario_Service.findAll();
+    	int cantidad = 0;
+        Usuario iterador = new Usuario();
+    	for(int i = 0; i < lista.size(); i++){
+            iterador = lista.get(i);
+            if(!iterador.getEsActivo())
+              cantidad++;
+        }
+     return cantidad;
+    }
+
     /* ------------------------------ READ ------------------------------ */
     
     /* ------------------------------ UPDATE ------------------------------ */
@@ -198,28 +284,15 @@ public class UsuarioRestController {
         response.put("usuario", usuario_Update);
         return new ResponseEntity<Map<String,Object>>(response,HttpStatus.CREATED);
     }
-    
-    /**
-     * Método para verificar que dos contraseñas sean iguales.
-     * @param password_1 Primer contraseña.
-     * @param password_2 Segunda contraseña.
-     * @return True si son iguales, False si son distintas.
-     */
-    private boolean areEqual(String password_1, String password_2) {
-        return password_1.equals(password_2);
-    }
 
-    /**
+      /**
      * Función para cambiar la contraseña de un usuario por su id.
      * @param password_1 Contraseña nueva.
-     * @param password_2 Verificación de la contraseña nueva. 
      * @param id Identificador del usuario al que será actualizado su contraseña.
      * @return Mensaje de éxito si se actualizó la contraseña, error en otro caso.
      */
-    @PostMapping("/updateContrasena/{password_1}/{password_2}/{id}")
-    public ResponseEntity<?> updatePassword(@PathVariable String password_1, @PathVariable String password_2,
-            @PathVariable Long id) {
-        if (areEqual(password_1, password_2)) {
+    @PostMapping("/updateContrasena/{password_1}/{id}")
+    public ResponseEntity<?> updatePassword(@PathVariable String password_1, @PathVariable Long id) {
             Usuario current_Usuario = this.usuario_Service.findById(id);
             Usuario usuario_Update = null;
             Map<String, Object> response = new HashMap<>();
@@ -239,12 +312,6 @@ public class UsuarioRestController {
             response.put("mensaje", "Se ha cambiado la contraseña con exito.");
             response.put("usuario", usuario_Update);
             return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
-        } else {
-            Map<String, Object> response = new HashMap<>();
-            response.put("mensaje", "Error: no se puede cambiar la contraseña del usuario ID:"
-                    .concat(id.toString().concat(" ya que las contraseñas no son iguales.")));
-            return new ResponseEntity<Map<String, Object>>(response, HttpStatus.NOT_FOUND);
-        }
     }
     
     /**
