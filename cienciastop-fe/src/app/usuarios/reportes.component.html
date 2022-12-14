@@ -1,0 +1,84 @@
+<div id="contenido">
+    <br>
+    <h1>Ciencias Top: Reporte de {{mes}} {{anio}}</h1>
+    <br>
+
+    <h3>Usuarios activos por carrera:</h3>
+    <span id="uno">
+        <table>
+            <tr>
+            <th>Carrera</th>
+            <th>Numero de usuario activos</th>
+            </tr>
+            <tr *ngFor="let tupla of activos">
+            <td>{{tupla[0]}}</td>
+            <td>{{tupla[1]}}</td>
+            </tr>
+        </table>
+    </span>
+    <hr>
+    <h3>5 productos más rentados durante {{mes}}:</h3>
+    <span id="dos">
+        <table>
+            <tr>
+            <th>Producto</th>
+            <th>Numero de usuario activos</th>
+            </tr>
+            <tr *ngFor="let tupla of activos">
+            <td>{{tupla[0]}}</td>
+            <td>{{tupla[1]}}</td>
+            </tr>
+        </table>
+    </span>
+    <hr>
+
+    <h3>Numero de cuentas inactivas: <span id="tres">{{inactivos}}</span></h3> <span id="alt-tres"></span>
+    <hr>
+
+    <h3>5 productos más baratos:</h3>
+    <span id="cuatro">
+        <table>
+            <tr>
+            <th>Producto</th>
+            <th>Costo en PumaPuntos</th>
+            </tr>
+            <tr *ngFor="let tupla of activos">
+            <td>{{tupla[0]}}</td>
+            <td>{{tupla[1]}}</td>
+            </tr>
+        </table>
+    </span>
+    <hr>
+
+    <h3>10 usuarios que más han devuelto un producto rentado tarde:</h3>
+    <span id="cinco">
+        <table>
+            <tr>
+            <th>Carrera</th>
+            <th>Numero de usuario activos</th>
+            </tr>
+            <tr *ngFor="let tupla of activos">
+            <td>{{tupla[0]}}</td>
+            <td>{{tupla[1]}}</td>
+            </tr>
+        </table>
+    </span>
+    <hr>
+
+    <h3>5 usuarios que más han rentado productos esta semana:</h3>
+    <span id="seis">
+        <table>
+            <tr>
+            <th>Carrera</th>
+            <th>Numero de usuario activos</th>
+            </tr>
+            <tr *ngFor="let tupla of activos">
+            <td>{{tupla[0]}}</td>
+            <td>{{tupla[1]}}</td>
+            </tr>
+        </table>
+    </span>
+</div>
+<div id="boton">
+    <button (click)="backClick()" class="btn btn-outline-success">Cerrar Reporte</button>
+</div>

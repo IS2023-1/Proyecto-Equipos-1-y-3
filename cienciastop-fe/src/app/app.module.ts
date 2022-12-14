@@ -17,6 +17,7 @@ import { PerfilComponent } from './usuarios/perfil.component';
 import { FormUsuarioComponent } from './usuarios/form-usuario.component';
 import { AgregarUsuariosComponent } from './usuarios/agregar-usuarios.component';
 import { RecuperarComponent } from './usuarios/recuperar.component';
+import { ReportesComponent } from './usuarios/reportes.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/productos', pathMatch: 'full' },
@@ -33,7 +34,8 @@ const routes: Routes = [
   { path: 'productos/form/:id', component: FormComponent },
   { path: 'login', component: LoginComponent },
   { path: 'productos/rbp/:input', component: RbpComponent },
-  { path: 'recuperar', component: RecuperarComponent }];
+  { path: 'recuperar', component: RecuperarComponent },
+  { path: 'reportes', component: ReportesComponent}];
 
 
 @NgModule({
@@ -49,7 +51,8 @@ const routes: Routes = [
     RbpComponent,
     FormUsuarioComponent,
     AgregarUsuariosComponent,
-    RecuperarComponent
+    RecuperarComponent,
+    ReportesComponent
   ],
   imports: [
     BrowserModule,
