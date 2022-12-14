@@ -6,8 +6,7 @@
     </div>
     <div class="form-group mx-sm-3">
         <label for="inputPass" class="sr-only">Apellido Paterno</label>
-        <input [(ngModel)]="user.apellidoPaterno" name="Apellido Paterno"
-            placeholder="Apellido Paterno">
+        <input [(ngModel)]="user.apellidoPaterno" name="Apellido Paterno" placeholder="Apellido Paterno">
     </div>
     <div class="form-group mx-sm-3">
         <label for="inputPass" class="sr-only">Apellido Materno</label>
@@ -15,7 +14,7 @@
     </div>
     <div class="form-group mx-sm-3">
         <label for="inputPass" class="sr-only">Correo</label>
-        <input [(ngModel)]="user.correo" name="Correo" >
+        <input [(ngModel)]="user.correo" name="Correo">
     </div>
     <div class="form-group mx-sm-3">
         <label for="inputPass" class="sr-only">Numero de celular</label>
@@ -26,9 +25,9 @@
             <label class="mr-sm-2" for="inlineFormCustomSelect">Rol</label>
             <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
                 <option selected>Escoge</option>
-                <option value="1" >Usuario</option>
-                <option value="2" >Administrador</option>
-                <option value="3" >Proveedor</option>
+                <option value="1">Usuario</option>
+                <option value="2">Administrador</option>
+                <option value="3">Proveedor</option>
             </select>
         </div>
     </div>
@@ -36,9 +35,8 @@
 </form>
 
 <div>
-<button class="bg-success d-flex align-items-center justify-content-center shadow-1-strong" type="button"
-    style="width: 80px; height: 35px; border-radius: 5px;" >
-    <p class="text-white mb-0 small" (click)="update()"> Guardar</p>
+    <button class="bg-success d-flex align-items-center justify-content-center shadow-1-strong" type="button"
+        style="width: 80px; height: 35px; border-radius: 5px;">
+        <p class="text-white mb-0 small" (click)="update()"> Guardar</p>
     </button>
 </div>
-

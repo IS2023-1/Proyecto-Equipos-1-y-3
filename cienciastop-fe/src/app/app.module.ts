@@ -17,6 +17,7 @@ import { PerfilComponent } from './usuarios/perfil.component';
 import { FormUsuarioComponent } from './usuarios/form-usuario.component';
 import { AgregarUsuariosComponent } from './usuarios/agregar-usuarios.component';
 import { RecuperarComponent } from './usuarios/recuperar.component';
+import { HistorialComponent } from './usuarios/historial.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/productos', pathMatch: 'full' },
@@ -26,6 +27,8 @@ const routes: Routes = [
   //{ path: 'usuarios/perfil', component: PerfilComponent },
   { path: 'usuarios/buscar/', component: PerfilComponent },
   { path: 'usuarios/buscar/:id', component: PerfilComponent },
+
+  { path: 'historial/:id', component: HistorialComponent },
   //{ path: 'usuarios/perfil/:id', component: PerfilComponent },
   { path: 'usuarios/buscar/:id/editar/:id', component: FormUsuarioComponent },
   { path: 'productos', component: ProductosComponent },
@@ -49,14 +52,16 @@ const routes: Routes = [
     RbpComponent,
     FormUsuarioComponent,
     AgregarUsuariosComponent,
-    RecuperarComponent
+    RecuperarComponent,
+    HistorialComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes)//,
+    //HistorialComponent
   ],
   providers: [HeaderComponent, RbpComponent],
   bootstrap: [AppComponent]
