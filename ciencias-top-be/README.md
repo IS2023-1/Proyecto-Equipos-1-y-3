@@ -58,16 +58,14 @@ localhost:10000/<endpoint>
 
 ### Endpoints:
 **/productos**
-+ /buscar/todo
-  + Devuelve todos los productos disponibles. Uso: ```localhost:10000/productos/buscar/todo```
-+ /buscar/{id}
-  + Devuelve un producto mediante su id (generada automáticamente). Uso: ```localhost:10000/productos/buscar/{id}```
-+ /buscar/nombre/{nombre}
-  + Devuelve un producto mediante su nombre. Uso: ```localhost:10000/productos/buscar/nombre/{nombre}```
-+ /buscar/{codigo}
-  + Devuelve un producto mediante su codigo. Uso: ```localhost:10000/productos/buscar/codigo/{codigo}```
 + /agregar
   + Agregar un producto. Uso: ```localhost:10000/productos/agregar```
++ /buscar/todo
+  + Devuelve todos los productos disponibles. Uso: ```localhost:10000/productos/buscar/todo```
++ /buscar/nombre/{nombre}
+  + Devuelve un producto mediante su nombre. Uso: ```localhost:10000/productos/buscar/nombre/{nombre}```
++ /buscar/codigo/{codigo}
+  + Devuelve un producto mediante su codigo. Uso: ```localhost:10000/productos/buscar/codigo/{codigo}```
 + /editar/{id}
   + Edita un producto por su id (generada automáticamente). Uso: ```localhost:10000/productos/editar/{id}```
 + /eliminar/{id}
