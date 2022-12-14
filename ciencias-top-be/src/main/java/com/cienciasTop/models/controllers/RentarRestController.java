@@ -69,6 +69,8 @@ public class RentarRestController {
     			renta.setFecha_de_renta(fecha_de_renta);
     			renta.setFecha_de_entrega(fecha_de_entrega);
     			rentar_Service.save(renta);
+    			producto.setDisponibles(producto.getDisponibles()-1);
+    			producto_Service.save(producto);
             } catch(DataAccessException e) {
                 response.put("mensaje", "Error al realizar el insert en la base de datos.");
                 response.put("error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
@@ -82,6 +84,8 @@ public class RentarRestController {
         response.put("renta", renta);
         return new ResponseEntity<Map<String,Object>>(response,HttpStatus.CREATED);
 	}
+	
+	@PostMapping("/devolver/{id_usuario}/{id_producto}")
 	
 	/* ------------------------------ CREATE ------------------------------ */
 	
