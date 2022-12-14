@@ -1,9 +1,7 @@
 package com.cienciasTop;
 
 import java.time.Duration;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
+import java.time.LocalDate;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -21,13 +19,6 @@ public class CienciasTopApplication implements CommandLineRunner{
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
 	
-	static String getHoraFormato(Calendar cal){
-        String hora = cal.get(Calendar.HOUR_OF_DAY) + ":" +
-                    cal.get(Calendar.MINUTE) + ":" + 
-                    cal.get(Calendar.SECOND);
-        return hora;
-    }
-	
 	@Override
 	public void run(String... args) throws Exception {
 		/* String [] list_of_users = {"Admin/Prov: Armando","NormalUser: Pugberto","Admin: Andrea","Prov: Ellie"};
@@ -38,11 +29,13 @@ public class CienciasTopApplication implements CommandLineRunner{
 								+ " [ Normal Password: " + list_of_passwords[i] +  " ]"
 								+ " [ EncryptedPassword: " + passwordBcrypt + " ]");
 		} */
-		LocalDateTime fecha_ahora = LocalDateTime.now();
-		LocalDateTime fecha_despues = LocalDateTime.parse("2022-12-13T22:14:39.486513940");
-		Duration dd = Duration.between(fecha_ahora, fecha_despues);
-		System.out.println(fecha_despues);
-		System.out.println("Dias transcurridos: " + dd.toDays() + "dias");
+		LocalDate fecha_despues = LocalDate.now();
+		//LocalDate fecha_ahora = LocalDate.parse("2001-11-11");
+		//Duration dd = Duration.between(fecha_despues, fecha_ahora);
+		//System.out.println(fecha_ahora);
+		//System.out.println("Dias transcurridos: " + dd.toDays() + " dias");
+		//
+		
 		//DateTimeFormatter isoFecha = DateTimeFormatter.ISO_LOCAL_DATE;
         //System.out.println(fecha.format(isoFecha));
         //DateTimeFormatter isoHora = DateTimeFormatter.ISO_LOCAL_TIME;
