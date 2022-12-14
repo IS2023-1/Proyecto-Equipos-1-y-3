@@ -109,6 +109,8 @@ public class RentarRestController {
 			rentar_Service.save(renta);
 			producto.setDisponibles(producto.getDisponibles()-1);
 			producto_Service.save(producto);
+			usuario.setPumapuntos(usuario.getPumapuntos()-producto.getCosto());
+			usuario_Service.save(usuario);
         } catch(DataAccessException e) {
             response.put("mensaje", "Error al realizar el insert en la base de datos.");
             response.put("error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
@@ -207,8 +209,12 @@ public class RentarRestController {
 					                .concat(" se devolvió tarde"));
 			return new ResponseEntity<Map<String,Object>>(response,HttpStatus.OK);
 		}
+		producto = eliminar_renta(producto, id_usuario, id_producto);
+		producto.setDisponibles(producto.getDisponibles()+1);
+		producto_Service.save(producto);
+		usuario_Service.save(usuario);
 		response.put("mensaje", "El producto fue devuelto a tiempo.");
-		return new ResponseEntity<Map<String,Object>>(response,HttpStatus.CREATED);
+		return new ResponseEntity<Map<String,Object>>(response,HttpStatus.OK);
 	}
 	
 	/* ------------------------------ UPDATE ------------------------------ */
