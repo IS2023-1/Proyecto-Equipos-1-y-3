@@ -59,6 +59,14 @@ localhost:10000/<endpoint>
 ### Endpoints:
 ### :small_red_triangle_down:  :small_red_triangle_down: Iteración 2:  :small_red_triangle_down:  :small_red_triangle_down:
 **/rentar**
++ /agregar/{id_usuario}/{id_producto}
+  + Agrega una nueva renta con el usuario con identificador id_usuario y producto con identificador id_producto
+```http://localhost:10000/rentar/agregar/{id_usuario}/{id_producto}```
+
++ /devolver/{id_usuario}/{id_producto}
+  + Devuelve un producto que haya sido rentado con el usuario con identificador id_usuario y producto con identificador id_producto
+```http://localhost:10000/rentar/devolver/{id_usuario}/{id_producto}```
+
 + /productos_mas_rentados
   +  Devuelve una lista de los productos mas rentados del mes, 5 productos de ser posible. Uso: ```http://localhost:10000/rentar/productos_mas_rentados```
 
