@@ -37,13 +37,18 @@
 
 
                         <div class="buttons">
+                            <button class="bg-success d-flex align-items-center justify-content-center shadow-1-strong" 
+                                type="button" style="width: 80px; height: 35px; border-radius: 5px; border: none;" >
+                                <p class="text-white mb-0 small" (click)="rentar(producto)">Rentar</p>
+                            </button>
+
 
                             <button class="bg-success d-flex align-items-center justify-content-center shadow-1-strong"
-                                type="button" style="width: 80px; height: 35px; border-radius: 5px; border: none;">
+                                type="button" style="width: 80px; height: 35px; border-radius: 5px; border: none;" *ngIf="authService.hasRole('ROLE_ADMIN') || authService.hasRole('ROLE_PROV')">
                                 <p class="text-white mb-0 small" [routerLink]="['editar', p.codigo]">Editar</p>
                             </button>
                             <button class="btn btn-danger" type="button"
-                                style="width: 80px; height: 35px; border-radius: 5px;">
+                                style="width: 80px; height: 35px; border-radius: 5px;" *ngIf="authService.hasRole('ROLE_ADMIN') || authService.hasRole('ROLE_PROV')">
                                 <p class="text-white mb-0 small"(click)="delete(p)"> Eliminar</p>
                             </button>
                         </div>

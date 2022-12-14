@@ -28,6 +28,38 @@ export class ProductoComponent implements OnInit {
     this.productoService.getProducto(codigo).subscribe(p => this.p = p);
   }
 
+  rentar(producto: Producto): void {
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-success',
+        cancelButton: 'btn btn-danger'
+      },
+      buttonsStyling: false
+    })
+      swalWithBootstrapButtons.fire({
+        title: '¿Estás seguro?',
+        text: '¿Estás seguro de rentar el productoS ' + `${producto.nombre}`+'?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Sí, rentar',
+        cancelButtonText: 'No, cancelar!',
+        reverseButtons: true
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.productoService.rentar(producto).subscribe(
+            Response => {
+              swalWithBootstrapButtons.fire(
+                'Producto rentado!',
+                '¡Producto rentado con éxito!.',
+                'success'
+              )
+              this.router.navigate(['/productos'])
+            }
+          )
+        }
+      })
+  }
+
   delete(producto: Producto): void {
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {

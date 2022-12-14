@@ -13,7 +13,7 @@ import { AuthService } from '../usuarios/auth.service';
 })
 export class ProductoService {
 
-
+  private urlEndPointRentar = 'http://localhost:10000/rentar/agregar';
 
   private urlEndPoint:string = 'http://localhost:10000/productos';
 
@@ -23,6 +23,20 @@ export class ProductoService {
   private httpHeaders = new HttpHeaders({'Content-Type': 'application/json'})
 
   constructor(private http: HttpClient, private router: Router, private authService: AuthService) { }
+
+  rentar(producto: Producto): Observable<Producto>{
+    return this.http.post<any>(`${this.urlEndPointRentar}/${this.authService.usuario.id}/${producto.id_producto}`, {headers: this.agregarAuthorizationHeader()} ).pipe(
+      
+      catchError(e => {
+
+        if(this.isNoAutorizado(e)){
+          return throwError( () => e );
+        }
+        Swal.fire(e.error.mensaje, e.error.error, 'error');
+        return throwError( () => e );
+      })
+    )  
+  }
 
   private agregarAuthorizationHeader(){
     let token = this.authService.token;

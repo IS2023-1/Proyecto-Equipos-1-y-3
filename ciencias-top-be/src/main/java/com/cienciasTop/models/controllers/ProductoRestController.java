@@ -96,7 +96,7 @@ public class ProductoRestController {
      * @param codigo Código de los productos a buscar.
      * @return Regresa a los productos que coincidan con el código, error en otro caso.
      */
-    @Secured({"ROLE_ADMIN","ROLE_PROV"})
+    @Secured({"ROLE_ADMIN","ROLE_PROV", "ROLE_USER"})
     @GetMapping("/buscar/codigo/{codigo}")
     public ResponseEntity<?> findByCodigo(@PathVariable String codigo){
         Producto producto = productoService.findByCodigo(codigo);
