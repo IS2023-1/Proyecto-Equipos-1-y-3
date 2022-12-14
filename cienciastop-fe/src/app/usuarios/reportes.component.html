@@ -1,6 +1,6 @@
 <div id="contenido">
     <br>
-    <h1>Ciencias Top: Reporte de {{mes}} {{anio}}</h1>
+    <h1 style="color: #0a7cff">Ciencias Top: Reporte de {{mes}} {{anio}}</h1>
     <br>
 
     <h3>Usuarios activos por carrera:</h3>
@@ -36,17 +36,11 @@
     <hr>
 
     <h3>5 productos más baratos:</h3>
-    <span id="cuatro">
-        <table>
-            <tr>
-            <th>Producto</th>
-            <th>Costo en PumaPuntos</th>
-            </tr>
-            <tr *ngFor="let tupla of activos">
-            <td>{{tupla[0]}}</td>
-            <td>{{tupla[1]}}</td>
-            </tr>
-        </table>
+    <span id="cuatro" style="display: flex;">
+        <div *ngFor="let tupla of cincoMasBaratos">
+            <span>{{tupla[0]}}</span><br>
+            <span>{{tupla[1]}}</span>
+        </div>
     </span>
     <hr>
 
