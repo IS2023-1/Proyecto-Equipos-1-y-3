@@ -85,7 +85,7 @@ public class RentarRestController {
         return new ResponseEntity<Map<String,Object>>(response,HttpStatus.CREATED);
 	}
 	
-	@PostMapping("/devolver/{id_usuario}/{id_producto}")
+	//@PostMapping("/devolver/{id_usuario}/{id_producto}")
 	
 	/* ------------------------------ CREATE ------------------------------ */
 	
