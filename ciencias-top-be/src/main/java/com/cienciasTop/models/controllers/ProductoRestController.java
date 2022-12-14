@@ -1,5 +1,6 @@
 package com.cienciasTop.models.controllers;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -112,6 +113,62 @@ public class ProductoRestController {
         }
         return new ResponseEntity<Producto>(producto,HttpStatus.OK);
     }
+
+    /**
+	 * Los 5 productos mas baratos en cuestion a sus puma puntos.
+	 * @return Lista con el nombre de los productos y sus precisios, en la posicion 0 va el nombre del producto y en la posicion el precio del producto.
+	 */
+    @Secured({"ROLE_ADMIN"})
+    @GetMapping("/productos_baratos")
+    public List<String[]> productos_bajos_pumaPuntos() {
+        List<Producto> productos = index();
+		List<String[]> lista = new ArrayList<>();
+        String[] auxiliar =  new String[2];
+		Integer bandera = 0;
+
+		int numero = productos.size() / 4;
+		Producto producto1 = productoService.findByNombre(menor_en_la_lista(productos, bandera));
+		auxiliar[0] = producto1.getNombre();
+    	bandera = producto1.getCosto();
+        auxiliar[1] = bandera + "";
+	    lista.add(auxiliar.clone());
+		
+        for(int i = 0; i < numero; i++){
+        	Producto producto = productoService.findByNombre(menor_en_la_lista(productos, bandera));
+    					if(!producto.getNombre().equals(producto1.getNombre())) {
+    						auxiliar[0] = producto.getNombre();
+            		    	bandera = producto.getCosto();
+                            auxiliar[1] = bandera + "";
+            			    lista.add(auxiliar.clone());
+            			    producto1 = producto;
+    					} else {
+    						i--;
+    						productos.remove(producto);
+    					}
+		}
+
+      return lista;
+    }
+
+	/**
+	 * Dada una lista de productos y una bandera de minimo, devuelve el nombre del producto con precio minimo y mayor a la bandera.
+	 * @param lista lista de productos donde buscar.
+	 * @param bandera numero minimo a buscar el minimo.
+	 * @return nombre del producto de costo minimo y mayor a la bandera.
+	 */
+	private String menor_en_la_lista(List<Producto> lista, Integer bandera){
+        Integer bandera1 = 10000000; 
+		Producto producto = lista.get(0);
+
+		for(int i = 0; i < lista.size(); i++) {
+            if(lista.get(i).getCosto() < bandera1 && lista.get(i).getCosto() >= bandera) {
+				producto = lista.get(i);
+				bandera1 = lista.get(i).getCosto();
+			}    
+		 }
+	    return producto.getNombre();
+	}	
+
 	/* ------------------------------ READ ------------------------------*/
 	
 	/* ------------------------------ UPDATE ------------------------------*/
