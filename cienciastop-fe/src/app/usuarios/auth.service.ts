@@ -44,7 +44,7 @@ export class AuthService {
     let params = new URLSearchParams();
     params.set('grant_type', 'password');
     params.set('username', usuario.username);
-    params.set('password', usuario.password);
+    params.set('password', usuario.password1);
 
     console.log(params.toString());
 

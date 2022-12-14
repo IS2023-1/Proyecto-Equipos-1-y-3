@@ -46,7 +46,6 @@ export class UsuarioService {
 
   getUsuarios(): Observable<Usuario[]> {
     return this.http.get<Usuario[]>(this.urlEndPoint + '/buscar/todo');
-    //return of(USUARIOS);
   }
 
   getUsuario(id_usuario): Observable<Usuario> {
@@ -65,37 +64,7 @@ export class UsuarioService {
     )
   }
 
-  editarUsuario(id_usuario): Observable<Usuario> {
-    return this.http.get<Usuario>(`${this.urlEndPoint}/editar/${id_usuario}`, { headers: this.agregarAuthorizationHeader() }).pipe(
-      catchError(e => {
-
-        if (this.isNoAutorizado(e)) {
-          return throwError(() => e);
-        }
-
-
-        this.router.navigate(['/usuarios']);
-        Swal.fire('Error al editar', e.error.mensaje, 'error');
-        return throwError(() => e);
-      })
-    )
-  }
-
-  /*update(usuario: Usuario): void{//Observable<Usuario>{
-    //return this.http.put<Usuario>(`${this.urlEndPoint}/${usuario.id}`, usuario, {headers: this.httpHeaders})
-    const usuarios= of(USUARIOS);
-    var aEditar = USUARIOS.find(u => u.id === usuario.id);
-    if (aEditar != null) {
-      aEditar.nombre = usuario.nombre;
-      aEditar.apellidoPaterno = usuario.apellidoPaterno;
-      aEditar.apellidoMaterno = usuario.apellidoMaterno;
-    }
-  }*/
-
-  //update(usuario: Usuario): Observable<Usuario> {
-    //return this.http.post<Usuario>(`${this.urlEndPoint}/editar/${usuario.id_usuario}`, usuario, { headers: this.httpHeaders })
-  //}
-
+ 
   update(usuario: Usuario): Observable<Usuario>{
     return this.http.post<Usuario>(`${this.urlEndPoint}/editar/${usuario.id_usuario}`, usuario, {headers: this.agregarAuthorizationHeader()}).pipe(
       catchError(e => {
@@ -109,7 +78,24 @@ export class UsuarioService {
   }
 
   delete(id_usuario: number): Observable<Usuario> {
-    return this.http.delete<Usuario>(`${this.urlEndPoint}/eliminar/${id_usuario}`, { headers: this.httpHeaders })
+    return this.http.delete<Usuario>(`${this.urlEndPoint}/eliminar/${id_usuario}`, { headers: this.agregarAuthorizationHeader() }).pipe(
+      catchError(e => {
+        if(this.isNoAutorizado(e)){
+          return throwError( () => e );
+        }
+        Swal.fire('Error al eliminar al usuario', 'No ha sido posible eliminar al usuario, intenta de nuevo', 'error');
+        return throwError( () => e );
+      })
+    )
+  }
+
+  resetPassword(password: string, id: number): Observable<Usuario> {
+    return this.http.post<Usuario>(`${this.urlEndPoint}/updateContrasena/${password}/${id}`, { headers: this.agregarAuthorizationHeader()}) .pipe(
+      catchError(e => {
+        Swal.fire('Error al recuperar contraseña', 'No ha sido posible cambiar tu contraseña, el usuario es inválido', 'error');
+        return throwError( () => e );
+      })
+    )
   }
 
 }

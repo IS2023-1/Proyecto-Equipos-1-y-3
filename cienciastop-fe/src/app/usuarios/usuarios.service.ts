@@ -47,23 +47,5 @@ import { AuthService } from './auth.service';
             return throwError(() => error);
         })
       );
-      /*var inputNumber = Number(searchInput); 
-      if(inputNumber){
-        return this.http.get<Usuario>(`${this.urlEndpointId}/${inputNumber}`).pipe(
-          catchError(error => {
-              this.router.navigate(['/usuarios']);
-              Swal.fire("Error al buscar usuario", error.error.message, 'error');
-              return throwError(() => error);
-          })
-        );
-      } else {
-        return this.http.get<Usuario[]>(`${this.urlEndpointNombre}/${searchInput}`).pipe(
-          catchError(error => {
-              this.router.navigate(['/usuarios']);
-              Swal.fire("Error al buscar usuario", error.error.message, 'error');
-              return throwError(() => error);
-          })
-        );
-      }*/
     }
   } 

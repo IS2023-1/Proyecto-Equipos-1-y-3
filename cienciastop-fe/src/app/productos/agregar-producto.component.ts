@@ -9,8 +9,8 @@ import { AuthService } from '../usuarios/auth.service';
 
 @Component({
   selector: 'app-form',
-  templateUrl: './form.component.html',
-  styleUrls: ['./form.component.css']
+  templateUrl: './agregar-producto.component.html',
+  styleUrls: ['./agregar-producto.component.css']
 })
 export class FormComponent implements OnInit {
 
@@ -20,16 +20,20 @@ export class FormComponent implements OnInit {
   constructor(private productoService: ProductoService, private router: Router, private activateRoute: ActivatedRoute, public authService: AuthService) { }
 
   ngOnInit(): void {
-    this.cargarProducto()
   }
 
   cargarProducto(): void{
     this.activateRoute.params.subscribe(params => {
       let id = params['id']
       if(id){
-        this.productoService.getProducto(id).subscribe((producto)=>this.producto = producto)
+        this.productoService.getProducto(this.producto.id_producto).subscribe((producto)=>this.producto = producto)
       }
     })
+  }
+
+  public getProducto(): void {
+    const id = Number(this.activateRoute.snapshot.paramMap.get('id'));
+    this.productoService.getProducto(id).subscribe(u => this.producto = u);
   }
 
   public create():void{
@@ -42,14 +46,10 @@ export class FormComponent implements OnInit {
   }
 
   public update():void{
-    this.productoService.update(this.producto).subscribe(producto => 
-      {
-      this.router.navigate(['/productos'])
-      swal.fire('Producto Actualizado', `${producto.nombre} actualizado exitosamente`, 'success')
+    this.productoService.update(this.producto).subscribe(producto => {
+        swal.fire('Producto Actualizado', `${producto.nombre} actualizado exitosamente`, 'success')
+        this.router.navigate(['/productos'])
       }
     )
   }
-
-
-
 }

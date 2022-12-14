@@ -62,6 +62,7 @@ public class ProductoRestController {
      * Método para mostrar a todos los productos.
      * @return Regresa una lista con todos los productos.
      */
+
 	@GetMapping("/buscar/todo") 
 	public List<Producto> index(){
 		 return productoService.findAll();
@@ -95,6 +96,7 @@ public class ProductoRestController {
      * @param codigo Código de los productos a buscar.
      * @return Regresa a los productos que coincidan con el código, error en otro caso.
      */
+    @Secured({"ROLE_ADMIN","ROLE_PROV"})
     @GetMapping("/buscar/codigo/{codigo}")
     public ResponseEntity<?> findByCodigo(@PathVariable String codigo){
         Producto producto = productoService.findByCodigo(codigo);

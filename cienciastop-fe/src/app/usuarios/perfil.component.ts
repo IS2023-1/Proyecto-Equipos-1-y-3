@@ -13,12 +13,9 @@ import { AuthService } from './auth.service';
 })
 export class PerfilComponent implements OnInit {
   u: Usuario = new Usuario();//| undefined;
-  //nombre : String = this.u.nombre;
 
   constructor(private usuarioService: UsuarioService, private router: Router, private activatedRoute: ActivatedRoute, public authService: AuthService) {
-    //const id = this.activatedRoute.data.subscribe( v=> console.log(v));
     let params: any = this.activatedRoute.snapshot.params;
-    //console
   }
 
   ngOnInit(): void {
@@ -26,7 +23,7 @@ export class PerfilComponent implements OnInit {
   }
 
 
-  public getUsuario(): void {//Observable <Usuario>{
+  public getUsuario(): void {
     const id = Number(this.activatedRoute.snapshot.paramMap.get('id'));
     this.usuarioService.getUsuario(id).subscribe(u => this.u = u);
   }
@@ -39,37 +36,31 @@ export class PerfilComponent implements OnInit {
       },
       buttonsStyling: false
     })
-
-    swalWithBootstrapButtons.fire({
-      title: '¿Estás seguro?',
-      text: '¿Estás seguro de eliminar al usuario ${usuario.nombre}?',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Sí, eliminar',
-      cancelButtonText: 'No, cancelar!',
-      reverseButtons: true
-    }).then((result) => {
-      if (result.isConfirmed) {
-        this.usuarioService.delete(usuario.id_usuario).subscribe(
-          Response => {
-            swalWithBootstrapButtons.fire(
-              'Usuario eliminado!',
-              '¡Usuario eliminado con éxito!.',
-              'success'
-            )
-            this.router.navigate(['/usuarios'])
-          }
-        )
-      }
-    })
-  }
-
-  public update():void{
-    this.usuarioService.update(this.u).subscribe((usuario) => 
-      {
-      this.router.navigate(['/usuarios/editar'])
-      Swal.fire('Usuario Actualizado', `${usuario.nombre} actualizado exitosamente`, 'success')
-      }
-    )
+    if (this.authService.usuario.id == usuario.id_usuario){
+      Swal.fire('Error al eliminar al usuario', 'No puedes eliminar a este usuario mientras su sesión está activa', 'error');
+    }else{
+      swalWithBootstrapButtons.fire({
+        title: '¿Estás seguro?',
+        text: '¿Estás seguro de eliminar al usuario ' + `${usuario.nombre}`+'?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Sí, eliminar',
+        cancelButtonText: 'No, cancelar!',
+        reverseButtons: true
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.usuarioService.delete(usuario.id_usuario).subscribe(
+            Response => {
+              swalWithBootstrapButtons.fire(
+                'Usuario eliminado!',
+                '¡Usuario eliminado con éxito!.',
+                'success'
+              )
+              this.router.navigate(['/usuarios/buscar/todo'])
+            }
+          )
+        }
+      })
+    }
   }
 }

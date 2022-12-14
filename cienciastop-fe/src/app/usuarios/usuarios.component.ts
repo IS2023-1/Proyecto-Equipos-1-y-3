@@ -21,11 +21,6 @@ export class UsuariosComponent implements OnInit {
   constructor(private usuarioService: UsuarioService) { }
 
   ngOnInit(): void {
-    /*this.usuarioService.getUsuarios().subscribe(
-      usuarios => this.usuarios = usuarios
-    );*/
-    //this.getUsuarios();
-    //this.usuarios=USUARIOS;
     this.getUsuarios()
   }
 
@@ -34,8 +29,6 @@ export class UsuariosComponent implements OnInit {
   }
 
   getMatches(input: string): Usuario[] {
-    //console.log(this.searchInput);
-    //this.getUsuarios();
     var matches = []
     this.usuarios.forEach(e => {
       if(e.nombre.toLowerCase().includes(input)) {
@@ -77,40 +70,6 @@ export class UsuariosComponent implements OnInit {
       }
     });
   }
-
-  /*
-  onSubmit(): void {
-    this.matches = []
-    var searchInputTrim = this.searchInput.trim();
-    if(!this.searchInput || searchInputTrim.length == 0) {
-      Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: `No hubo resultados para la búsqueda ""`,
-      });
-      //this.getUsuarios();
-      this.clear();
-    } else {
-      document.getElementById("res-bus-usuario").style.display = "none";
-      this.usuarioService.getUsuarios().subscribe(u => this.usuarios = u);
-      this.usuarioService.lookup(searchInputTrim).subscribe(res => {
-        res.forEach(e => this.matches.push(e));
-        if(this.matches.length == 0) {
-          Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: `No hubo resultados para la búsqueda "${this.searchInput}"`,
-          });
-          this.clear();
-        } else {
-          this.placeholder = this.searchInput;
-          document.getElementById("res-bus-usuario").style.display = "block";
-          this.usuarios = this.matches;
-        }
-      });
-    }
-  }
-  */
 
   clear(): void {
     document.getElementById("res-bus-usuario").style.display = "none";
