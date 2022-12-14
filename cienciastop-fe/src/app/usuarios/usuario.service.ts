@@ -7,6 +7,7 @@ import { UsuariosComponent } from './usuarios.component';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { AuthService } from './auth.service';
+import { Producto } from '../productos/producto';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,7 @@ import { AuthService } from './auth.service';
 export class UsuarioService {
 
   private urlEndPoint: string = 'http://localhost:10000/usuarios';
+  private urlEndPointHistorial: string = 'http://localhost:10000/historial';
 
   private httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' })
 
@@ -62,6 +64,10 @@ export class UsuarioService {
         return throwError(() => e);
       })
     )
+  }
+
+  getProductosRentados() : Observable<Producto[]>{
+    return this.http.get<Producto[]>(`this.urlEndPointHistorial)/${this.authService.usuario.id}`);
   }
 
  
