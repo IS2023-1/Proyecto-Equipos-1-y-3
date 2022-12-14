@@ -86,6 +86,8 @@ localhost:10000/<endpoint>
   + Regresa una lista de arreglos de alumnos activos por carrera, la posicion 0 es de la carrera y la posicion 1 es el numero de alumnos activos en ella, esto por cada elemento de la lista. Uso: ```http://localhost:10000/usuarios/numero_activos```
 + /numero_inactivos 
   + Regresa el numero de alumnos inactivos en la pagina web. Uso: ```http://localhost:10000/usuarios/numero_inactivos```  
++ /usuarios_mas_penalizados
+  + Devuelve una lista con los nombres de los usuarios que mas han tenido penalizaciones, 10 usuarios de ser posible, devuelve nombre, apellido paterno y apellido materno. Uso: ```http://localhost:10000/usuarios/usuarios_mas_penalizados```
   
 ### :small_red_triangle_down:  :small_red_triangle_down: Iteración 1:  :small_red_triangle_down:  :small_red_triangle_down:
 
