@@ -9,7 +9,9 @@ import { ProductosComponent } from './productos/productos.component';
 import { RouterModule, Routes } from '@angular/router';
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import { HttpClientModule } from '@angular/common/http';
-import { FormComponent } from './productos/form.component';
+import { FormComponent } from './productos/agregar-producto.component';
+import { ProductoComponent } from './productos/producto.component';
+import { FormEditarComponent } from './productos/form-editar.component';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './usuarios/login.component';
 import { RbpComponent } from './productos/rbp.component';
@@ -26,11 +28,14 @@ const routes: Routes = [
   //{ path: 'usuarios/perfil', component: PerfilComponent },
   { path: 'usuarios/buscar/', component: PerfilComponent },
   { path: 'usuarios/buscar/:id', component: PerfilComponent },
+  { path: 'productos/buscar/', component: ProductoComponent },
+  { path: 'productos/buscar/codigo/:codigo', component: ProductoComponent },
   //{ path: 'usuarios/perfil/:id', component: PerfilComponent },
   { path: 'usuarios/buscar/:id/editar/:id', component: FormUsuarioComponent },
   { path: 'productos', component: ProductosComponent },
-  { path: 'productos/form', component: FormComponent },
-  { path: 'productos/form/:id', component: FormComponent },
+  { path: 'productos/agregar-producto', component: FormComponent },
+  { path: 'productos/buscar/codigo/:codigo/editar/:codigo', component: FormEditarComponent },
+  { path: 'productos/form/:id', component: FormEditarComponent },
   { path: 'login', component: LoginComponent },
   { path: 'productos/rbp/:input', component: RbpComponent },
   { path: 'recuperar', component: RecuperarComponent }];
@@ -44,8 +49,10 @@ const routes: Routes = [
     ProductosComponent,
     UsuariosComponent,
     FormComponent,
+    FormEditarComponent,
     LoginComponent,
     PerfilComponent,
+    ProductoComponent,
     RbpComponent,
     FormUsuarioComponent,
     AgregarUsuariosComponent,

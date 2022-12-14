@@ -67,13 +67,10 @@
             <div class="w-100 p-3" ></div>
 
             <div class="form-group row">
-                <button class="btn btn-primary" role="button" (click)="create()" *ngIf="!producto.id_producto else elseBlock">Agregar Producto</button>                   
-                <ng-template #elseBlock>
-                    <button class="btn btn-secondary" role="button" (click)="update()">Actualizar</button>                   
-                </ng-template>
-
-
-
+                <button class="bg-success d-flex align-items-center justify-content-center shadow-1-strong" type="button"
+                style="width: 80px; height: 35px; border-radius: 5px;" >
+                <p class="text-white mb-0 small" (click)="update()"> Guardar</p>
+                </button>
             </div>
             
         </form>

@@ -18,6 +18,7 @@ export class ProductoService {
   private urlEndPoint:string = 'http://localhost:10000/productos';
 
   private urlEndpointAll: string = 'http://localhost:10000/productos/buscar/todo';
+  private urlEndpointCodigo = 'http://localhost:10000/productos/buscar/codigo';
 
   private httpHeaders = new HttpHeaders({'Content-Type': 'application/json'})
 
@@ -50,7 +51,14 @@ export class ProductoService {
 
 
   getProductos(): Observable<Producto[]>{
-    return this.http.get<Producto[]>(this.urlEndpointAll);
+    return this.http.get<Producto[]>(this.urlEndpointAll, 
+      {headers: this.agregarAuthorizationHeader()}).pipe(
+      catchError(e => {
+        this.router.navigate(['/productos']);
+        Swal.fire('Error al buscar productos', e.error.message, 'error');
+        return throwError(() => e);
+      })
+    )
   }
 
   create(producto: Producto): Observable<Producto>{
@@ -68,32 +76,33 @@ export class ProductoService {
       })
     )  }
 
-  getProducto(id): Observable<Producto>{
-    return this.http.get<Producto>(`${this.urlEndPoint}/${id}`, {headers: this.agregarAuthorizationHeader() }).pipe(
+  getProducto(codigo): Observable<Producto>{
+    return this.http.get<Producto>(`${this.urlEndPoint}/buscar/codigo/${codigo}`, { headers: this.agregarAuthorizationHeader() }).pipe(
       catchError(e => {
 
-        if(this.isNoAutorizado(e)){
-          return throwError( () => e );
+        if (this.isNoAutorizado(e)) {
+          return throwError(() => e);
         }
 
 
         this.router.navigate(['/productos']);
-        Swal.fire('Error al editar', e.error.mensaje, 'error');
-        return throwError( () => e );
+        Swal.fire('Error al obtener producto', e.error.mensaje, 'error');
+        return throwError(() => e);
       })
-    )  }
-
-  update(producto: Producto): Observable<Producto>{
-    return this.http.put<any>(`${this.urlEndPoint}/${producto.id_producto}`, producto, {headers: this.agregarAuthorizationHeader()}).pipe(
-      catchError(e => {
-        if(this.isNoAutorizado(e)){
-          return throwError( () => e );
-        }
-        Swal.fire(e.error.mensaje, e.error.error, 'error');
-        return throwError( () => e );
-      })
-    )  
+    )
   }
+
+    update(producto: Producto): Observable<Producto>{
+      return this.http.post<Producto>(`${this.urlEndPoint}/editar/${producto.id_producto}`, producto, {headers: this.agregarAuthorizationHeader()}).pipe(
+        catchError(e => {
+          if(this.isNoAutorizado(e)){
+            return throwError( () => e );
+          }
+          Swal.fire(e.error.mensaje, e.error.error, 'error');
+          return throwError( () => e );
+        })
+      )  
+    }
 
   delete(id: number): Observable<Producto>{
     return this.http.delete<Producto>(`${this.urlEndPoint}/eliminar/${id}`, {headers: this.agregarAuthorizationHeader()}).pipe(
@@ -107,7 +116,13 @@ export class ProductoService {
     )  
   }
 
-  lookup(lookupFactor: string): Observable<Producto[]>{
-    return null;
+  lookup(searchInput: string): Observable<Producto[]> {
+    return this.http.get<Producto[]>(`${this.urlEndpointCodigo}/${searchInput}`).pipe(
+      catchError(error => {
+          this.router.navigate(['/usuarios']);
+          Swal.fire("Error al buscar usuario", error.error.message, 'error');
+          return throwError(() => error);
+      })
+    );
   }
 }

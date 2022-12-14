@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Producto } from './producto';
 import { ProductoService } from './producto.service';
 import Swal from 'sweetalert2';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../usuarios/auth.service';
 
 @Component({
@@ -10,15 +11,23 @@ import { AuthService } from '../usuarios/auth.service';
   styleUrls: ['./productos.component.css']
 })
 export class ProductosComponent implements OnInit {
-
+  producto : Producto
   productos: Producto[] = [];
 
-  constructor(private productoService: ProductoService,  public authService: AuthService) { }
+  matches: Producto[] = [];
+
+  searchInput: string = "";
+  placeholder: string = "";
+
+
+  constructor(private productoService: ProductoService,  private router: Router, private activatedRoute: ActivatedRoute, public authService: AuthService) { }
 
   ngOnInit(): void {
-    this.productoService.getProductos().subscribe(
-      productos => this.productos = productos
-    )
+    this.getProductos()
+  }
+
+  public getProductos(): void {
+    this.productoService.getProductos().subscribe(productos => this.productos = productos)
   }
 
   delete(producto: Producto): void {
@@ -55,5 +64,54 @@ export class ProductosComponent implements OnInit {
     })
     
   }
+  
 
+  getMatches(input: string): Producto[] {
+    var matches = []
+    this.productos.forEach(e => {
+      if(e.nombre.toLowerCase().includes(input)) {
+        matches.push(e);
+      } else if (Number(input)) {
+        if (e.id_producto === Number(input)) {
+          matches.push(e);
+        }
+      }
+    })
+    
+    return matches;
+  }
+
+  onSubmit(): void {
+    this.matches = [];
+    this.productoService.getProductos().subscribe(p => {
+      this.productos = p;
+      var input = this.searchInput.trim().toLowerCase();
+      if(!input || input.length == 0) {
+        
+      } else {
+        this.matches = this.getMatches(input);
+        document.getElementById("res-bus-producto").style.display = "none";
+        this.productos = this.matches;
+      }
+
+      if(this.matches.length == 0) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: `No hubo resultados para la búsqueda "${this.searchInput.trim()}"`,
+        });
+        this.clear();
+      } else {
+        this.placeholder = this.searchInput;
+        document.getElementById("res-bus-producto").style.display = "block";
+        this.productos = this.matches;
+      }
+    });
+  }
+
+  clear(): void {
+    document.getElementById("res-bus-producto").style.display = "none";
+    this.searchInput = "";
+    this.productoService.getProductos().subscribe(p => this.productos = p);
+  }
 }
