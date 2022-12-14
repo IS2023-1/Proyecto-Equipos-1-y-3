@@ -59,6 +59,14 @@ localhost:10000/<endpoint>
 ### Endpoints:
 ### :small_red_triangle_down:  :small_red_triangle_down: Iteración 2:  :small_red_triangle_down:  :small_red_triangle_down:
 **/rentar**
++ /agregar/{id_usuario}/{id_producto}
+  + Agrega una nueva renta con el usuario con identificador id_usuario y producto con identificador id_producto
+```http://localhost:10000/rentar/agregar/{id_usuario}/{id_producto}```
+
++ /devolver/{id_usuario}/{id_producto}
+  + Devuelve un producto que haya sido rentado con el usuario con identificador id_usuario y producto con identificador id_producto
+```http://localhost:10000/rentar/devolver/{id_usuario}/{id_producto}```
+
 + /productos_mas_rentados
   +  Devuelve una lista de los productos mas rentados del mes, 5 productos de ser posible. Uso: ```http://localhost:10000/rentar/productos_mas_rentados```
 
@@ -78,6 +86,8 @@ localhost:10000/<endpoint>
   + Regresa una lista de arreglos de alumnos activos por carrera, la posicion 0 es de la carrera y la posicion 1 es el numero de alumnos activos en ella, esto por cada elemento de la lista. Uso: ```http://localhost:10000/usuarios/numero_activos```
 + /numero_inactivos 
   + Regresa el numero de alumnos inactivos en la pagina web. Uso: ```http://localhost:10000/usuarios/numero_inactivos```  
++ /usuarios_mas_penalizados
+  + Devuelve una lista con los nombres de los usuarios que mas han tenido penalizaciones, 10 usuarios de ser posible, devuelve nombre, apellido paterno y apellido materno. Uso: ```http://localhost:10000/usuarios/usuarios_mas_penalizados```
   
 ### :small_red_triangle_down:  :small_red_triangle_down: Iteración 1:  :small_red_triangle_down:  :small_red_triangle_down:
 

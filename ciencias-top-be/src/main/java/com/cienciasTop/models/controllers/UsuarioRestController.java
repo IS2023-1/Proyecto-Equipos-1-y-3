@@ -241,6 +241,64 @@ public class UsuarioRestController {
      return cantidad;
     }
 
+    /**
+	 * Dado una lista de usuarios y el id de un usuario, elimina todas las apariciones del usuario.
+	 * @param lista lista de usuarios.
+	 * @param id id del usuario.
+	 */
+    private void elimina_usuario(List<Usuario> lista, Long id){
+        for(int i = 0; i < lista.size(); i++){
+			if(lista.get(i).getId_usuario().equals(id)) {
+				lista.remove(i);
+			}
+		}
+	}
+    
+    /**
+	 * Dado una lista devuelve el usuario que mas penalizaciones tiene y lo elimina de la lista.
+	 * @param lista la lista de usuarios.
+	 * @return el usuario que mas penalizaciones tiene.
+	 */
+    private Usuario usuario_mas_penalizado(List<Usuario> lista) {
+		Long valor1 = 0L;
+		Usuario usuario = new Usuario();
+    	for(int i = 0; i < lista.size(); i++) {
+			if(lista.get(i).getPenalizaciones() > valor1){
+                valor1 = lista.get(i).getPenalizaciones();
+                usuario = lista.get(i);
+            }
+		}
+	    elimina_usuario(lista, usuario.getId_usuario());
+      return usuario;
+    }
+
+    /**
+	 * Devuelve una lista con los nombres de los usuarios que mas han tenido penalizaciones, 10 usuarios de ser posible.
+	 * @return lista de los nombres de los usuarios.
+	 */
+	@Secured({"ROLE_ADMIN"})
+    @GetMapping("/usuarios_mas_penalizados")
+	public List<String> usuarios_mas_penalizados() {
+    	List<Usuario> lista = usuario_Service.findAll();
+        int cantidad_usuarios = 0;
+		List<String> usuarios = new ArrayList<>();
+		String nombre_completo = "";
+		if(lista.size() < 10){
+			cantidad_usuarios = lista.size();
+		} else {
+			cantidad_usuarios = 10;
+		}
+
+        while (cantidad_usuarios > 0) {
+			Usuario usuario = usuario_mas_penalizado(lista);
+			nombre_completo = usuario.getNombre() + " " + usuario.getApellidoPaterno() + " " + usuario.getApellidoMaterno();
+			usuarios.add(nombre_completo);
+			nombre_completo = "";
+			cantidad_usuarios--;
+		}
+		return usuarios;
+    }
+
     /* ------------------------------ READ ------------------------------ */
     
     /* ------------------------------ UPDATE ------------------------------ */
