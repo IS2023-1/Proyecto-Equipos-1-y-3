@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -40,19 +39,44 @@ public class RentarRestController {
 	
 	/* ------------------------------ CREATE ------------------------------ */
 	
-	@PostMapping("/agregar")
-	public ResponseEntity<?> create(@RequestBody Rentar renta){
+	private static boolean buscar_si_esta_rentado(Long id_usuario, Long id_producto, Producto producto) {
+		List<Rentar> usuarios = producto.getUsuario();
+		if (usuarios.size() == 0) {
+			return false;
+		}
+		for(int i=0;i<usuarios.size();i++) {
+			if (id_usuario == usuarios.get(i).getUsuario().getId_usuario()
+				&& id_producto == usuarios.get(i).getProducto().getId_producto()) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	@PostMapping("/agregar/{id_usuario}/{id_producto}")
+	public ResponseEntity<?> create(@PathVariable Long id_usuario, @PathVariable Long id_producto){
         Map<String,Object> response = new HashMap<>();
-    	try {
-    		Usuario usuario = usuario_Service.findById(renta.getUsuario().getId_usuario());
-        	Producto producto = producto_Service.findById(renta.getProducto().getId_producto());
-			renta.setUsuario(usuario);
-			renta.setProducto(producto);
-			rentar_Service.save(renta);
-        } catch(DataAccessException e) {
-            response.put("mensaje", "Error al realizar el insert en la base de datos.");
-            response.put("error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
-            return new ResponseEntity<Map<String,Object>>(response,HttpStatus.INTERNAL_SERVER_ERROR);
+        Usuario usuario = usuario_Service.findById(id_usuario);
+    	Producto producto = producto_Service.findById(id_producto);
+        LocalDate fecha_de_renta = LocalDate.now();
+        LocalDate fecha_de_entrega = fecha_de_renta.plusDays(producto.getDiasAPrestar());
+        Rentar renta = new Rentar();
+        if (producto.getDisponibles() > 0
+        	&& !buscar_si_esta_rentado(id_usuario, id_producto, producto)) {
+        	try {
+    			renta.setUsuario(usuario);
+    			renta.setProducto(producto);
+    			renta.setFecha_de_renta(fecha_de_renta);
+    			renta.setFecha_de_entrega(fecha_de_entrega);
+    			rentar_Service.save(renta);
+            } catch(DataAccessException e) {
+                response.put("mensaje", "Error al realizar el insert en la base de datos.");
+                response.put("error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
+                return new ResponseEntity<Map<String,Object>>(response,HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+        } else {
+        	response.put("mensaje", "El producto ya está rentado por el usuario.");
+        	return new ResponseEntity<Map<String,Object>>(response,HttpStatus.BAD_REQUEST);
         }
         response.put("mensaje","La renta del producto ha sido creado con éxito.");
         response.put("renta", renta);

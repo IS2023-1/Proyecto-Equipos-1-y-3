@@ -37,6 +37,7 @@ public class Rentar implements Serializable {
 	@ManyToOne(fetch = FetchType.EAGER, optional = false)
 	@JoinColumn(name = "id_producto", nullable = false)
 	@OnDelete(action = OnDeleteAction.CASCADE)
+	@JsonIgnore
 	private Producto producto;
 	
 	@Column(columnDefinition = "DATE")
