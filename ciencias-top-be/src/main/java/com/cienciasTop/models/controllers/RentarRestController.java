@@ -1,6 +1,5 @@
 package com.cienciasTop.models.controllers;
 
-import java.time.Duration;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -194,14 +193,19 @@ public class RentarRestController {
 		Map<String,Object> response = new HashMap<>();
 		Producto producto = producto_Service.findById(id_producto);
 		Usuario usuario = usuario_Service.findById(id_usuario);
-		Rentar renta = buscar_renta(producto, id_usuario, id_producto);
+		Rentar renta = buscar_renta(producto, id_usuario, id_producto); 
 		LocalDate entrega_virtual = renta.getFecha_de_entrega();
 		LocalDate entrega_fisica = LocalDate.now();		
 		
 		if (!entrega_fisica.isBefore(entrega_virtual)) {
-			producto = eliminar_renta(producto, id_usuario, id_producto);
-			producto.setDisponibles(producto.getDisponibles()+1);
-			usuario.setPumapuntos(usuario.getPumapuntos() - 20);
+			producto = eliminar_renta(producto, id_usuario, id_producto); /* Se elimina la renta en la lista de
+			 																 usuarios de producto. */
+			producto.setDisponibles(producto.getDisponibles()+1);		  /* Se aumenta en uno la disponibilidad
+			                                                                 del producto ya que fue devuelto. */
+			usuario.setPumapuntos(usuario.getPumapuntos() - 20);          /* Se penaliza con 20 pumapuntos menos
+			                                                                 al usuario. */
+			usuario.setPenalizaciones(usuario.getPenalizaciones()+1);	  /* Se aumenta en uno la cantidad de
+			 																 de penalizaciones del usuario.	*/
 			producto_Service.save(producto);
 			usuario_Service.save(usuario);
 			response.put("mensaje","El producto con ID: "

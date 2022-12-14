@@ -65,6 +65,9 @@ public class Usuario implements Serializable {
 	uniqueConstraints= {@UniqueConstraint(columnNames= {"usuario_id", "role_id"})})
 	private List<Role> roles;
 	
+	@Column(name = "penalizaciones", nullable = false)
+	private Long penalizaciones;
+	
 	// ----------- Getters y Setters --------------
 
 	public Long getId_usuario() {
@@ -169,5 +172,13 @@ public class Usuario implements Serializable {
 
 	public void setRoles(List<Role> roles) {
 		this.roles = roles;
+	}
+	
+	public Long getPenalizaciones() {
+		return penalizaciones;
+	}
+
+	public void setPenalizaciones(Long penalizaciones) {
+		this.penalizaciones = penalizaciones;
 	}
 }
