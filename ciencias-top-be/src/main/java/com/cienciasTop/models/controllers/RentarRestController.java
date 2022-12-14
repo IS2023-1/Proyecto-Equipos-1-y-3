@@ -40,14 +40,12 @@ public class RentarRestController {
 	
 	/* ------------------------------ CREATE ------------------------------ */
 	
-	@PostMapping("/agregar/{id_usuario}/{id_producto}")
-	public ResponseEntity<?> create(@RequestBody Rentar renta,
-									@PathVariable Long id_usuario,
-									@PathVariable Long id_producto){
+	@PostMapping("/agregar")
+	public ResponseEntity<?> create(@RequestBody Rentar renta){
         Map<String,Object> response = new HashMap<>();
     	try {
-    		Usuario usuario = usuario_Service.findById(id_usuario);
-        	Producto producto = producto_Service.findById(id_producto);
+    		Usuario usuario = usuario_Service.findById(renta.getUsuario().getId_usuario());
+        	Producto producto = producto_Service.findById(renta.getProducto().getId_producto());
 			renta.setUsuario(usuario);
 			renta.setProducto(producto);
 			rentar_Service.save(renta);
