@@ -1,0 +1,57 @@
+
+<div *ngIf="u">
+    
+        <div class="row d-flex justify-content-center">
+
+            <div class="col-md-7">
+
+                <div class="card p-3 py-4">
+
+                    <div class="text-center">
+                        <img src={{u.rutaImagen}}/>
+                    </div>
+
+                    <div class="text-center mt-3">
+                        <h1>{{u.nombre}} {{u.apellidoPaterno}} {{u.apellidoMaterno}}</h1>
+                    </div>
+
+                    <div class="text-center mt-2">
+                        <div class="px-4 mt-1">
+                            <p class="mb-0 biggy-text">Numero de cuenta: <span class="fw-bold">{{u.cuenta}} </span>
+                            </p>
+                        </div>
+
+                        <div class="px-4 mt-1">
+                            <p class="mb-0 biggy-text">Carrera: <span class="fw-bold">{{u.carrera}}</span>
+                            </p>
+                        </div>
+
+                        <div class="px-4 mt-1">
+                            <p class="mb-0 biggy-text">Puma Puntos: <span class="fw-bold">{{u.pumapuntos}}PP</span></p>
+                        </div>
+
+                        <div class="px-4 mb-2">
+                            <p class="mb-0 biggy-text">Email: <span class="fw-bold">{{u.correo}}</span>
+                            </p>
+                        </div>
+
+
+                        <div class="buttons">
+
+                            <button class="bg-success d-flex align-items-center justify-content-center shadow-1-strong boton"
+                                type="button" style="width: 80px; height: 35px; border-radius: 5px; border: none;">
+                                <p class="text-white mb-0 small" [routerLink]="['editar', u.id_usuario]">Editar</p>
+                            </button>
+                            <button class="btn btn-danger boton" type="button"
+                                style="width: 80px; height: 35px; border-radius: 5px;">
+                                <p class="text-white mb-0 small"(click)="delete(u)"> Eliminar</p>
+                            </button>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>

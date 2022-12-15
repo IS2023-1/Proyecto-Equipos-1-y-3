@@ -1,0 +1,32 @@
+.card-666 {
+    background-color: #FFFFFF;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px #df0000;
+}
+
+.biggy-text {
+    font-size: larger;
+    font-weight: 600;
+}
+
+.rentar {
+    background-color: rgb(2, 156, 251);
+    position: relative;
+    margin-left: 10px;
+}
+
+.botones {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
