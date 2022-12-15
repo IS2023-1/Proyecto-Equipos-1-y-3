@@ -20,6 +20,7 @@ import { FormUsuarioComponent } from './usuarios/form-usuario.component';
 import { AgregarUsuariosComponent } from './usuarios/agregar-usuarios.component';
 import { RecuperarComponent } from './usuarios/recuperar.component';
 import { HistorialComponent } from './usuarios/historial.component';
+import { ReportesComponent } from './usuarios/reportes.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/productos', pathMatch: 'full' },
@@ -40,7 +41,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'productos/rbp/:input', component: RbpComponent },
   { path: 'recuperar', component: RecuperarComponent },
-  { path: 'historial/:id', component: HistorialComponent },];
+  { path: 'historial/:id', component: HistorialComponent },
+  { path: 'reportes', component: ReportesComponent }];
 
 
 @NgModule({
@@ -59,7 +61,8 @@ const routes: Routes = [
     FormUsuarioComponent,
     AgregarUsuariosComponent,
     RecuperarComponent,
-    HistorialComponent
+    HistorialComponent,
+    ReportesComponent
   ],
   imports: [
     BrowserModule,

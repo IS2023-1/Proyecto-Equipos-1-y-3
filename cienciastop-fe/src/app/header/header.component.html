@@ -37,6 +37,7 @@
             <ul class="dropdown-menu">
                 <button (click)="logout()" class="dropdown-item">Cerrar Sesión</button>
                 <button class="dropdown-item" [routerLink]="['/historial', authService.usuario.id]">Mi Historial</button>
+                <button [routerLink]="['/reportes']" *ngIf="authService.hasRole('ROLE_ADMIN')" class="dropdown-item">Ver Reporte</button>
             </ul>
           </li>
           
