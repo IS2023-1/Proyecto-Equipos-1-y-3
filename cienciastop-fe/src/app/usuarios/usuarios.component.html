@@ -15,12 +15,12 @@
 
     <div class="row">
       <div class="col-md-6 col-lg-4 mb-4 mb-md-0" *ngFor="let u of usuarios">
-        <div class="card-666">
+        <div class="card-666" style="margin: 20px 0 20px 0;">
           <div class="d-flex justify-content-between">
             <p class="lead mb-0">{{u.nombre}} {{u.apellidoPaterno}} {{u.apellidoMaterno}}</p>
           </div>
 
-          <img src={{u.imagen}} class="card-img-top" alt="Laptop" />
+          <img src={{u.rutaImagen}} class="card-img-top" alt="Laptop"/>
           <div class="card-body codigo">
             <div class="d-flex">
               <p class="small" style="margin-bottom: 0px;">
@@ -33,7 +33,7 @@
             </div>
 
             <div class="d-flex mb-2">
-              <p class="text-muted mb-0 correo">
+              <p class="correo">
                 Email: <span class="fw-bold">{{u.correo}}</span>
               </p>
               <div class="ms-auto text-warning">
@@ -59,4 +59,3 @@
     </div>
   </div>
 </section>
-<a class="nav-link " routerLinkActive="active" aria-current="page" routerLink="agregar-usuarios">agregar usuario</a>

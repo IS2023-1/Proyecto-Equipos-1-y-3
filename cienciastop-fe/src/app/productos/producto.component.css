@@ -3,3 +3,17 @@
     flex-direction: row;
     justify-content: center;
 }
+
+.boton {
+    margin: 0 10px 10px 0;
+}
+
+img {
+    max-width: 400px;
+    margin-top: 0 !important;
+    border-radius: 10px;
+}
+
+.sep {
+    margin: 0px 5px 5px 0px;
+}

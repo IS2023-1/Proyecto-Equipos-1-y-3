@@ -1,3 +1,4 @@
+<!--
 <div class="header">Mi Historial de Productos Rentados</div>
 
 
@@ -5,6 +6,21 @@
     <div class="w-100 p-3" style="background-color: #eee;"></div>
 
     <div class="card">
+        <img src={{producto.rutaImagen}} class="card-img-top visible-xs img-responsiv" />
+        <div class="card-body">
+            <div class="d-flex justify-content-between">
+                <p class="lead mb-0">{{ producto.nombre }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+-->
+<h3 class="header" style="margin: 20px 20px;">Mi Historial de Productos Rentados</h3>
+
+
+<div class="col-md-6 col-lg-4 mb-4 mb-md-0" *ngFor="let producto of productos">
+
+    <div class="card" style="padding: 19px; margin: 20px;">
         <img src={{producto.rutaImagen}} class="card-img-top visible-xs img-responsiv" />
         <div class="card-body">
             <div class="d-flex justify-content-between">

@@ -15,7 +15,7 @@
             <a class="nav-link " routerLinkActive="active" aria-current="page" routerLink="/productos">Productos</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLinkActive="active" aria-current="page" routerLink="/usuarios/buscar/todo">Usuarios</a>
+            <a *ngIf="authService.hasRole('ROLE_ADMIN')" class="nav-link" routerLinkActive="active" aria-current="page" routerLink="/usuarios/buscar/todo">Usuarios</a>
           </li>
         </ul>
 
@@ -28,16 +28,19 @@
           <li class="nav-bar-opt">
             <a *ngIf="!authService.isAuthenticated()"  routerLink="/login" class="btn btn-outline-primary">Iniciar Sesion</a>
           </li>
-
+          
           <li *ngIf="authService.isAuthenticated()" class="dropdown">
             <a class="btn btn-outline-primary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               {{authService.usuario.username}}
             </a>
 
-            <ul class="dropdown-menu">
-                <button (click)="logout()" class="dropdown-item">Cerrar Sesión</button>
-                <button class="dropdown-item" [routerLink]="['/historial', authService.usuario.id]">Mi Historial</button>
+            <ul class="dropdown-menu dropdown-menu-right">
+                <button class="dropdown-item" [routerLink]="['/productos/agregar-producto']" *ngIf="authService.hasRole('ROLE_ADMIN')">Añadir Producto</button>
+                <button class="dropdown-item" [routerLink]="['/agregar-usuarios']" *ngIf="authService.hasRole('ROLE_ADMIN')">Añadir Usuario</button>
                 <button [routerLink]="['/reportes']" *ngIf="authService.hasRole('ROLE_ADMIN')" class="dropdown-item">Ver Reporte</button>
+                <div class="dropdown-divider" *ngIf="authService.hasRole('ROLE_ADMIN')"></div>
+                <button class="dropdown-item" [routerLink]="['/historial', authService.usuario.id]">Mi Historial</button>
+                <button (click)="logout()" class="dropdown-item">Cerrar Sesión</button>
             </ul>
           </li>
           

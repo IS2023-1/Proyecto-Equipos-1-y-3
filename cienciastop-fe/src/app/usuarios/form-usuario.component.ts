@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./form-usuario.component.css']
 })
 export class FormUsuarioComponent implements OnInit {
-  titulo: string = "Modo edicion";
+  titulo: string = "Modo edición";
   user: Usuario = new Usuario();//| undefined;
 
   constructor(private usuarioService: UsuarioService, private router: Router, private activatedRoute: ActivatedRoute) { }

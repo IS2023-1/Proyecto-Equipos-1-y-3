@@ -34,7 +34,7 @@ export class UsuariosComponent implements OnInit {
       if(e.nombre.toLowerCase().includes(input)) {
         matches.push(e);
       } else if (Number(input)) {
-        if (e.cuenta === Number(input)) {
+        if (e.id_usuario === Number(input)) {
           matches.push(e);
         }
       }
