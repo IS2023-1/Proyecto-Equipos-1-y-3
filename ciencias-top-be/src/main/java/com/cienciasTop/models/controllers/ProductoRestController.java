@@ -95,7 +95,7 @@ public class ProductoRestController {
      * Método para buscar a los productos por el código.
      * @param codigo Código de los productos a buscar.
      * @return Regresa a los productos que coincidan con el código, error en otro caso.
-     */
+     */	
     @GetMapping("/buscar/codigo/{codigo}")
     public ResponseEntity<?> findByCodigo(@PathVariable String codigo){
         Producto producto = productoService.findByCodigo(codigo);

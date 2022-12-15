@@ -64,6 +64,29 @@ public class RentarRestController {
 	}
 	
 	/**
+	 * Método que verifica si un usuario ya hizo 3 rentas por día.
+	 * @param fecha_de_renta Fecha en que el usuario renta un producto
+	 * @param usuario Usuario que rentará un producto.
+	 * @return True si es que el usuario ya rentó 3 productos por día, False en otro caso.
+	 */
+	private static boolean verificar_rentas_del_dia(LocalDate fecha_de_renta, Usuario usuario) {
+		List<Rentar> productos = usuario.getProductos();
+		int rentas = 0;
+		if (productos.size() == 0) {
+			return false;
+		}
+		for (int i=0; i<productos.size();i++) {
+			if (productos.get(i).getFecha_de_renta().isEqual(fecha_de_renta)) {
+				rentas++;
+				if (rentas == 3) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
+	/**
 	 * Método para crear una nueva renta a partir del identificador de un usuario y el identificador
 	 * de un producto
 	 * @param id_usuario Identificador del usuario que rentará el producto.
@@ -79,6 +102,13 @@ public class RentarRestController {
         LocalDate fecha_de_renta = LocalDate.now();
         LocalDate fecha_de_entrega = fecha_de_renta.plusDays(producto.getDiasAPrestar());
         Rentar renta = new Rentar();
+        /**
+         * Caso donde el usuario ya rentó 3 productos por día.
+         */
+        if (verificar_rentas_del_dia(fecha_de_renta, usuario)) {
+        	response.put("mensaje", "Has rentado ya tres productos, espera al siguiente día.");
+        	return new ResponseEntity<Map<String,Object>>(response,HttpStatus.BAD_REQUEST);
+        }
         /**
          * Caso donde el producto no está disponible.
          */
@@ -106,8 +136,10 @@ public class RentarRestController {
 			renta.setFecha_de_renta(fecha_de_renta);
 			renta.setFecha_de_entrega(fecha_de_entrega);
 			rentar_Service.save(renta);
+			
 			producto.setDisponibles(producto.getDisponibles()-1);
 			producto_Service.save(producto);
+			
 			usuario.setPumapuntos(usuario.getPumapuntos()-producto.getCosto());
 			usuario_Service.save(usuario);
         } catch(DataAccessException e) {
