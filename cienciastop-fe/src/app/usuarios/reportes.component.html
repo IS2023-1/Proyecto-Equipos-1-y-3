@@ -1,6 +1,6 @@
 <div id="contenido">
     <br>
-    <h1 style="color: #0a7cff">Ciencias Top: Reporte de {{mes}} {{anio}}</h1>
+    <h1 style="color: #0d6efd">Ciencias Top: Reporte de {{mes}} {{anio}}</h1>
     <br>
 
     <h3>Usuarios activos por carrera:</h3>
@@ -22,11 +22,13 @@
         <table>
             <tr>
             <th>Producto</th>
-            <th>Numero de usuario activos</th>
+            <th>Código</th>
+            <th>Detalles</th>
             </tr>
-            <tr *ngFor="let tupla of activos">
-            <td>{{tupla[0]}}</td>
-            <td>{{tupla[1]}}</td>
+            <tr *ngFor="let p of cincoMasRentados">
+            <td>{{p.nombre}}</td>
+            <td>{{p.codigo}}</td>
+            <th><button class="btn btn-outline-success" [routerLink]="['/productos/buscar/codigo/', p.codigo]">Ver Detalles</button></th>
             </tr>
         </table>
     </span>
@@ -35,12 +37,22 @@
     <h3>Numero de cuentas inactivas: <span id="tres">{{inactivos}}</span></h3> <span id="alt-tres"></span>
     <hr>
 
-    <h3>5 productos más baratos:</h3>
-    <span id="cuatro" style="display: flex;">
-        <div *ngFor="let tupla of cincoMasBaratos">
-            <span>{{tupla[0]}}</span><br>
-            <span>{{tupla[1]}}</span>
-        </div>
+    <h3>Productos más baratos:</h3>
+    <span id="cuatro">
+        <table>
+            <tr>
+            <th>Producto</th>
+            <th>Código</th>
+            <th>Costo</th>
+            <th>Detalles</th>
+            </tr>
+            <tr *ngFor="let p of cincoMasBaratos">
+            <td>{{p.nombre}}</td>
+            <td>{{p.codigo}}</td>
+            <td>{{p.costo}} PP</td>
+            <th><button class="btn btn-outline-success" [routerLink]="['/productos/buscar/codigo/', p.codigo]">Ver Detalles</button></th>
+            </tr>
+        </table>
     </span>
     <hr>
 
@@ -48,12 +60,14 @@
     <span id="cinco">
         <table>
             <tr>
-            <th>Carrera</th>
-            <th>Numero de usuario activos</th>
+            <th>Nombre</th>
+            <th>Identificador</th>
+            <th>Perfil</th>
             </tr>
-            <tr *ngFor="let tupla of activos">
-            <td>{{tupla[0]}}</td>
-            <td>{{tupla[1]}}</td>
+            <tr *ngFor="let usu of diezMasTarde">
+            <td>{{usu.nombre}}</td>
+            <td>{{usu.id}}</td>
+            <td><button class="btn btn-outline-success" [routerLink]="['/usuarios/buscar', usu.id_usuario]">Ver Perfil</button></td>
             </tr>
         </table>
     </span>
@@ -63,12 +77,14 @@
     <span id="seis">
         <table>
             <tr>
-            <th>Carrera</th>
-            <th>Numero de usuario activos</th>
+            <th>Nombre</th>
+            <th>Identificador</th>
+            <th>Perfil</th>
             </tr>
-            <tr *ngFor="let tupla of activos">
-            <td>{{tupla[0]}}</td>
-            <td>{{tupla[1]}}</td>
+            <tr *ngFor="let usu of diezMasTarde">
+            <td>{{usu.nombre}}</td>
+            <td>{{usu.id}}</td>
+            <td><button class="btn btn-outline-success" [routerLink]="['/usuarios/buscar', usu.id_usuario]">Ver Perfil</button></td>
             </tr>
         </table>
     </span>
