@@ -10,17 +10,23 @@ import { UsuarioService } from './usuario.service';
   styleUrls: ['./historial.component.css']
 })
 export class HistorialComponent implements OnInit {
-  productos: Producto[] = [];
+  productos: Object[] = [];
   constructor(private usuarioService: UsuarioService,  public authService: AuthService, private productoService: ProductoService) {   }
 
   ngOnInit(): void {
-    //this.usuarioService.getProductosRentados().subscribe(
+    this.historial(this.authService.usuario.id)
+    /*this.usuarioService.historial(this.authService.usuario.id).subscribe(
+      productos => this.productos = productos)
+      console.log(this.productos.length);*/
+    //this.productoService.getProductos().subscribe(
       //productos => this.productos = productos
     //)
+  }
 
-    this.productoService.getProductos().subscribe(
-      productos => this.productos = productos
-    )
+  historial(id) : void{
+    this.usuarioService.historial(id).subscribe(
+      productos => this.productos = productos)
+      console.log(this.productos.length);
   }
 
 }

@@ -66,8 +66,16 @@ export class UsuarioService {
     )
   }
 
-  getProductosRentados() : Observable<Producto[]>{
-    return this.http.get<Producto[]>(`this.urlEndPointHistorial)/${this.authService.usuario.id}`);
+  historial(id) : Observable<Object[]>{
+    return this.http.get<Object[]>(`${this.urlEndPoint}/historial/` + id, { headers: this.agregarAuthorizationHeader() }).pipe(
+      catchError(e => {
+        if(this.isNoAutorizado(e)){
+          return throwError( () => e );
+        }
+        Swal.fire('Error','No se ha podido recuperar el historial', 'error');
+        return throwError( () => e );
+      })
+    )  
   }
 
  

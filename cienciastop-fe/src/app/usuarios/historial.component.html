@@ -18,14 +18,12 @@
 <h3 class="header" style="margin: 20px 20px;">Mi Historial de Productos Rentados</h3>
 
 
-<div class="col-md-6 col-lg-4 mb-4 mb-md-0" *ngFor="let producto of productos">
+<div class="col-md-6 col-lg-4 mb-4 mb-md-0" *ngFor="let rentado of productos">
 
     <div class="card" style="padding: 19px; margin: 20px;">
-        <img src={{producto.rutaImagen}} class="card-img-top visible-xs img-responsiv" />
-        <div class="card-body">
-            <div class="d-flex justify-content-between">
-                <p class="lead mb-0">{{ producto.nombre }}</p>
-            </div>
-        </div>
+        <h3>Entregar antes de {{rentado.fecha_de_entrega}}</h3>
+        <h5>Rentaste este producto el {{rentado.fecha_de_renta}}</h5>
+        <h5>{{rentado.usuario.id}}</h5>
+
     </div>
 </div>
