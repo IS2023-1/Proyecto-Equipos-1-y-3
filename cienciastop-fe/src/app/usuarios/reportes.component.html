@@ -82,7 +82,7 @@
             <th>Identificador</th>
             <th>Perfil</th>
             </tr>
-            <tr *ngFor="let usu of diezMasTarde">
+            <tr *ngFor="let usu of cincoMasRentas">
             <td>{{usu.nombre}}</td>
             <td>{{usu.id}}</td>
             <td><button class="btn btn-outline-success" [routerLink]="['/usuarios/buscar', usu.id_usuario]">Ver Perfil</button></td>
