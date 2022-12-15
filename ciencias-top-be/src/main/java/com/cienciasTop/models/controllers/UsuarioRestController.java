@@ -1,5 +1,6 @@
 package com.cienciasTop.models.controllers;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -115,7 +116,7 @@ public class UsuarioRestController {
             return new ResponseEntity<Map<String,Object>>(response,HttpStatus.INTERNAL_SERVER_ERROR);
         }
         if(usuario == null){
-            response.put("mensaje", "El usuario ID:".concat(cuenta.toString().concat(" no existe en la base de datos.")));
+            response.put("mensaje", "La cuenta:".concat(cuenta.toString().concat(" no existe en la base de datos.")));
             return new ResponseEntity<Map<String,Object>>(response,HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<Usuario>(usuario,HttpStatus.OK);
@@ -139,7 +140,7 @@ public class UsuarioRestController {
             return new ResponseEntity<Map<String,Object>>(response,HttpStatus.INTERNAL_SERVER_ERROR);
         }
         if(usuario == null){
-            response.put("mensaje", "El usuario ID:".concat(correo.toString().concat(" no existe en la base de datos.")));
+            response.put("mensaje", "El correo:".concat(correo.toString().concat(" no existe en la base de datos.")));
             return new ResponseEntity<Map<String,Object>>(response,HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<Usuario>(usuario,HttpStatus.OK);
@@ -155,6 +156,149 @@ public class UsuarioRestController {
     public List<Usuario> findByNombre(@PathVariable String nombre){
     	return usuario_Service.findByNombre(nombre);
     }
+
+     /**
+     * Regresa la cantidad de alumnos activos por la carrera pasada.
+     * @param carrera a buscar activos.
+     * @return numero de alumnos activos por carrera pasada.
+     */
+    private int numero_activos_por_carrera(String carrera) {
+    	List<Usuario> lista = usuario_Service.findAll();
+    	int cantidad = 0;
+        Usuario iterador = new Usuario();
+    	for(int i = 0; i < lista.size(); i++){
+            iterador = lista.get(i);
+            if(iterador.getEsActivo() && iterador.getCarrera().equals(carrera))
+              cantidad++;
+        }
+     return cantidad;
+    }
+
+    /**
+     * Las carreras registradas en la pagina web.
+     * @return lista de carreras registradas.
+     */
+    private List<String> carreras_registradas(){
+        List<Usuario> lista = usuario_Service.findAll();
+        List<String> carreras = new ArrayList<>();
+        
+        Usuario iterador = new Usuario();
+        for(int i = 0; i < lista.size(); i++){
+            iterador = lista.get(i);
+            if(!estaDentro(iterador.getCarrera(), carreras))
+                carreras.add(iterador.getCarrera());
+        }        
+      return carreras;
+    }
+    
+    /**
+     * Checa si un string esta dentro de la lista de string pasada.
+     * @param valor string a buscar
+     * @param lista lista donde buscar
+     * @return True si esta dentro, false si no esta dentro.
+     */
+    private boolean estaDentro(String valor, List<String> lista){
+        for(int i = 0; i < lista.size(); i++){
+            if(lista.get(i).equals(valor))
+               return true;
+        }
+        return false;
+    }
+
+    /**
+     * Numero de alumnos activos por carrera.
+     * @return Lista de arreglos por carrera, en cada arreglo la posicion 0 pertenece al nombre de la carrera y la posicion 1 a la cantidad de alumnos activos en esa carrera.
+     */
+    @Secured({"ROLE_ADMIN"})
+    @GetMapping("/numero_activos")
+    public List<String[]> numero_activos() {
+        List<String> carreras = carreras_registradas();
+        List<String[]> alumnos_carreras = new ArrayList<>();
+        String[] valor = new String[2];
+        for(int i = 0; i < carreras.size(); i++){
+            valor[0] = carreras.get(i);
+            valor[1] = numero_activos_por_carrera(carreras.get(i)) + "";
+          alumnos_carreras.add(valor.clone());
+        }
+      return alumnos_carreras;
+    }
+
+    /**
+     * Regresa la cantidad de usuarios inactivos en la pagina web.
+     * @return cantidad de usuarios inactivos en la pagina.
+     */
+    @Secured({"ROLE_ADMIN"})
+    @GetMapping("/numero_inactivos")
+    public int numero_inactivos() {
+    	List<Usuario> lista = usuario_Service.findAll();
+    	int cantidad = 0;
+        Usuario iterador = new Usuario();
+    	for(int i = 0; i < lista.size(); i++){
+            iterador = lista.get(i);
+            if(!iterador.getEsActivo())
+              cantidad++;
+        }
+     return cantidad;
+    }
+
+    /**
+	 * Dado una lista de usuarios y el id de un usuario, elimina todas las apariciones del usuario.
+	 * @param lista lista de usuarios.
+	 * @param id id del usuario.
+	 */
+    private void elimina_usuario(List<Usuario> lista, Long id){
+        for(int i = 0; i < lista.size(); i++){
+			if(lista.get(i).getId_usuario().equals(id)) {
+				lista.remove(i);
+			}
+		}
+	}
+    
+    /**
+	 * Dado una lista devuelve el usuario que mas penalizaciones tiene y lo elimina de la lista.
+	 * @param lista la lista de usuarios.
+	 * @return el usuario que mas penalizaciones tiene.
+	 */
+    private Usuario usuario_mas_penalizado(List<Usuario> lista) {
+		Long valor1 = 0L;
+		Usuario usuario = new Usuario();
+    	for(int i = 0; i < lista.size(); i++) {
+			if(lista.get(i).getPenalizaciones() > valor1){
+                valor1 = lista.get(i).getPenalizaciones();
+                usuario = lista.get(i);
+            }
+		}
+	    elimina_usuario(lista, usuario.getId_usuario());
+      return usuario;
+    }
+
+    /**
+	 * Devuelve una lista con los nombres de los usuarios que mas han tenido penalizaciones, 10 usuarios de ser posible.
+	 * @return lista de los nombres de los usuarios.
+	 */
+	@Secured({"ROLE_ADMIN"})
+    @GetMapping("/usuarios_mas_penalizados")
+	public List<String> usuarios_mas_penalizados() {
+    	List<Usuario> lista = usuario_Service.findAll();
+        int cantidad_usuarios = 0;
+		List<String> usuarios = new ArrayList<>();
+		String nombre_completo = "";
+		if(lista.size() < 10){
+			cantidad_usuarios = lista.size();
+		} else {
+			cantidad_usuarios = 10;
+		}
+
+        while (cantidad_usuarios > 0) {
+			Usuario usuario = usuario_mas_penalizado(lista);
+			nombre_completo = usuario.getNombre() + " " + usuario.getApellidoPaterno() + " " + usuario.getApellidoMaterno();
+			usuarios.add(nombre_completo);
+			nombre_completo = "";
+			cantidad_usuarios--;
+		}
+		return usuarios;
+    }
+
     /* ------------------------------ READ ------------------------------ */
     
     /* ------------------------------ UPDATE ------------------------------ */
@@ -198,18 +342,8 @@ public class UsuarioRestController {
         response.put("usuario", usuario_Update);
         return new ResponseEntity<Map<String,Object>>(response,HttpStatus.CREATED);
     }
-    
-    /**
-     * Método para verificar que dos contraseñas sean iguales.
-     * @param password_1 Primer contraseña.
-     * @param password_2 Segunda contraseña.
-     * @return True si son iguales, False si son distintas.
-     */
-    private boolean areEqual(String password_1, String password_2) {
-        return password_1.equals(password_2);
-    }
 
-    /**
+      /**
      * Función para cambiar la contraseña de un usuario por su id.
      * @param password_1 Contraseña nueva.
      * @param id Identificador del usuario al que será actualizado su contraseña.
@@ -236,6 +370,74 @@ public class UsuarioRestController {
             response.put("mensaje", "Se ha cambiado la contraseña con exito.");
             response.put("usuario", usuario_Update);
             return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
+    }
+    
+    /**
+     * Método para sumar puntos a  un usuario por su id.
+     * @param usuario Usuario a sumar puntos.
+     * @param id Identificador del usuario a modificar.
+     * @return Mensaje de éxito si el usuario se modificó, error en otro caso.
+     */
+    @Secured({"ROLE_ADMIN"})
+    @PostMapping("/sumarPuntos/{id}")
+    public ResponseEntity<?> updateSumaPuntos(@RequestBody Usuario usuario, @PathVariable Long id){
+        Usuario current_Usuario = this.usuario_Service.findById(id);
+        Usuario usuario_Update = null;
+        Map<String,Object> response = new HashMap<>();
+        if(current_Usuario == null){
+            response.put("mensaje", "Error: no se puede editar el usuario ID:".concat(id.toString().concat(" no existe en la base de datos.")));
+            return new ResponseEntity<Map<String,Object>>(response, HttpStatus.NOT_FOUND);
+        }
+        try {
+        	if(usuario.getPumapuntos() < 0) {
+        		response.put("mensaje", "Error al actualizar el usuario en la base de datos.");
+        		return new ResponseEntity<Map<String,Object>>(response,HttpStatus.INTERNAL_SERVER_ERROR);
+        	}else {
+        		current_Usuario.setPumapuntos(current_Usuario.getPumapuntos() + usuario.getPumapuntos());
+        		usuario_Update = usuario_Service.save(current_Usuario);
+        	}
+        } catch (DataAccessException e) {
+            response.put("mensaje", "Error al actualizar el usuario en la base de datos.");
+            response.put("error",e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
+            return new ResponseEntity<Map<String,Object>>(response,HttpStatus.INTERNAL_SERVER_ERROR);
+        }        
+        response.put("mensaje","El usuario ha sido actualizado con éxito.");
+        response.put("usuario", usuario_Update);
+        return new ResponseEntity<Map<String,Object>>(response,HttpStatus.CREATED);
+    }
+    
+    /**
+     * Método para sumar puntos a  un usuario por su id.
+     * @param usuario Usuario a sumar puntos.
+     * @param id Identificador del usuario a modificar.
+     * @return Mensaje de éxito si el usuario se modificó, error en otro caso.
+     */
+    @Secured({"ROLE_ADMIN"})
+    @PostMapping("/restarPuntos/{id}")
+    public ResponseEntity<?> updateRestaPuntos(@RequestBody Usuario usuario, @PathVariable Long id){
+        Usuario current_Usuario = this.usuario_Service.findById(id);
+        Usuario usuario_Update = null;
+        Map<String,Object> response = new HashMap<>();
+        if(current_Usuario == null){
+            response.put("mensaje", "Error: no se puede editar el usuario ID:".concat(id.toString().concat(" no existe en la base de datos.")));
+            return new ResponseEntity<Map<String,Object>>(response, HttpStatus.NOT_FOUND);
+        }
+        try {
+        	if(usuario.getPumapuntos() < 0) {
+        		response.put("mensaje", "Error al actualizar el usuario en la base de datos.");
+        		return new ResponseEntity<Map<String,Object>>(response,HttpStatus.INTERNAL_SERVER_ERROR);
+        	}else {
+        		current_Usuario.setPumapuntos(current_Usuario.getPumapuntos() - usuario.getPumapuntos());
+        		usuario_Update = usuario_Service.save(current_Usuario);
+        	}
+        } catch (DataAccessException e) {
+            response.put("mensaje", "Error al actualizar el usuario en la base de datos.");
+            response.put("error",e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
+            return new ResponseEntity<Map<String,Object>>(response,HttpStatus.INTERNAL_SERVER_ERROR);
+        }        
+        response.put("mensaje","El usuario ha sido actualizado con éxito.");
+        response.put("usuario", usuario_Update);
+        return new ResponseEntity<Map<String,Object>>(response,HttpStatus.CREATED);
     }
     
     /* ------------------------------ UPDATE ------------------------------ */

@@ -57,40 +57,6 @@ localhost:10000/<endpoint>
 ```
 
 ### Endpoints:
-### :small_red_triangle_down:  :small_red_triangle_down: Iteración 2:  :small_red_triangle_down:  :small_red_triangle_down:
-**/rentar**
-+ /agregar/{id_usuario}/{id_producto}
-  + Agrega una nueva renta con el usuario con identificador id_usuario y producto con identificador id_producto
-```http://localhost:10000/rentar/agregar/{id_usuario}/{id_producto}```
-
-+ /devolver/{id_usuario}/{id_producto}
-  + Devuelve un producto que haya sido rentado con el usuario con identificador id_usuario y producto con identificador id_producto
-```http://localhost:10000/rentar/devolver/{id_usuario}/{id_producto}```
-
-+ /productos_mas_rentados
-  +  Devuelve una lista de los productos mas rentados del mes, 5 productos de ser posible. Uso: ```http://localhost:10000/rentar/productos_mas_rentados```
-
-+ /usuarios_mas_han_rentado
-  + Devuelve una lista con los nombres de los usuarios que mas han rentado de la semana, 5 usuarios de ser posible. Uso: ```http://localhost:10000/rentar/usuarios_mas_han_rentado```
-
-**/productos**
-+ /productos_baratos
-  + Regresa una lista de arreglos de los productos baratos, la posicion 0 es el nombre del producto y la posicion 1 es el costo del producto, esto por cada elemento de la lista. Uso: ```http://localhost:10000/productos/productos_baratos```
-
-**/usuarios**
-+ /restarPuntos/{id}
-  + Resta puma puntos a un usuario a través de su id (generada automáticamente). Exclusiva para admins (análogo a editar usuarios). Uso: ```localhost:10000/restarPuntos/{id}```
-+ /sumarPuntos/{id}
-  + Suma puma puntos a un usuario a través de su id (generada automáticamente). Exclusiva para admins (análogo a editar usuarios). Uso: ```localhost:10000/sumarPuntos/{id}```
-+ /numero_activos 
-  + Regresa una lista de arreglos de alumnos activos por carrera, la posicion 0 es de la carrera y la posicion 1 es el numero de alumnos activos en ella, esto por cada elemento de la lista. Uso: ```http://localhost:10000/usuarios/numero_activos```
-+ /numero_inactivos 
-  + Regresa el numero de alumnos inactivos en la pagina web. Uso: ```http://localhost:10000/usuarios/numero_inactivos```  
-+ /usuarios_mas_penalizados
-  + Devuelve una lista con los nombres de los usuarios que mas han tenido penalizaciones, 10 usuarios de ser posible, devuelve nombre, apellido paterno y apellido materno. Uso: ```http://localhost:10000/usuarios/usuarios_mas_penalizados```
-  
-### :small_red_triangle_down:  :small_red_triangle_down: Iteración 1:  :small_red_triangle_down:  :small_red_triangle_down:
-
 **/productos**
 + /buscar/todo
   + Devuelve todos los productos disponibles. Uso: ```localhost:10000/productos/buscar/todo```
@@ -126,4 +92,35 @@ localhost:10000/<endpoint>
   + Elimina un usuario a través de su id (generado automáticamente). Uso: ```localhost:10000/usuarios/eliminar/{id}```
 + /updateContrasena/{password1}/{password2}/{id}
   + Resetea la contrasena de un usuario atraves de su id (generado automáticamente). Uso: ```localhost:10000/usuarios/updateContrasena/{password1}/{password2}/{id}```
+
+
+## TODO
++ Configurar el entorno local
+  + Instalar Java 17
+  + Instalar Maven
+  + Instalar Postgres 14.5
+  + Crear base de datos cienciastop_bd, con acceso de usuario: **admin** y contraseña **admin**. 
+  + Clonar el repositorio local.
+  + Cambiar
+  + Actualizar base de datos local a cienciastop_bd
+
+### Endpoints 
+**/rentar**
++ /buscar/id
++ /buscar/idProducto
+(Por definir si es necesario)
+  + /buscar/{codigo}
+  + /buscar/{idUsuario}
++ /buscar/{numIdentificacion}
++ /nueva/{idProducto}&{idUsuario}
++ /actualizar/{numIdentificacion}
++ /eliminar/{numIdentificacion}
+  
+**/proveedor**
++ /buscar/{id}
++ /buscar/{numIdentificacion}
+
+**/proveedor**
++ /buscar/{id}
++ /buscar/{numIdentificacion}
 

@@ -1,6 +1,7 @@
 package com.cienciasTop.models.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -13,11 +14,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
-
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
 @Table(name = "usuarios")
@@ -67,6 +66,12 @@ public class Usuario implements Serializable {
 	inverseJoinColumns=@JoinColumn(name="role_id"),
 	uniqueConstraints= {@UniqueConstraint(columnNames= {"usuario_id", "role_id"})})
 	private List<Role> roles;
+	
+	@Column(name = "penalizaciones", nullable = false)
+	private Long penalizaciones;
+	
+	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Rentar> productos = new ArrayList<>();
 	
 	// ----------- Getters y Setters --------------
 
@@ -172,5 +177,21 @@ public class Usuario implements Serializable {
 
 	public void setRoles(List<Role> roles) {
 		this.roles = roles;
+	}
+	
+	public Long getPenalizaciones() {
+		return penalizaciones;
+	}
+
+	public void setPenalizaciones(Long penalizaciones) {
+		this.penalizaciones = penalizaciones;
+	}
+	
+	public List<Rentar> getProductos() {
+		return productos;
+	}
+
+	public void setProductos(List<Rentar> productos) {
+		this.productos = productos;
 	}
 }
