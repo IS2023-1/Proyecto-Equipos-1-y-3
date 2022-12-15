@@ -39,7 +39,7 @@
                 <button class="dropdown-item" [routerLink]="['/agregar-usuarios']" *ngIf="authService.hasRole('ROLE_ADMIN')">Añadir Usuario</button>
                 <button [routerLink]="['/reportes']" *ngIf="authService.hasRole('ROLE_ADMIN')" class="dropdown-item">Ver Reporte</button>
                 <div class="dropdown-divider" *ngIf="authService.hasRole('ROLE_ADMIN')"></div>
-                <button class="dropdown-item" [routerLink]="['/historial', authService.usuario.id]">Mi Historial</button>
+                <button class="dropdown-item" [routerLink]="['usuarios/historial', authService.usuario.id]">Mi Historial</button>
                 <button (click)="logout()" class="dropdown-item">Cerrar Sesión</button>
             </ul>
           </li>

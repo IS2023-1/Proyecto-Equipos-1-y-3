@@ -41,7 +41,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'productos/rbp/:input', component: RbpComponent },
   { path: 'recuperar', component: RecuperarComponent },
-  { path: 'historial/:id', component: HistorialComponent },
+  { path: 'usuarios/historial/:id', component: HistorialComponent },
   { path: 'reportes', component: ReportesComponent }];
 
 
