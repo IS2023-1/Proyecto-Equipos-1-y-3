@@ -1,5 +1,7 @@
 package com.cienciasTop.models.controllers;
 
+import java.time.LocalDate;
+import java.time.Month;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -20,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cienciasTop.models.entity.Rentar;
 import com.cienciasTop.models.entity.Usuario;
 import com.cienciasTop.models.service.IUsuarioService;
 
@@ -297,6 +300,22 @@ public class UsuarioRestController {
 			cantidad_usuarios--;
 		}
 		return usuarios;
+    }
+	
+	@GetMapping("/historial/{id_usuario}")
+	public List<Rentar> historial(@PathVariable Long id_usuario) {
+    	List<Rentar> productos = usuario_Service.findById(id_usuario).getProductos();
+    	List<Rentar> historial_mes_actual = new ArrayList<Rentar>();
+        LocalDate fecha_actual = LocalDate.now();
+        Month mes = fecha_actual.getMonth();
+        
+        for (int i=0;i<productos.size();i++) {
+        	if (productos.get(i).getFecha_de_entrega().getMonth().getValue() ==
+        		mes.getValue()) {
+        		historial_mes_actual.add(productos.get(i));
+        	}
+        }
+        return historial_mes_actual;
     }
 
     /* ------------------------------ READ ------------------------------ */
