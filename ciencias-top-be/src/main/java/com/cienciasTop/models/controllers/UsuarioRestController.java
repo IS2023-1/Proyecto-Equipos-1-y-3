@@ -348,7 +348,7 @@ public class UsuarioRestController {
             current_Usuario.setCarrera(usuario.getCarrera());
             current_Usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
             current_Usuario.setEsActivo(usuario.getEsActivo());
-            current_Usuario.setPumapuntos(usuario.getPumapuntos());
+            current_Usuario.setPumapuntos(current_Usuario.getPumapuntos() + usuario.getPumapuntos());
             current_Usuario.setRoles(usuario.getRoles());
             usuario_Update = usuario_Service.save(current_Usuario);
         } catch (DataAccessException e) {
