@@ -24,8 +24,4 @@ INSERT INTO usuarios_roles (usuario_id, role_id) VALUES (4, 2);
 --Usuarios
 INSERT INTO usuarios_roles (usuario_id, role_id) VALUES (2, 3);
 
---Rentas
-INSERT INTO rentar (fecha_de_entrega, fecha_de_renta, id_producto, id_usuario ) VALUES ('2001-11-11', '2001-12-12', '1', '1');
-INSERT INTO rentar (fecha_de_entrega, fecha_de_renta, id_producto, id_usuario ) VALUES ('2001-11-11', '2001-12-12', '1', '2');
-INSERT INTO rentar (fecha_de_entrega, fecha_de_renta, id_producto, id_usuario ) VALUES ('2001-11-11', '2001-12-12', '1', '3');
 
