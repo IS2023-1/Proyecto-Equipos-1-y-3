@@ -1,87 +1,242 @@
-<div class="card bg-dark text-white">
-    <div class="card-header">{{ titulo }}</div>
-    <div class="card-body">
-  
-      <form>
-        <div class="form-group row">
-          <label for="nombre" class="col-form-label col-sm-2">Nombre</label>
-          <div class="col-sm-6">
-            <input type="text" class="form-control" [(ngModel)]="usuario.nombre" name="nombre">
-          </div>
-        </div>
-  
-        <div class="form-group row">
-          <label for="apellidoPaterno" class="col-form-label col-sm-2">Apellido Paterno</label>
-          <div class="col-sm-6">
-            <input type="text" class="form-control" [(ngModel)]="usuario" name="apellidoPaterno">
-          </div>
-        </div>
-  
-        <div class="form-group row">
-          <label for="apellidoMaterno" class="col-form-label col-sm-2">Apellido Materno</label>
-          <div class="col-sm-6">
-            <input type="text" class="form-control" [(ngModel)]="usuario" name="apellidoMaterno">
-          </div>
-        </div>
-  
-        <div class="form-group row">
-          <label for="numeroCel" class="col-form-label col-sm-2">Numero de Celular</label>
-          <div class="col-sm-6">
-            <input type="text" class="form-control" [(ngModel)]="usuario" name="numeroCel">
-          </div>
-        </div>
-
-        <div class="form-group row">
-          <label for="email" class="col-form-label col-sm-2">Email</label>
-          <div class="col-sm-6">
-            <input type="text" class="form-control" [(ngModel)]="usuario" name="email">
-          </div>
-        </div>
-
-        <div class="form-group row">
-          <label for="carrera" class="col-form-label col-sm-2">Carrera</label>
-          <div class="col-sm-6">
-            <input type="text" class="form-control" [(ngModel)]="usuario" name="carrera">
-          </div>
-        </div>
-
-        <div class="form-group row">
-          <label for="rol" class="col-form-label col-sm-2">Rol</label>
-          <div class="col-sm-6">
-            <input type="text" class="form-control" [(ngModel)]="usuario" name="email">
-          </div>
-        </div>
-
-        <div class="form-group row">
-          <label for="contrasena" class="col-form-label col-sm-2">Contraseña</label>
-          <div class="col-sm-6">
-            <input type="text" class="form-control" [(ngModel)]="usuario" name="email">
-          </div>
-        </div>
-
-        <div class="form-group row">
-          <label for="pumaPuntos" class="col-form-label col-sm-2">Puma Puntos</label>
-          <div class="col-sm-6">
-            <input type="text" class="form-control" [(ngModel)]="usuario" name="email">
-          </div>
-        </div>
-
-        <div class="form-group row">
-          <label for="esActivo" class="col-form-label col-sm-2">¿Es activo?</label>
-          <div class="col-sm-6">
-            <input type="text" class="form-control" [(ngModel)]="usuario" name="email">
-          </div>
-        </div>
+   <!--
+<h1>{{titulo}}</h1>
+<form class="form-inline" *ngIf="user">
+  <div class="form-group mx-sm-3">
+    <label for="inputPass" class="sr-only">Nombre</label>
+    <input [(ngModel)]="user.rol" name="Nombre">
+  </div>
 
 
-        <div class="form-group row">
-          <div class="col-sm-6">
-            <button class="btn btn-primary" role="button" (click)='create()' >Crear</button>
-  
-          </div>
-        </div>
-      </form>
-  
+ 
+  <div class="form-row align-items-center mx-sm-3">
+    <div class="col-auto my-1">
+      <label class="mr-sm-2" for="inlineFormCustomSelect">Rol</label>
+      <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" [(ngModel)]="user.rol">
+        <option selected>Escoge</option>
+        <option value="1">Usuario</option>
+        <option value="2">Administrador</option>
+        <option value="3">Proveedor</option>
+      </select>
     </div>
   </div>
+
+  <div class="form-group mx-sm-3">
+    <label for="inputPass" class="sr-only">¿Es Activo?</label>
+    <input [(ngModel)]="user.rol" name="¿Es Activo?">
+  </div>
+
+  <div class="formcheck">
+
+    <input class="form-check-input" type="checkbox" id="chk1" [(ngModel)]="user.esActivo" name="acepta" />
+    <label for="inputPass" class="form-check-label">¿Es Activo?</label>
+  </div>
+
   
+  <div class="form-group mx-sm-3">
+    <label for="inputPass" class="sr-only">¿Es Activo?</label>
+    <input [(ngModel)]="user.esActivo" name="¿Es Activo?">
+  </div>
+   
+  <div class="form-group mx-sm-3">
+    <label for="inputPass" class="sr-only">Apellido Paterno</label>
+    <input [(ngModel)]="user.apellidoPaterno" name="Apellido Paterno" placeholder="Apellido Paterno">
+  </div>
+
+  <div class="form-group mx-sm-3">
+    <label for="inputPass" class="sr-only">Apellido Materno</label>
+    <input [(ngModel)]="user.apellidoMaterno" name="Apellido Materno">
+  </div>
+
+  <div class="form-group mx-sm-3">
+    <label for="inputPass" class="sr-only">Correo</label>
+    <input [(ngModel)]="user.correo" name="Correo">
+  </div>
+
+  <div class="form-group mx-sm-3">
+    <label for="inputPass" class="sr-only">Carrera</label>
+    <input [(ngModel)]="user.carrera" name="Carrerar">
+  </div>
+
+  <div class="form-group mx-sm-3">
+    <label for="inputPass" class="sr-only">Numero de celular</label>
+    <input [(ngModel)]="user.numeroCel" name="Numero de celular">
+  </div>
+
+
+  <div class="formcheck">
+
+    <input class="form-check-input" type="checkbox" id="chk1" [(ngModel)]="user.esActivo" name="acepta" />
+    <label for="inputPass" class="form-check-label">¿Es Activo?</label>
+  </div>
+
+
+  <div class="form-group mx-sm-3">
+    <label for="inputPass" class="sr-only">¿Es Activo?</label>
+    <input [(ngModel)]="user.esActivo" name="¿Es Activo?">
+  </div>
+
+  <div class="form-group mx-sm-3">
+    <label for="inputPass" class="sr-only">PumaPuntosr</label>
+    <input [(ngModel)]="user.pumapuntos" name="PumaPuntosr">
+  </div>
+
+  <div class="form-group mx-sm-3">
+    <label for="inputPass" class="sr-only">Cuenta</label>
+    <input [(ngModel)]="user.cuenta" name="Cuenta">
+  </div>
+
+  <div class="form-group mx-sm-3">
+    <label for="inputPass" class="sr-only">Contraseña</label>
+    <input [(ngModel)]="user.password" name="Contraseña">
+  </div>
+
+  <div class="form-row align-items-center mx-sm-3">
+    <div class="col-auto my-1">
+      <label class="mr-sm-2" for="inlineFormCustomSelect">Rol</label>
+      <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+        <option selected>Escoge</option>
+        <option value="1">Usuario</option>
+        <option value="2">Administrador</option>
+        <option value="3">Proveedor</option>
+      </select>
+    </div>
+  </div>
+
+<div class="form-group mx-sm-3">
+        <label for="inputPassword6">Contraseña</label>
+        <input type="password" id="inputPassword6" class="form-control mx-sm-3" aria-describedby="passwordHelpInline"
+            [(ngModel)]="user.password">
+        <small id="passwordHelpInline" class="text-muted">
+            En caso de necesitar cambiar contraseña
+        </small>
+    </div>
+</form>
+
+
+<div>
+  <button class="bg-success d-flex align-items-center justify-content-center shadow-1-strong" type="button"
+    style="width: 80px; height: 35px; border-radius: 5px;">
+    <p class="text-white mb-0 small" (click)="create()"> Guardar</p>
+  </button>
+</div>
+
+ -->
+
+<div class="card">
+  <h3 class="card-header" style="text-align: center;">{{titulo}}</h3>
+  <div class="w-100 p-3"></div>
+
+  <form class="form-inline" *ngIf="user">
+
+    <div class="form-group row">
+      <label for="inputPass" class="col-form-label col-sm-2 right-align">Nombre</label>
+      <div class="col-sm-6">
+        <input class="form-control" [(ngModel)]="user.nombre" name="Nombre">
+      </div>
+    </div>
+
+    <div class="w-100 p-3"></div>
+
+    <div class="form-group row">
+      <label for="inputPass" class="col-form-label col-sm-2 right-align">Apellido Paterno</label>
+      <div class="col-sm-6">
+        <input class="form-control" [(ngModel)]="user.apellidoPaterno" name="Apellido Paterno"
+          placeholder="Apellido Paterno">
+      </div>
+    </div>
+
+    <div class="w-100 p-3"></div>
+
+    <div class="form-group row">
+      <label for="inputPass" class="col-form-label col-sm-2 right-align">Apellido Materno</label>
+      <div class="col-sm-6">
+        <input class="form-control" [(ngModel)]="user.apellidoMaterno" name="Apellido Materno">
+      </div>
+    </div>
+
+    <div class="w-100 p-3"></div>
+
+    <div class="form-group row">
+      <label for="inputPass" class="col-form-label col-sm-2 right-align">Numero de celular</label>
+      <div class="col-sm-6">
+        <input class="form-control" [(ngModel)]="user.numeroCel" name="Numero de celular">
+      </div>
+    </div>
+
+    <div class="w-100 p-3"></div>
+
+    <div class="form-group row">
+      <label for="inputPass" class="col-form-label col-sm-2 right-align">Carrera</label>
+      <div class="col-sm-6">
+        <input class="form-control" [(ngModel)]="user.carrera" name="Correo">
+      </div>
+    </div>
+
+    <div class="w-100 p-3"></div>
+
+    <div class="form-group row">
+      <label for="inputPass" class="col-form-label col-sm-2 right-align">¿Es Activo?</label>
+      <div class="col-sm-6">
+        <input class="form-check-input" type="checkbox" id="chk1" [(ngModel)]="user.esActivo" name="acepta" />
+      </div>
+    </div>
+
+    <div class="w-100 p-3"></div>
+
+    <div class="form-group row">
+      <label for="inputPass" class="col-form-label col-sm-2 right-align">PumaPuntos</label>
+      <div class="col-sm-6">
+        <input class="form-control" [(ngModel)]="user.pumapuntos" name="PumaPuntos">
+      </div>
+    </div>
+
+    <div class="w-100 p-3"></div>
+
+    <div class="form-group row">
+      <label for="inputPass" class="col-sm-2 col-form-label right-align">Rol</label>
+      <div class="col-sm-6">
+        <select id="inmputState" class="form-control" [(ngModel)]="user.rol" name="Rol">
+          <option value="Usuario">Usuario</option>
+          <option value="Administrador">Administrador</option>
+          <option value="Proveedor">Proveedor</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="w-100 p-3"></div>
+
+    <div class="form-group row">
+      <label for="inputPass" class="col-form-label col-sm-2 right-align">Cuenta</label>
+      <div class="col-sm-6">
+        <input class="form-control" [(ngModel)]="user.cuenta" name="Cuenta">
+      </div>
+    </div>
+
+    <div class="w-100 p-3"></div>
+
+    <div class="form-group row">
+      <label for="inputPass" class="col-form-label col-sm-2 right-align">Correo</label>
+      <div class="col-sm-6">
+        <input class="form-control" [(ngModel)]="user.correo" name="Correo">
+      </div>
+    </div>
+
+    <div class="w-100 p-3"></div>
+
+    <div class="form-group row">
+      <label for="inputPass" class="col-form-label col-sm-2 right-align">Contraseña</label>
+      <div class="col-sm-6">
+        <input input type="password" id="inputPassword6" [(ngModel)]="user.password" name="Contraseña" aria-describedby="passwordHelpInline">
+      </div>
+    </div>
+
+  </form>
+  <div class="w-100 p-3"></div>
+  <div style="display: flex; justify-content: center;">
+    <button class="bg-success d-flex align-items-center justify-content-center shadow-1-strong" type="button"
+      style="width: 80px; height: 35px; border-radius: 5px; border: none;" (click)="create()">
+      <p class="text-white mb-0 small"> Guardar</p>
+    </button>
+  </div>
+  <div class="w-100 p-3"></div>
+</div>

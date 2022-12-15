@@ -4,6 +4,7 @@ import { Usuario } from './usuarios';
 import Swal from 'sweetalert2';
 import { UsuarioService } from './usuarios.service';
 import { delay } from 'rxjs';
+import { AuthService } from './auth.service';
 
 @Component({
   selector: 'app-usuarios',
@@ -18,7 +19,7 @@ export class UsuariosComponent implements OnInit {
   searchInput: string = "";
   placeholder: string = "";
 
-  constructor(private usuarioService: UsuarioService) { }
+  constructor(private usuarioService: UsuarioService,public authService:AuthService) { }
 
   ngOnInit(): void {
     this.getUsuarios()

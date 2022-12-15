@@ -58,3 +58,8 @@
     </div>
   </div>
 </section>
+<li *ngIf="authService.hasRole('ROLE_ADMIN')" class="dropdown">
+  <ul class="nav nav-pills nav-fill">
+    <a class="nav-link active" href="#" routerLinkActive="active" aria-current="page" routerLink="/usuarios/agregar-usuarios">agregar usuario</a>
+  </ul>
+</li>

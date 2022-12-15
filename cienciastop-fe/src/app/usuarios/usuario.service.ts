@@ -104,4 +104,16 @@ export class UsuarioService {
     )
   }
 
+  create(cliente: Usuario) : Observable<Usuario> {
+    return this.http.post<Usuario>(`${this.urlEndPoint}/agregar/`,cliente, {headers: this.agregarAuthorizationHeader()}).pipe(
+    catchError(e => {
+      if(this.isNoAutorizado(e)){
+        return throwError( () => e );
+      }
+      Swal.fire('Error al crear al usuario', 'No ha sido posible crear al usuario, intenta de nuevo', 'error');
+      return throwError( () => e );
+    })
+    )
+  }
+
 }

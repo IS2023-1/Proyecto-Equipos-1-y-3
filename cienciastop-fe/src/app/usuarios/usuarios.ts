@@ -25,4 +25,6 @@ export class Usuario {
     pumapuntos: number;
 
     imagen: string;
+
+    penalizaciones: number;
 }
