@@ -38,7 +38,7 @@ export class ProductoComponent implements OnInit {
     })
       swalWithBootstrapButtons.fire({
         title: '¿Estás seguro?',
-        text: '¿Estás seguro de rentar el productoS ' + `${producto.nombre}`+'?',
+        text: '¿Estás seguro de rentar el producto ' + `${producto.nombre}`+'?',
         icon: 'warning',
         showCancelButton: true,
         confirmButtonText: 'Sí, rentar',
