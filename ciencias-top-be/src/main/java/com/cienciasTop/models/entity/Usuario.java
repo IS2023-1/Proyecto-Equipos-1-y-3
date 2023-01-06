@@ -1,13 +1,20 @@
 package com.cienciasTop.models.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Entity
 @Table(name = "usuarios")
@@ -19,8 +26,11 @@ public class Usuario implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id_usuario;
 	
+	@Column(unique = true, length = 20)
+	private String username;
+	
 	@Column(name = "cuenta", unique = true, updatable = true, nullable = false, columnDefinition = "BIGINT CHECK(cuenta BETWEEN 100000 AND 999999999)")
-	private Long cuenta; // Numero de trabajador o numer de cuenta
+	private Long cuenta;
 
 	@Column(name = "nombre", length = 50, nullable = false)
 	private String nombre;
@@ -40,7 +50,7 @@ public class Usuario implements Serializable {
 	@Column(name = "carrera", length = 50, nullable = true)
 	private String carrera;
 
-	@Column(name = "contrasena", length = 20, nullable = false)
+	@Column(name = "contrasena", length = 60, nullable = false)
 	private String password;
 
 	@Column(name = "esActivo", nullable = false)
@@ -48,6 +58,12 @@ public class Usuario implements Serializable {
 
 	@Column(name = "pumapuntos", columnDefinition = "INT NOT NULL CHECK(pumapuntos >= 0 AND pumapuntos <= 500)")
 	private Integer pumapuntos;
+	
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinTable(name="usuarios_roles", joinColumns= @JoinColumn(name="usuario_id"),
+	inverseJoinColumns=@JoinColumn(name="role_id"),
+	uniqueConstraints= {@UniqueConstraint(columnNames= {"usuario_id", "role_id"})})
+	private List<Role> roles;
 	
 	// ----------- Getters y Setters --------------
 
@@ -57,6 +73,14 @@ public class Usuario implements Serializable {
 
 	public void setId_usuario(Long id_usuario) {
 		this.id_usuario = id_usuario;
+	}
+	
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public Long getCuenta() {
@@ -139,5 +163,11 @@ public class Usuario implements Serializable {
 		this.pumapuntos = pumapuntos;
 	}		
 	
+	public List<Role> getRoles() {
+		return roles;
+	}
 
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
+	}
 }
